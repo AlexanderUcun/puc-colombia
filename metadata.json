@@ -1,0 +1,7 @@
+{
+  "name": "PUC Colombia",
+  "description": "Plan Único de Cuentas para comerciantes en Colombia (Decreto 2650/1993) con árbol jerárquico desplegable y guía de retenciones e impuestos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

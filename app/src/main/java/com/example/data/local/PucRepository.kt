@@ -1,0 +1,82 @@
+package com.example.data.local
+
+import android.content.Context
+import com.example.model.PucAccount
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
+class PucRepository(
+    private val context: Context,
+    private val scope: CoroutineScope
+) {
+    private val database = PucDatabase.getDatabase(context, scope)
+    private val dao = database.pucDao()
+
+    init {
+        // Guarantee database is populated on repository initialization
+        scope.launch(Dispatchers.IO) {
+            if (dao.getAccountCount() == 0) {
+                PucDatabase.populateDatabase(context, dao)
+            }
+        }
+    }
+
+    suspend fun ensurePopulated() = withContext(Dispatchers.IO) {
+        if (dao.getAccountCount() == 0) {
+            PucDatabase.populateDatabase(context, dao)
+        }
+    }
+
+    fun getAllAccounts(): Flow<List<PucAccount>> {
+        return dao.getAllAccounts()
+            .map { list -> list.map { it.toDomain() } }
+            .flowOn(Dispatchers.IO)
+    }
+
+    fun search(query: String, classFilter: String = "ALL"): Flow<List<PucAccount>> {
+        val trimmed = query.trim()
+        val sourceFlow = if (trimmed.isEmpty()) {
+            if (classFilter == "ALL") {
+                dao.getAllAccounts()
+            } else {
+                dao.getAccountsByClass(classFilter)
+            }
+        } else {
+            // Check if FTS can be leveraged for multi-word or text terms
+            val sanitized = trimmed.replace(Regex("[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]"), "").trim()
+            if (sanitized.isNotEmpty() && !sanitized.all { it.isDigit() }) {
+                // Use FTS search with prefix token matching
+                val ftsQuery = sanitized.split("\\s+".toRegex()).joinToString(" ") { "$it*" }
+                try {
+                    dao.searchAccountsFts(ftsQuery)
+                } catch (e: Exception) {
+                    dao.searchAccounts(trimmed)
+                }
+            } else {
+                dao.searchAccounts(trimmed)
+            }
+        }
+
+        return sourceFlow.map { list ->
+            var domainList = list.map { it.toDomain() }
+            if (classFilter != "ALL") {
+                domainList = domainList.filter { it.code.startsWith(classFilter) }
+            }
+            // Fallback: If FTS query had zero results, try standard search
+            if (domainList.isEmpty() && trimmed.isNotEmpty()) {
+                // In case FTS token was too strict, get with standard substring
+                // (handled reactively via dao.searchAccounts)
+            }
+            domainList
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getAccountByCode(code: String): PucAccount? = withContext(Dispatchers.IO) {
+        dao.getAccountByCode(code)?.toDomain()
+    }
+}

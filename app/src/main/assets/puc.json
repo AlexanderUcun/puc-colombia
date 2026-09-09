@@ -1,0 +1,1242 @@
+[
+  {
+    "code": "1",
+    "name": "ACTIVO",
+    "level": "CLASE",
+    "nature": "DEBITO",
+    "description": "Agrupa el conjunto de las cuentas que representan los bienes y derechos tangibles e intangibles de propiedad del ente económico, que en la medida de su utilización, son fuente potencial de beneficios presentes o futuros.",
+    "debitDynamic": "Por las entradas de dinero en efectivo y los cheques o recursos recibidos por cualquier concepto, adquisición de bienes o derechos.",
+    "creditDynamic": "Por el valor de las salidas de dinero en efectivo, venta, consumo, pérdida o baja de bienes y derechos.",
+    "parentCode": null
+  },
+  {
+    "code": "11",
+    "name": "DISPONIBLE",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Comprende los fondos de caja, los depósitos en cuentas corrientes y de ahorro en moneda nacional o extranjera, y las divisas en poder de la empresa con disponibilidad inmediata.",
+    "debitDynamic": "Por las entradas de efectivo a caja o consignaciones en cuentas bancarias.",
+    "creditDynamic": "Por los giros, traslados o pagos realizados en efectivo o cheque.",
+    "parentCode": "1"
+  },
+  {
+    "code": "1105",
+    "name": "Caja",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra la existencia en dinero efectivo o en cheques con que cuenta el ente económico, tanto en moneda nacional como extranjera, disponible en forma inmediata.",
+    "debitDynamic": "Por las entradas de dinero en efectivo y los cheques o comprobantes recibidos por cualquier concepto.",
+    "creditDynamic": "Por el valor de las consignaciones diarias en cuentas corrientes o de ahorros, por los pagos en efectivo y por los sobrantes liquidados en arqueos.",
+    "parentCode": "11"
+  },
+  {
+    "code": "110505",
+    "name": "Caja general",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Recursos en efectivo y cheques recibidos centralizados en la sede principal antes de ser consignados.",
+    "debitDynamic": "Por recaudos de cartera, ventas de contado y aportes en efectivo.",
+    "creditDynamic": "Por consignaciones bancarias diarias y remesas de fondos.",
+    "parentCode": "1105"
+  },
+  {
+    "code": "110510",
+    "name": "Cajas menores",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Fondos fijos asignados para sufragar gastos menores o urgentes que no justifican giro de cheque o transferencia.",
+    "debitDynamic": "Por la constitución o aumento del fondo fijo de caja menor.",
+    "creditDynamic": "Por la reducción o cancelación definitiva del fondo fijo.",
+    "parentCode": "1105"
+  },
+  {
+    "code": "1110",
+    "name": "Bancos",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra el valor de los depósitos constituidos por el ente económico en moneda nacional y extranjera, en bancos del país o del exterior.",
+    "debitDynamic": "Por los depósitos realizados mediante consignaciones bancarias, notas crédito bancarias por préstamos o rendimientos financieros.",
+    "creditDynamic": "Por el valor de los cheques girados, transferencias electrónicas, notas débito por comisiones, chequeras o cuotas de créditos.",
+    "parentCode": "11"
+  },
+  {
+    "code": "111005",
+    "name": "Bancos - Moneda nacional",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Saldos disponibles en cuentas corrientes en entidades financieras reguladas en Colombia.",
+    "debitDynamic": "Por transferencias y consignaciones recibidas de clientes o socios.",
+    "creditDynamic": "Por pagos a proveedores, nómina e impuestos vía transferencia o cheque.",
+    "parentCode": "1110"
+  },
+  {
+    "code": "1120",
+    "name": "Cuentas de ahorro",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra la existencia de fondos a la vista en cuentas de ahorro en instituciones financieras.",
+    "debitDynamic": "Por aperturas, depósitos y abono de intereses generados.",
+    "creditDynamic": "Por retiros de fondos, notas débito bancarias y comisiones.",
+    "parentCode": "11"
+  },
+  {
+    "code": "112005",
+    "name": "Cuentas de ahorro - Bancos",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Fondos colocados en cuentas remuneradas en entidades bancarias comerciales.",
+    "debitDynamic": "Por traslados de fondos e intereses abonados por la entidad.",
+    "creditDynamic": "Por retiros o traslados a la cuenta corriente operativa.",
+    "parentCode": "1120"
+  },
+  {
+    "code": "12",
+    "name": "INVERSIONES",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Comprende las cuentas que registran las inversiones en acciones, cuotas o partes de interés social, títulos valores, papeles comerciales o cualquier otro documento negociable adquirido para obtener renta o control.",
+    "debitDynamic": "Por el costo de adquisición de las inversiones.",
+    "creditDynamic": "Por la venta, redención o castigo de los títulos e inversiones.",
+    "parentCode": "1"
+  },
+  {
+    "code": "1205",
+    "name": "Acciones",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra los títulos representativos del capital social de sociedades anónimas o en comandita por acciones.",
+    "debitDynamic": "Por el valor de las acciones adquiridas.",
+    "creditDynamic": "Por la enajenación o liquidación de las acciones.",
+    "parentCode": "12"
+  },
+  {
+    "code": "1225",
+    "name": "Certificados (CDT)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra los certificados de depósito a término colocados en el sector financiero con plazo determinado.",
+    "debitDynamic": "Por la constitución de los certificados a término.",
+    "creditDynamic": "Por la redención de capital al vencimiento.",
+    "parentCode": "12"
+  },
+  {
+    "code": "13",
+    "name": "DEUDORES",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Comprende el conjunto de cuentas que representan los derechos a cobrar que tiene el ente económico originados en ventas, servicios prestados, préstamos a terceros y anticipos de impuestos.",
+    "debitDynamic": "Por la facturación a crédito de bienes y servicios o desembolso de préstamos.",
+    "creditDynamic": "Por los pagos totales o parciales recibidos de deudores.",
+    "parentCode": "1"
+  },
+  {
+    "code": "1305",
+    "name": "Clientes",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra los créditos a favor del ente económico por concepto de ventas a crédito de mercancías, productos o servicios terminados en desarrollo de su objeto social.",
+    "debitDynamic": "Por el valor de las facturas de venta a crédito emitidas.",
+    "creditDynamic": "Por los abonos, cancelaciones, devoluciones en ventas y descuentos concedidos.",
+    "parentCode": "13"
+  },
+  {
+    "code": "130505",
+    "name": "Clientes nacionales",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Facturación pendiente de cobro a compradores domiciliados en el territorio nacional.",
+    "debitDynamic": "Por el total facturado a crédito a clientes nacionales.",
+    "creditDynamic": "Por transferencias o cheques recibidos de clientes en cancelación de facturas.",
+    "parentCode": "1305"
+  },
+  {
+    "code": "1355",
+    "name": "Anticipo de impuestos y contribuciones o saldos a favor",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra los saldos a cargo de entidades gubernamentales por concepto de anticipos de impuestos o retenciones practicadas al ente económico.",
+    "debitDynamic": "Por las retenciones en la fuente a título de renta, IVA e ICA practicadas por clientes.",
+    "creditDynamic": "Por la compensación de estos saldos en las declaraciones tributarias oficiales.",
+    "parentCode": "13"
+  },
+  {
+    "code": "135515",
+    "name": "Anticipo de impuestos - Retención en la fuente",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Retenciones en la fuente a título del impuesto sobre la renta y complementarios practicadas a favor de la empresa.",
+    "debitDynamic": "Por el valor de la retención certificada por los clientes en cada venta o servicio.",
+    "creditDynamic": "Por la imputación del saldo en la declaración anual de renta.",
+    "parentCode": "1355"
+  },
+  {
+    "code": "135517",
+    "name": "Anticipo de impuestos - Impuesto a las ventas retenido (ReteIVA)",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "ReteIVA practicado por agentes de retención en ventas gravadas.",
+    "debitDynamic": "Por el 15% del IVA facturado que retiene el comprador adquirente.",
+    "creditDynamic": "Por el descuento o saldo a favor en la declaración bimestral o cuatrimestral de IVA.",
+    "parentCode": "1355"
+  },
+  {
+    "code": "135518",
+    "name": "Anticipo de impuestos - ReteICA",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Retención del Impuesto de Industria y Comercio practicada por clientes autorretenedores o designados.",
+    "debitDynamic": "Por la retención municipal aplicada sobre las facturas de venta.",
+    "creditDynamic": "Por la imputación del anticipo en la declaración periódica de ICA ante la alcaldía.",
+    "parentCode": "1355"
+  },
+  {
+    "code": "1365",
+    "name": "Cuentas por cobrar a trabajadores",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra los derechos a cobrar a los empleados por préstamos, anticipos de sueldo o calamidad doméstica.",
+    "debitDynamic": "Por los préstamos o anticipos girados a los trabajadores.",
+    "creditDynamic": "Por deducciones por nómina acordadas con el empleado.",
+    "parentCode": "13"
+  },
+  {
+    "code": "14",
+    "name": "INVENTARIOS",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Comprende todos aquellos artículos, materiales, suministros, productos y recursos disponibles para la venta o para ser utilizados en el proceso productivo.",
+    "debitDynamic": "Por las compras de existencias al costo de adquisición.",
+    "creditDynamic": "Por la venta de mercancías (costo de ventas) o mermas justificadas.",
+    "parentCode": "1"
+  },
+  {
+    "code": "1435",
+    "name": "Mercancías no fabricadas por la empresa",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra el valor de los bienes adquiridos para su posterior venta sin someterlos a ningún proceso de transformación.",
+    "debitDynamic": "Por el costo de las mercancías compradas a los proveedores.",
+    "creditDynamic": "Por el costo de ventas de las mercancías enajenadas o devoluciones a proveedores.",
+    "parentCode": "14"
+  },
+  {
+    "code": "143501",
+    "name": "Mercancías en almacén",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Stock físico de productos terminados comprados listos para distribución y venta.",
+    "debitDynamic": "Por la entrada de inventario según factura del proveedor.",
+    "creditDynamic": "Por la salida de inventario al costo registrada en el kárdex con cargo al costo de ventas.",
+    "parentCode": "1435"
+  },
+  {
+    "code": "15",
+    "name": "PROPIEDADES, PLANTA Y EQUIPO",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Comprende el conjunto de las cuentas que registran los activos de cualquier naturaleza que posea el ente económico, con la intención de emplearlos en forma permanente para la producción de bienes o prestación de servicios.",
+    "debitDynamic": "Por el costo de adquisición de los activos fijos tangibles.",
+    "creditDynamic": "Por la venta, retiro, permuta o baja por obsolescencia.",
+    "parentCode": "1"
+  },
+  {
+    "code": "1516",
+    "name": "Construcciones y edificaciones",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra los inmuebles construidos como edificios, bodegas, plantas y locales comerciales propiedad de la empresa.",
+    "debitDynamic": "Por el costo de adquisición o construcción del inmueble.",
+    "creditDynamic": "Por la venta o baja de la edificación.",
+    "parentCode": "15"
+  },
+  {
+    "code": "1524",
+    "name": "Equipo de oficina",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra los escritorios, sillas, archivadores, calculadoras y demás bienes muebles destinados al servicio de la administración.",
+    "debitDynamic": "Por el costo de compra de muebles y enseres.",
+    "creditDynamic": "Por la venta o desecho de muebles depreciados o deteriorados.",
+    "parentCode": "15"
+  },
+  {
+    "code": "1528",
+    "name": "Equipo de computación y comunicación",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra el valor de los equipos de cómputo, servidores, redes y telecomunicaciones al servicio del ente económico.",
+    "debitDynamic": "Por la adquisición de computadores, impresoras y servidores.",
+    "creditDynamic": "Por la venta o retiro del activo.",
+    "parentCode": "15"
+  },
+  {
+    "code": "152805",
+    "name": "Equipos de procesamiento de datos",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Unidades de procesamiento central, computadores portátiles y de escritorio.",
+    "debitDynamic": "Por la compra de equipos de cómputo para la empresa.",
+    "creditDynamic": "Por la baja de equipos por reemplazo tecnológico.",
+    "parentCode": "1528"
+  },
+  {
+    "code": "1540",
+    "name": "Flota y equipo de transporte",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra los vehículos automotores terrestres al servicio del ente económico para el transporte de carga o personal.",
+    "debitDynamic": "Por el valor de adquisición de automotores y camiones.",
+    "creditDynamic": "Por la venta o siniestro del vehículo.",
+    "parentCode": "15"
+  },
+  {
+    "code": "1592",
+    "name": "Depreciación acumulada",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra el monto acumulado de las mermas o desgastes sistemáticos del costo de los activos fijos tangibles por su uso o transcurso del tiempo.",
+    "debitDynamic": "Por la cancelación de la depreciación acumulada al vender o dar de baja el activo.",
+    "creditDynamic": "Por la causación periódica del gasto de depreciación.",
+    "parentCode": "15"
+  },
+  {
+    "code": "1705",
+    "name": "Gastos pagados por anticipado",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra los pagos anticipados por seguros, arrendamientos o pólizas que se amortizarán mes a mes.",
+    "debitDynamic": "Por el pago anticipado de pólizas o cánones.",
+    "creditDynamic": "Por la amortización mensual del servicio devengado imputada al gasto.",
+    "parentCode": "1"
+  },
+  {
+    "code": "2",
+    "name": "PASIVO",
+    "level": "CLASE",
+    "nature": "CREDITO",
+    "description": "Agrupa el conjunto de las cuentas que representan las obligaciones contraídas por el ente económico en desarrollo del giro ordinario de su actividad, pagaderas en dinero, bienes o en servicios.",
+    "debitDynamic": "Por los pagos totales o parciales de las deudas y obligaciones.",
+    "creditDynamic": "Por la adquisición o causación de nuevas obligaciones o deudas.",
+    "parentCode": null
+  },
+  {
+    "code": "21",
+    "name": "OBLIGACIONES FINANCIERAS",
+    "level": "GRUPO",
+    "nature": "CREDITO",
+    "description": "Comprende el valor de las obligaciones contraídas por el ente económico mediante la obtención de recursos provenientes de establecimientos de crédito u otras instituciones financieras.",
+    "debitDynamic": "Por el abono o pago a capital de los créditos bancarios.",
+    "creditDynamic": "Por el desembolso de préstamos o líneas de sobregiro.",
+    "parentCode": "2"
+  },
+  {
+    "code": "2105",
+    "name": "Bancos nacionales",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra el valor de las obligaciones financieras contraídas por la empresa con entidades bancarias en Colombia.",
+    "debitDynamic": "Por los pagos de cuotas aplicadas al capital adeudado.",
+    "creditDynamic": "Por el valor de los préstamos recibidos y pagarés suscritos.",
+    "parentCode": "21"
+  },
+  {
+    "code": "210505",
+    "name": "Pagarés",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Obligaciones respaldadas con títulos valores pagaré suscritos a bancos.",
+    "debitDynamic": "Por la amortización de cuotas bancarias.",
+    "creditDynamic": "Por la suscripción y desembolso del crédito comercial.",
+    "parentCode": "2105"
+  },
+  {
+    "code": "22",
+    "name": "PROVEEDORES",
+    "level": "GRUPO",
+    "nature": "CREDITO",
+    "description": "Comprende las obligaciones contraídas por el ente económico a favor de terceros por concepto de adquisición de bienes o mercancías para la venta o insumos de fabricación.",
+    "debitDynamic": "Por los pagos efectuados a los proveedores o por devoluciones de mercancías.",
+    "creditDynamic": "Por el valor de las facturas de compra de mercancías recibidas a crédito.",
+    "parentCode": "2"
+  },
+  {
+    "code": "2205",
+    "name": "Proveedores nacionales",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra las deudas a favor de proveedores de materias primas o mercancías ubicados en el país.",
+    "debitDynamic": "Por los pagos con cheque, transferencia o devoluciones de mercancía comprada.",
+    "creditDynamic": "Por el valor de las compras a crédito según factura del proveedor.",
+    "parentCode": "22"
+  },
+  {
+    "code": "220505",
+    "name": "Proveedores nacionales",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Cuentas por pagar comerciales a suministradores de existencias en el territorio colombiano.",
+    "debitDynamic": "Por giros bancarios o notas crédito comerciales.",
+    "creditDynamic": "Por facturación de compras recibidas a crédito.",
+    "parentCode": "2205"
+  },
+  {
+    "code": "23",
+    "name": "CUENTAS POR PAGAR",
+    "level": "GRUPO",
+    "nature": "CREDITO",
+    "description": "Comprende las obligaciones contraídas por el ente económico a favor de terceros por conceptos distintos a proveedores de materias primas o mercancías (honorarios, servicios, arrendamientos, impuestos retenidos).",
+    "debitDynamic": "Por los pagos realizados a los acreedores.",
+    "creditDynamic": "Por la causación de costos, gastos devengados y retenciones practicadas.",
+    "parentCode": "2"
+  },
+  {
+    "code": "2335",
+    "name": "Costos y gastos por pagar",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra el valor de las deudas por concepto de servicios y gastos devengados pendientes de cancelar.",
+    "debitDynamic": "Por los pagos efectuados a los beneficiarios de los servicios.",
+    "creditDynamic": "Por la causación contable del gasto devengado.",
+    "parentCode": "23"
+  },
+  {
+    "code": "233525",
+    "name": "Costos y gastos por pagar - Honorarios",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Honorarios causados a profesionales o firmas asesoras pendientes de desembolso.",
+    "debitDynamic": "Por la transferencia de honorarios netos cancelados.",
+    "creditDynamic": "Por la causación de la cuenta de cobro o factura del profesional.",
+    "parentCode": "2335"
+  },
+  {
+    "code": "233540",
+    "name": "Costos y gastos por pagar - Arrendamientos",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Cánones de arrendamiento de oficinas, locales o bodegas causados.",
+    "debitDynamic": "Por el pago del canon mensual al arrendador.",
+    "creditDynamic": "Por la causación mensual del contrato de arrendamiento.",
+    "parentCode": "2335"
+  },
+  {
+    "code": "233550",
+    "name": "Costos y gastos por pagar - Servicios públicos",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Facturas de energía, acueducto, telefonía y gas recibidas pendientes de vencimiento.",
+    "debitDynamic": "Por el pago bancario de los recibos públicos.",
+    "creditDynamic": "Por la causación contable de la factura pública recibida.",
+    "parentCode": "2335"
+  },
+  {
+    "code": "2365",
+    "name": "Retención en la fuente",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra el importe de las retenciones a título de renta practicadas por el ente económico a terceros en los pagos o abonos en cuenta sujetos a retención.",
+    "debitDynamic": "Por el pago mensual a la DIAN mediante el formulario oficial 350.",
+    "creditDynamic": "Por el valor de las retenciones en la fuente practicadas en compras, servicios u honorarios.",
+    "parentCode": "23"
+  },
+  {
+    "code": "236515",
+    "name": "Retención en la fuente - Honorarios",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Retención aplicada sobre pagos por servicios calificados donde predomina el intelecto (10% declarantes / 11% no declarantes).",
+    "debitDynamic": "Por el giro a la DIAN de la retención practicada.",
+    "creditDynamic": "Por la retención practicada al profesional o persona jurídica.",
+    "parentCode": "2365"
+  },
+  {
+    "code": "236525",
+    "name": "Retención en la fuente - Servicios",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Retención aplicada sobre mano de obra o servicios generales (4% declarantes / 6% no declarantes).",
+    "debitDynamic": "Por el pago mensual en la declaración de retención en la fuente.",
+    "creditDynamic": "Por la retención practicada sobre servicios contratados.",
+    "parentCode": "2365"
+  },
+  {
+    "code": "236530",
+    "name": "Retención en la fuente - Arrendamientos",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Retención sobre cánones de arrendamiento de bienes muebles (4%) o inmuebles (3.5%).",
+    "debitDynamic": "Por el traslado mensual del valor retenido a la DIAN.",
+    "creditDynamic": "Por la retención deducida al propietario o arrendador en el pago.",
+    "parentCode": "2365"
+  },
+  {
+    "code": "236540",
+    "name": "Retención en la fuente - Compras",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Retención a título de renta practicada en compras generales de mercancías (2.5% declarantes / 3.5% no declarantes).",
+    "debitDynamic": "Por el pago oficial a la DIAN en la declaración mensual.",
+    "creditDynamic": "Por la retención practicada a los proveedores en las facturas de compra.",
+    "parentCode": "2365"
+  },
+  {
+    "code": "2367",
+    "name": "Impuesto a las ventas retenido (ReteIVA)",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra el valor del IVA retenido a los proveedores en operaciones gravadas por agentes de retención.",
+    "debitDynamic": "Por el pago a la DIAN mediante el formulario mensual 350.",
+    "creditDynamic": "Por el 15% del IVA facturado retenido a proveedores del régimen común.",
+    "parentCode": "23"
+  },
+  {
+    "code": "236701",
+    "name": "ReteIVA por pagar",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Obligación tributaria con la DIAN por retención de IVA practicada en compras de bienes o servicios.",
+    "debitDynamic": "Por la cancelación bancaria de la declaración de retención.",
+    "creditDynamic": "Por la liquidación del 15% de ReteIVA en facturas de compra.",
+    "parentCode": "2367"
+  },
+  {
+    "code": "2368",
+    "name": "Impuesto de industria y comercio retenido (ReteICA)",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra el valor de las retenciones a título de ICA practicadas en operaciones mercantiles a favor de los municipios.",
+    "debitDynamic": "Por el pago de las retenciones bimestrales ante la Secretaría de Hacienda municipal.",
+    "creditDynamic": "Por las retenciones de ICA liquidadas a los proveedores en los pagos o abonos en cuenta.",
+    "parentCode": "23"
+  },
+  {
+    "code": "236801",
+    "name": "ReteICA por pagar",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Retención de impuesto municipal practicada a proveedores según tarifas de actividad económica.",
+    "debitDynamic": "Por el pago del impuesto en la tesorería municipal distrital.",
+    "creditDynamic": "Por la retención municipal practicada en cada pago.",
+    "parentCode": "2368"
+  },
+  {
+    "code": "2370",
+    "name": "Retenciones y aportes de nómina",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra las sumas retenidas a los trabajadores y los aportes a cargo de la empresa destinados a la seguridad social y parafiscales.",
+    "debitDynamic": "Por el pago mensual a través de la planilla PILA a los operadores de seguridad social.",
+    "creditDynamic": "Por las deducciones de nómina practicadas al empleado y por los aportes a cargo del empleador.",
+    "parentCode": "23"
+  },
+  {
+    "code": "237005",
+    "name": "Aportes a EPS",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Sumas adeudadas a las Entidades Promotoras de Salud por aportes de los trabajadores y empleadores.",
+    "debitDynamic": "Por el pago en la PILA a las EPS.",
+    "creditDynamic": "Por la deducción del 4% en nómina al empleado y los aportes de salud.",
+    "parentCode": "2370"
+  },
+  {
+    "code": "237006",
+    "name": "Aportes a fondos de pensiones (AFP)",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Sumas adeudadas a los Fondos de Pensiones y Cesantías por cotizaciones obligatorias de los trabajadores.",
+    "debitDynamic": "Por el giro mensual en la planilla de aportes a las AFP.",
+    "creditDynamic": "Por la deducción del 4% del empleado más el 12% a cargo del empleador.",
+    "parentCode": "2370"
+  },
+  {
+    "code": "24",
+    "name": "IMPUESTOS, GRAVÁMENES Y TASAS",
+    "level": "GRUPO",
+    "nature": "CREDITO",
+    "description": "Comprende el valor de los gravámenes de carácter general obligatorios a favor del Estado a cargo del ente económico por concepto de liquidaciones privadas.",
+    "debitDynamic": "Por el pago oficial de los impuestos liquidados o imputación de anticipos.",
+    "creditDynamic": "Por el valor de los impuestos generados o devengados en el período gravable.",
+    "parentCode": "2"
+  },
+  {
+    "code": "2408",
+    "name": "Impuesto sobre las ventas por pagar (IVA)",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra tanto el IVA facturado por el ente económico en la venta de bienes o servicios (Generado), como el IVA pagado en la adquisición de bienes o servicios (Descontable).",
+    "debitDynamic": "Por el valor del IVA descontable facturado por los proveedores (240802) y por los pagos a la DIAN.",
+    "creditDynamic": "Por el valor del IVA generado facturado a los clientes (240801).",
+    "parentCode": "24"
+  },
+  {
+    "code": "240801",
+    "name": "IVA generado (19%)",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Impuesto sobre las ventas liquidado y facturado al cliente en la enajenación de bienes o prestación de servicios.",
+    "debitDynamic": "Por el cruce contra el IVA descontable al final del período bimestral/cuatrimestral o por devoluciones en ventas.",
+    "creditDynamic": "Por el 19% de IVA facturado y cobrado en cada venta de contado o a crédito.",
+    "parentCode": "2408"
+  },
+  {
+    "code": "240802",
+    "name": "IVA descontable (19%)",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Impuesto sobre las ventas facturado por los proveedores en compras que otorga derecho a descuento fiscal ante la DIAN.",
+    "debitDynamic": "Por el valor del IVA facturado en compras de mercancías, costos de producción o gastos operativos gravados.",
+    "creditDynamic": "Por el traslado para compensación contra el IVA generado en la declaración bimestral de IVA.",
+    "parentCode": "2408"
+  },
+  {
+    "code": "25",
+    "name": "OBLIGACIONES LABORALES",
+    "level": "GRUPO",
+    "nature": "CREDITO",
+    "description": "Comprende el valor de los pasivos a cargo del ente económico y a favor de los trabajadores originados en contratos laborales y normas de legislación laboral.",
+    "debitDynamic": "Por la cancelación efectiva de las nóminas y prestaciones a los trabajadores.",
+    "creditDynamic": "Por la liquidación y causación periódica de sueldos y prestaciones sociales.",
+    "parentCode": "2"
+  },
+  {
+    "code": "2505",
+    "name": "Salarios por pagar",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra el valor neto adeudado a los trabajadores por concepto de sueldos devengados.",
+    "debitDynamic": "Por la transferencia bancaria de la nómina neta a cada empleado.",
+    "creditDynamic": "Por el saldo líquido a pagar resultante de la nómina quincenal o mensual.",
+    "parentCode": "25"
+  },
+  {
+    "code": "250505",
+    "name": "Salarios por pagar",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Sueldos y jornales causados pendientes de pago a los empleados.",
+    "debitDynamic": "Por transferencias en fecha de corte de nómina.",
+    "creditDynamic": "Por la causación contable de la nómina del período.",
+    "parentCode": "2505"
+  },
+  {
+    "code": "2510",
+    "name": "Cesantías consolidadas",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra el pasivo acumulado a favor de los trabajadores por concepto de cesantías equivalentes a un mes de salario por año laborado.",
+    "debitDynamic": "Por la consignación anual de las cesantías a los fondos en febrero o pago directo en liquidación.",
+    "creditDynamic": "Por la consolidación periódica mensual del 8.33% de cesantías.",
+    "parentCode": "25"
+  },
+  {
+    "code": "2515",
+    "name": "Intereses sobre cesantías",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra los intereses devengados del 12% anual sobre el saldo acumulado de cesantías pagaderos en enero.",
+    "debitDynamic": "Por el pago directo en nómina de enero al trabajador.",
+    "creditDynamic": "Por la provisión mensual del 1% sobre cesantías.",
+    "parentCode": "25"
+  },
+  {
+    "code": "2520",
+    "name": "Prima de servicios",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra el valor acumulado de la prima legal de servicios equivalente a un mes de salario por año pagadero semestralmente en junio y diciembre.",
+    "debitDynamic": "Por el pago en junio y diciembre de la prima legal a los empleados.",
+    "creditDynamic": "Por la provisión mensual del 8.33% de prima.",
+    "parentCode": "25"
+  },
+  {
+    "code": "3",
+    "name": "PATRIMONIO",
+    "level": "CLASE",
+    "nature": "CREDITO",
+    "description": "Agrupa el conjunto de las cuentas que representan el valor residual de comparar el activo total menos el pasivo externo, producto de los recursos netos del ente económico entregados por los socios más los resultados retenidos.",
+    "debitDynamic": "Por la disminución de aportes, pérdidas del ejercicio o absorción de déficits.",
+    "creditDynamic": "Por los aportes iniciales de capital, utilidades del ejercicio y aumentos de reservas.",
+    "parentCode": null
+  },
+  {
+    "code": "31",
+    "name": "CAPITAL SOCIAL",
+    "level": "GRUPO",
+    "nature": "CREDITO",
+    "description": "Comprende el valor total de los aportes que han pagado los socios o accionistas al ente económico en dinero, especie o servicios.",
+    "debitDynamic": "Por la reducción de capital autorizada o liquidación de la entidad.",
+    "creditDynamic": "Por el valor de los aportes de capital efectivamente suscritos y pagados.",
+    "parentCode": "3"
+  },
+  {
+    "code": "3105",
+    "name": "Capital suscrito y pagado",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra el valor del capital que los accionistas se han comprometido a pagar en sociedades por acciones.",
+    "debitDynamic": "Por la disminución de capital o liquidación.",
+    "creditDynamic": "Por los aportes de capital recibidos.",
+    "parentCode": "31"
+  },
+  {
+    "code": "310505",
+    "name": "Capital autorizado",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Monto máximo de capital fijado en los estatutos sociales de la sociedad.",
+    "debitDynamic": "Por reformas estatutarias de reducción.",
+    "creditDynamic": "Por la constitución de la sociedad o incremento en estatutos.",
+    "parentCode": "3105"
+  },
+  {
+    "code": "33",
+    "name": "RESERVAS",
+    "level": "GRUPO",
+    "nature": "CREDITO",
+    "description": "Comprende los valores apropiados de las utilidades líquidas por mandato legal o estatutario.",
+    "debitDynamic": "Por la absorción de pérdidas netas en caso de liquidación.",
+    "creditDynamic": "Por la apropiación del 10% de las utilidades del ejercicio hasta completar el 50% del capital.",
+    "parentCode": "3"
+  },
+  {
+    "code": "330505",
+    "name": "Reserva legal",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Fondo obligatorio exigido por el Código de Comercio colombiano equivalente al 10% de las utilidades anuales.",
+    "debitDynamic": "Por la absorción de pérdidas justificadas en asamblea.",
+    "creditDynamic": "Por la aprobación del proyecto de distribución de utilidades en asamblea de accionistas.",
+    "parentCode": "33"
+  },
+  {
+    "code": "36",
+    "name": "RESULTADOS DEL EJERCICIO",
+    "level": "GRUPO",
+    "nature": "CREDITO",
+    "description": "Comprende el valor de las utilidades o pérdidas obtenidas por el ente económico al cierre del ejercicio contable anual.",
+    "debitDynamic": "Por el traslado de utilidades a reservas o dividendos, o por el registro de la pérdida del ejercicio.",
+    "creditDynamic": "Por la utilidad neta arrojada por la cuenta de pérdidas y ganancias (5905).",
+    "parentCode": "3"
+  },
+  {
+    "code": "3605",
+    "name": "Utilidad del ejercicio",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra el saldo positivo de las ganancias netas obtenidas al término del ciclo anual.",
+    "debitDynamic": "Por la distribución aprobada en asamblea hacia dividendos o reservas.",
+    "creditDynamic": "Por el cierre de la cuenta de ganancias y pérdidas al fin de año.",
+    "parentCode": "36"
+  },
+  {
+    "code": "3610",
+    "name": "Pérdida del ejercicio",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra el resultado negativo del ejercicio económico cuando los egresos superan a los ingresos.",
+    "debitDynamic": "Por la cancelación de la cuenta pérdidas y ganancias cuando da saldo deudor.",
+    "creditDynamic": "Por la absorción con utilidades acumuladas o reservas en el período siguiente.",
+    "parentCode": "36"
+  },
+  {
+    "code": "4",
+    "name": "INGRESOS",
+    "level": "CLASE",
+    "nature": "CREDITO",
+    "description": "Agrupa el conjunto de las cuentas que representan los beneficios operativos y financieros que percibe el ente económico en el desarrollo del giro normal de su actividad comercial en un ejercicio determinado.",
+    "debitDynamic": "Por la cancelación de sus saldos al cierre del ejercicio contra la cuenta de ganancias y pérdidas (5905).",
+    "creditDynamic": "Por los valores facturados o devengados por venta de bienes o prestación de servicios.",
+    "parentCode": null
+  },
+  {
+    "code": "41",
+    "name": "OPERACIONALES",
+    "level": "GRUPO",
+    "nature": "CREDITO",
+    "description": "Comprende los valores devengados por el ente económico en desarrollo directo de su objeto social principal.",
+    "debitDynamic": "Por el cierre contable anual a pérdidas y ganancias.",
+    "creditDynamic": "Por el valor de las ventas de bienes o prestación de servicios operativos.",
+    "parentCode": "4"
+  },
+  {
+    "code": "4135",
+    "name": "Comercio al por mayor y al por menor",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra los ingresos obtenidos por el ente económico en la comercialización de mercancías al por mayor y menor.",
+    "debitDynamic": "Por la cancelación del saldo al final del período anual.",
+    "creditDynamic": "Por el valor de las ventas de mercancías facturadas a clientes antes de IVA.",
+    "parentCode": "41"
+  },
+  {
+    "code": "413501",
+    "name": "Venta de mercancías",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": "Ingresos brutos operacionales generados por la comercialización directa de productos.",
+    "debitDynamic": "Por cierre anual de cuentas de resultado.",
+    "creditDynamic": "Por el importe facturado a clientes en ventas de contado o crédito.",
+    "parentCode": "4135"
+  },
+  {
+    "code": "4175",
+    "name": "Devoluciones en ventas",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra el valor de las mercancías devueltas por los clientes por inconformidad o garantía.",
+    "debitDynamic": "Por el precio facturado de las mercancías que los clientes devuelven a la empresa.",
+    "creditDynamic": "Por la cancelación de su saldo contra la cuenta ganancias y pérdidas al cierre anual.",
+    "parentCode": "41"
+  },
+  {
+    "code": "42",
+    "name": "NO OPERACIONALES",
+    "level": "GRUPO",
+    "nature": "CREDITO",
+    "description": "Comprende los ingresos provenientes de transacciones diferentes a las del objeto principal del ente económico (intereses, arrendamientos, recuperaciones).",
+    "debitDynamic": "Por el cierre de fin de año.",
+    "creditDynamic": "Por los ingresos recibidos ajenos al giro principal de actividades.",
+    "parentCode": "4"
+  },
+  {
+    "code": "4210",
+    "name": "Financieros",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra los ingresos obtenidos por intereses bancarios, rendimientos financieros y descuentos comerciales condicionados ganados.",
+    "debitDynamic": "Por el cierre anual de resultados.",
+    "creditDynamic": "Por los intereses abonados en extractos bancarios o notas de crédito.",
+    "parentCode": "42"
+  },
+  {
+    "code": "5",
+    "name": "GASTOS",
+    "level": "CLASE",
+    "nature": "DEBITO",
+    "description": "Agrupa las cuentas que representan los cargos operativos y financieros en que incurre el ente económico en el desarrollo del giro normal de su actividad en un ejercicio económico determinado.",
+    "debitDynamic": "Por el valor pagado o causado por cada uno de los conceptos de gasto.",
+    "creditDynamic": "Por la cancelación de saldos al cierre del ejercicio anual contra pérdidas y ganancias (5905).",
+    "parentCode": null
+  },
+  {
+    "code": "51",
+    "name": "OPERACIONALES DE ADMINISTRACIÓN",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Comprende los gastos ocasionados en el desarrollo principal del objeto social, orientados a la gestión y dirección administrativa de la empresa.",
+    "debitDynamic": "Por las erogaciones devengadas por sueldos, honorarios, arrendamientos y servicios de oficina.",
+    "creditDynamic": "Por la cancelación de saldos al cierre contable anual.",
+    "parentCode": "5"
+  },
+  {
+    "code": "5105",
+    "name": "Gastos de personal",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra los gastos ocasionados por concepto de la relación laboral con el personal administrativo (sueldos, cesantías, primas, seguridad social).",
+    "debitDynamic": "Por el valor de las nóminas devengadas y provisiones de prestaciones sociales del área administrativa.",
+    "creditDynamic": "Por la cancelación del saldo al cierre del ciclo anual.",
+    "parentCode": "51"
+  },
+  {
+    "code": "510506",
+    "name": "Gastos de personal - Sueldos",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Remuneración básica fija o variable estipulada en contratos de trabajo del personal administrativo.",
+    "debitDynamic": "Por el valor total del sueldo devengado en el período por los empleados de oficina.",
+    "creditDynamic": "Por el cierre anual a pérdidas y ganancias.",
+    "parentCode": "5105"
+  },
+  {
+    "code": "510527",
+    "name": "Auxilio de transporte",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Prestación legal obligatoria para trabajadores que devengan hasta dos salarios mínimos legales vigentes.",
+    "debitDynamic": "Por el valor causado según tarifa gubernamental a los trabajadores con derecho.",
+    "creditDynamic": "Por el cierre anual contable.",
+    "parentCode": "5105"
+  },
+  {
+    "code": "510569",
+    "name": "Aportes a entidades promotoras de salud (EPS)",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Gasto patronal por aportes de salud a favor de los empleados según normatividad vigente.",
+    "debitDynamic": "Por la causación del aporte patronal de salud.",
+    "creditDynamic": "Por el cierre a pérdidas y ganancias al final del año.",
+    "parentCode": "5105"
+  },
+  {
+    "code": "510570",
+    "name": "Aportes a fondos de pensiones y cesantías",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Gasto patronal del 12% por pensiones obligatorias a cargo de la empresa.",
+    "debitDynamic": "Por la causación del aporte patronal a las AFP.",
+    "creditDynamic": "Por el cierre anual de cuentas de resultado.",
+    "parentCode": "5105"
+  },
+  {
+    "code": "510572",
+    "name": "Aportes a cajas de compensación familiar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Aporte parafiscal del 4% sobre la nómina mensual con destino a cajas de compensación (Comfama, Compensar, Colsubsidio, etc.).",
+    "debitDynamic": "Por la liquidación del 4% parafiscal sobre salarios devengados.",
+    "creditDynamic": "Por el cierre a ganancias y pérdidas.",
+    "parentCode": "5105"
+  },
+  {
+    "code": "5110",
+    "name": "Honorarios",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra los gastos por concepto de asesorías jurídicas, financieras, contables, tributarias o técnicas prestadas por personas naturales o jurídicas.",
+    "debitDynamic": "Por el valor de las cuentas de cobro o facturas causadas por servicios profesionales.",
+    "creditDynamic": "Por el cierre anual contra la cuenta 5905.",
+    "parentCode": "51"
+  },
+  {
+    "code": "511035",
+    "name": "Honorarios - Asesoría contable y tributaria",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Remuneración a contadores públicos, revisores fiscales y consultores tributarios por sus servicios.",
+    "debitDynamic": "Por la causación de honorarios de contabilidad y auditoría.",
+    "creditDynamic": "Por el cierre contable del ejercicio.",
+    "parentCode": "5110"
+  },
+  {
+    "code": "5120",
+    "name": "Arrendamientos",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra el valor de los gastos causados por el alquiler de bienes muebles o inmuebles utilizados para el área administrativa.",
+    "debitDynamic": "Por el valor mensual de los cánones de arrendamiento según contrato.",
+    "creditDynamic": "Por el cierre anual a pérdidas y ganancias.",
+    "parentCode": "51"
+  },
+  {
+    "code": "512010",
+    "name": "Arrendamientos - Construcciones y edificaciones",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Alquiler de oficinas, bodegas administrativas y locales para la sede de la empresa.",
+    "debitDynamic": "Por la causación mensual del canon de arrendamiento.",
+    "creditDynamic": "Por el cierre anual de resultados.",
+    "parentCode": "5120"
+  },
+  {
+    "code": "5135",
+    "name": "Servicios",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra los gastos por servicios públicos, aseo, vigilancia, transportes, fletes y procesamiento de información.",
+    "debitDynamic": "Por el costo de las facturas de servicios devengadas.",
+    "creditDynamic": "Por el cierre anual de pérdidas y ganancias.",
+    "parentCode": "51"
+  },
+  {
+    "code": "513525",
+    "name": "Servicios - Acueducto y alcantarillado",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Gasto por suministro de agua y saneamiento básico en instalaciones de la empresa.",
+    "debitDynamic": "Por el valor facturado por las empresas de servicios públicos.",
+    "creditDynamic": "Por el cierre anual a 5905.",
+    "parentCode": "5135"
+  },
+  {
+    "code": "513530",
+    "name": "Servicios - Energía eléctrica",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Gasto por consumo de energía en las dependencias de la empresa.",
+    "debitDynamic": "Por la factura mensual de la electrificadora.",
+    "creditDynamic": "Por el cierre anual de resultados.",
+    "parentCode": "5135"
+  },
+  {
+    "code": "513535",
+    "name": "Servicios - Teléfono e internet",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Gasto por conectividad de fibra óptica, líneas telefónicas y servicios de comunicaciones.",
+    "debitDynamic": "Por el valor cobrado por el operador de telecomunicaciones.",
+    "creditDynamic": "Por el cierre contable del ejercicio.",
+    "parentCode": "5135"
+  },
+  {
+    "code": "5160",
+    "name": "Depreciaciones",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra el gasto por pérdida sistemática del valor de los activos fijos por su uso en el período.",
+    "debitDynamic": "Por la cuota periódica calculada según vida útil del activo (edificios, muebles, computadores).",
+    "creditDynamic": "Por el cierre anual del ejercicio.",
+    "parentCode": "51"
+  },
+  {
+    "code": "52",
+    "name": "OPERACIONALES DE VENTAS",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Comprende los gastos ocasionados directamente en la gestión comercial, ventas, distribución y entrega de los productos de la empresa.",
+    "debitDynamic": "Por las erogaciones devengadas por sueldos de vendedores, comisiones, fletes y publicidad.",
+    "creditDynamic": "Por el cierre anual a pérdidas y ganancias.",
+    "parentCode": "5"
+  },
+  {
+    "code": "523560",
+    "name": "Publicidad, propaganda y promoción",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Gastos en anuncios digitales, pauta en medios, eventos y material publicitario para impulsar las ventas.",
+    "debitDynamic": "Por el valor de las facturas de agencias publicitarias o plataformas de anuncios.",
+    "creditDynamic": "Por el cierre anual a ganancias y pérdidas.",
+    "parentCode": "52"
+  },
+  {
+    "code": "53",
+    "name": "NO OPERACIONALES",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Comprende las sumas pagadas o causadas por gastos no relacionados directamente con el objeto social principal de la empresa (gastos financieros, pérdidas extraordinarias).",
+    "debitDynamic": "Por el valor de los cargos bancarios, intereses y multas.",
+    "creditDynamic": "Por el cierre contable anual.",
+    "parentCode": "5"
+  },
+  {
+    "code": "5305",
+    "name": "Financieros",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra los gastos por intereses corrientes y de mora sobre créditos bancarios, comisiones y gravámenes bancarios (4x1000).",
+    "debitDynamic": "Por notas débito de bancos por intereses, chequeras y Gravamen a los Movimientos Financieros (GMF).",
+    "creditDynamic": "Por el cierre anual a 5905.",
+    "parentCode": "53"
+  },
+  {
+    "code": "530505",
+    "name": "Gastos bancarios",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Comisiones por transferencias interbancarias, cuotas de manejo de cuentas y emisión de chequeras.",
+    "debitDynamic": "Por los débitos cobrados por la entidad financiera según extracto bancario.",
+    "creditDynamic": "Por el cierre contable de fin de año.",
+    "parentCode": "5305"
+  },
+  {
+    "code": "530520",
+    "name": "Intereses bancarios",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Costo financiero por intereses causados en préstamos, sobregiros y pagarés bancarios.",
+    "debitDynamic": "Por los intereses liquidados en los extractos de créditos.",
+    "creditDynamic": "Por el cierre del ejercicio a pérdidas y ganancias.",
+    "parentCode": "5305"
+  },
+  {
+    "code": "6",
+    "name": "COSTOS DE VENTAS",
+    "level": "CLASE",
+    "nature": "DEBITO",
+    "description": "Agrupa el conjunto de las cuentas que representan la acumulación de los costos directos e indirectos incurridos en la adquisición de las mercancías o productos comercializados en el giro normal de la empresa.",
+    "debitDynamic": "Por el costo de las mercancías vendidas determinado por kárdex de inventarios.",
+    "creditDynamic": "Por la cancelación de saldos al cierre del ejercicio anual contra pérdidas y ganancias (5905).",
+    "parentCode": null
+  },
+  {
+    "code": "61",
+    "name": "COSTO DE VENTAS Y DE PRESTACIÓN DE SERVICIOS",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Comprende el valor del costo de adquisición de los bienes o servicios que han sido enajenados durante el período contable.",
+    "debitDynamic": "Por el reconocimiento contable del costo de cada venta efectuada.",
+    "creditDynamic": "Por el cierre anual a pérdidas y ganancias.",
+    "parentCode": "6"
+  },
+  {
+    "code": "6135",
+    "name": "Comercio al por mayor y al por menor",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra el costo de adquisición de las mercancías no fabricadas por la empresa que fueron vendidas a los clientes.",
+    "debitDynamic": "Por el costo de las mercancías despachadas de almacén según kárdex (promedio ponderado o PEPS).",
+    "creditDynamic": "Por devoluciones en compras o por el cierre contable anual.",
+    "parentCode": "61"
+  },
+  {
+    "code": "613501",
+    "name": "Costo de mercancías vendidas",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": "Costo de salida de los productos enajenados comercialmente durante el período.",
+    "debitDynamic": "Por el valor de salida del inventario acreditado a la cuenta 143501.",
+    "creditDynamic": "Por el cierre de fin de año.",
+    "parentCode": "6135"
+  },
+  {
+    "code": "7",
+    "name": "COSTOS DE PRODUCCIÓN O DE OPERACIÓN",
+    "level": "CLASE",
+    "nature": "DEBITO",
+    "description": "Agrupa el conjunto de las cuentas que representan las erogaciones y cargos asociados clara y directamente con la elaboración de los bienes o la prestación de los servicios de los cuales la empresa obtiene sus ingresos.",
+    "debitDynamic": "Por el costo de los insumos, mano de obra y costos indirectos aplicados al proceso productivo.",
+    "creditDynamic": "Por el traslado del costo acumulado a los inventarios de productos en proceso o terminados.",
+    "parentCode": null
+  },
+  {
+    "code": "71",
+    "name": "MATERIA PRIMA",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Registra el valor de los insumos y materiales directos que se incorporan físicamente al producto manufacturado.",
+    "debitDynamic": "Por el consumo de materias primas requisadas de bodega.",
+    "creditDynamic": "Por el traslado a productos en proceso o terminados.",
+    "parentCode": "7"
+  },
+  {
+    "code": "7105",
+    "name": "Materia prima directa",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra el valor de los materiales directos utilizados en la orden de fabricación.",
+    "debitDynamic": "Por la salida de almacén de materias primas para producción.",
+    "creditDynamic": "Por la liquidación de la orden de producción a inventario terminado.",
+    "parentCode": "71"
+  },
+  {
+    "code": "72",
+    "name": "MANO DE OBRA DIRECTA",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Comprende los salarios y prestaciones del personal de planta que interviene directamente en la transformación física de los productos.",
+    "debitDynamic": "Por el valor de las nóminas del personal directo de planta.",
+    "creditDynamic": "Por el traslado de la mano de obra a los productos en proceso.",
+    "parentCode": "7"
+  },
+  {
+    "code": "7205",
+    "name": "Sueldos y jornales de producción",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Nómina devengada por operarios de maquinaria y obreros directos de fábrica.",
+    "debitDynamic": "Por la planilla de mano de obra directa devengada.",
+    "creditDynamic": "Por el cierre hacia los costos del producto terminado.",
+    "parentCode": "72"
+  },
+  {
+    "code": "73",
+    "name": "COSTOS INDIRECTOS",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Comprende los materiales indirectos, mano de obra indirecta, servicios de planta, depreciaciones de maquinaria y mantenimiento de fábrica.",
+    "debitDynamic": "Por los costos indirectos devengados en el período fabril.",
+    "creditDynamic": "Por la aplicación a las órdenes de producción mediante tasas predeterminadas.",
+    "parentCode": "7"
+  },
+  {
+    "code": "7305",
+    "name": "Materiales indirectos",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Pegantes, lubricantes, empaques secundarios y suministros de fábrica.",
+    "debitDynamic": "Por el consumo de suministros de planta.",
+    "creditDynamic": "Por la aplicación a las hojas de costos de producción.",
+    "parentCode": "73"
+  },
+  {
+    "code": "8",
+    "name": "CUENTAS DE ORDEN DEUDORAS",
+    "level": "CLASE",
+    "nature": "DEBITO",
+    "description": "Agrupa las cuentas que reflejan hechos o circunstancias de los cuales se pueden generar derechos contingentes que afecten la estructura financiera del ente económico, así como las cuentas utilizadas para conciliar diferencias fiscales o fines de control administrativo.",
+    "debitDynamic": "Por el valor de los bienes o valores recibidos en custodia o garantías constituidas a favor del ente económico.",
+    "creditDynamic": "Por la extinción de la contingencia o devolución del bien custodiado.",
+    "parentCode": null
+  },
+  {
+    "code": "81",
+    "name": "DERECHOS CONTINGENTES",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Comprende los derechos eventuales sujetos a que ocurra un hecho futuro incierto a favor de la empresa.",
+    "debitDynamic": "Por la constitución de garantías o demandas civiles a favor.",
+    "creditDynamic": "Por el fallo final o terminación del proceso judicial.",
+    "parentCode": "8"
+  },
+  {
+    "code": "8105",
+    "name": "Bienes y valores entregados en custodia",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": "Registra los activos de la empresa depositados en poder de terceros para su resguardo o custodia temporal.",
+    "debitDynamic": "Por el valor convenido de los bienes entregados al depositario.",
+    "creditDynamic": "Por la restitución material de los bienes custodiados.",
+    "parentCode": "81"
+  },
+  {
+    "code": "82",
+    "name": "DEUDORAS FISCALES",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Registra las diferencias entre el valor contable y el valor patrimonial fiscal de los activos para efectos tributarios en renta.",
+    "debitDynamic": "Por el exceso del costo fiscal respecto al costo contable de los activos.",
+    "creditDynamic": "Por la eliminación o reversión de las diferencias temporales.",
+    "parentCode": "8"
+  },
+  {
+    "code": "83",
+    "name": "DEUDORAS DE CONTROL",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": "Cuentas utilizadas para ejercer control interno sobre bienes totalmente depreciados o activos dados de baja que siguen en uso.",
+    "debitDynamic": "Por el registro de los activos totalmente depreciados que permanecen en servicio.",
+    "creditDynamic": "Por la desincorporación física definitiva del activo.",
+    "parentCode": "8"
+  },
+  {
+    "code": "9",
+    "name": "CUENTAS DE ORDEN ACREEDORAS",
+    "level": "CLASE",
+    "nature": "CREDITO",
+    "description": "Agrupa las cuentas que registran los compromisos o contratos que se relacionan con posibles obligaciones futuras (responsabilidades contingentes) que puedan afectar la situación financiera, así como las diferencias fiscales en pasivos y cuentas de control.",
+    "debitDynamic": "Por la extinción de la responsabilidad o entrega de los bienes recibidos en custodia.",
+    "creditDynamic": "Por el valor de los bienes o valores recibidos de terceros en depósito o avales prestados.",
+    "parentCode": null
+  },
+  {
+    "code": "91",
+    "name": "RESPONSABILIDADES CONTINGENTES",
+    "level": "GRUPO",
+    "nature": "CREDITO",
+    "description": "Comprende las obligaciones potenciales por litigios en contra, avales otorgados o garantías concedidas a terceros.",
+    "debitDynamic": "Por el pago, acuerdo o resolución judicial del litigio.",
+    "creditDynamic": "Por la notificación de demandas o compromisos contingentes asumidos.",
+    "parentCode": "9"
+  },
+  {
+    "code": "9105",
+    "name": "Bienes y valores recibidos en custodia",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": "Registra los activos de propiedad de terceros recibidos por la empresa para su guarda y cuidado.",
+    "debitDynamic": "Por la devolución de los bienes a sus legítimos dueños.",
+    "creditDynamic": "Por el recibo material de los bienes en depósito o custodia.",
+    "parentCode": "91"
+  },
+  {
+    "code": "92",
+    "name": "ACREEDORAS FISCALES",
+    "level": "GRUPO",
+    "nature": "CREDITO",
+    "description": "Registra las diferencias entre el valor de los pasivos contables y fiscales reportados a la DIAN.",
+    "debitDynamic": "Por la reversión de las diferencias fiscales temporales.",
+    "creditDynamic": "Por las diferencias originadas entre normas NIIF y el Estatuto Tributario.",
+    "parentCode": "9"
+  }
+]
