@@ -4,9 +4,9 @@
     "name": "ACTIVOS",
     "level": "CLASE",
     "nature": "DEBITO",
-    "description": "Agrupa los bienes y derechos de la entidad.",
-    "debitDynamic": "Entradas de dinero, adquisición de derechos o bienes.",
-    "creditDynamic": "Salidas de efectivo, bajas o amortizaciones.",
+    "description": "Agrupa el conjunto de las cuentas que representan los bienes, derechos y otros recursos controlados por la entidad, producto de eventos pasados, de los cuales se espera que fluyan beneficios económicos futuros o potencial de servicio a la entidad.",
+    "debitDynamic": "Por las entradas de dinero en efectivo, adquisición de derechos, bienes o servicios.",
+    "creditDynamic": "Por las salidas de efectivo, cancelación de derechos, bajas en cuentas, amortizaciones y depreciaciones acumuladas.",
     "parentCode": null
   },
   {
@@ -10604,9 +10604,9 @@
     "name": "PASIVOS",
     "level": "CLASE",
     "nature": "CREDITO",
-    "description": "Agrupa las obligaciones contraídas por la institución.",
-    "debitDynamic": "Pagos totales o parciales de las deudas.",
-    "creditDynamic": "Obligaciones contraídas con terceros.",
+    "description": "Agrupa el conjunto de las cuentas que representan las obligaciones contraídas por la entidad en desarrollo de su actividad, que generarán en el futuro una transferencia o uso de recursos.",
+    "debitDynamic": "Por los pagos totales o parciales de las obligaciones, traslados o cancelaciones.",
+    "creditDynamic": "Por las deudas y obligaciones contraídas con terceros, proveedores, nómina e impuestos por pagar.",
     "parentCode": null
   },
   {
@@ -14234,9 +14234,9 @@
     "name": "PATRIMONIO",
     "level": "CLASE",
     "nature": "CREDITO",
-    "description": "Valor residual de los activos de la entidad.",
-    "debitDynamic": "Pérdidas o déficits del ejercicio contable.",
-    "creditDynamic": "Capital aportado, reservas y excedentes.",
+    "description": "Representa el valor residual de los activos de la entidad, una vez deducidos todos sus pasivos. Incluye el capital fiscal, reservas, resultados acumulados y el resultado del ejercicio.",
+    "debitDynamic": "Por las pérdidas o déficits del ejercicio contable y la distribución de excedentes.",
+    "creditDynamic": "Por el capital aportado, reservas constituidas y los excedentes o utilidades del ejercicio.",
     "parentCode": null
   },
   {
@@ -15904,9 +15904,9 @@
     "name": "INGRESOS",
     "level": "CLASE",
     "nature": "CREDITO",
-    "description": "Incrementos en los beneficios económicos producidos.",
-    "debitDynamic": "Cancelación de saldos al cierre del periodo.",
-    "creditDynamic": "Ingresos por ventas, transferencias o subsidios.",
+    "description": "Agrupa las cuentas que representan los incrementos en los beneficios económicos o en el potencial de servicio producidos a lo largo del periodo contable, en forma de entradas o incrementos de valor de los activos.",
+    "debitDynamic": "Por la cancelación de saldos al final del periodo contable.",
+    "creditDynamic": "Por los ingresos devengados en prestación de servicios educativos, venta de bienes, transferencias y subsidios recibidos.",
     "parentCode": null
   },
   {
@@ -20044,9 +20044,9 @@
     "name": "GASTOS",
     "level": "CLASE",
     "nature": "DEBITO",
-    "description": "Decrementos generados para administración y operación.",
-    "debitDynamic": "Gastos de personal, servicios, seguros.",
-    "creditDynamic": "Cancelación de saldos al cierre.",
+    "description": "Agrupa las cuentas que representan los decrementos en los beneficios económicos o en el potencial de servicio producidos a lo largo del periodo contable, generados en la administración y operación normal de la entidad.",
+    "debitDynamic": "Por los gastos de personal, suministros, honorarios, servicios públicos, seguros y mantenimiento.",
+    "creditDynamic": "Por la cancelación de saldos al cierre del ejercicio contable.",
     "parentCode": null
   },
   {
@@ -26564,9 +26564,9 @@
     "name": "COSTOS DE VENTAS",
     "level": "CLASE",
     "nature": "DEBITO",
-    "description": "Costos de ventas de bienes y prestación de servicios.",
-    "debitDynamic": "Asignación y acumulación de costos.",
-    "creditDynamic": "Cancelación al cierre contable.",
+    "description": "Agrupa las cuentas que representan los costos directamente asociados con las ventas de bienes y la prestación de servicios que generan ingresos operacionales para la entidad.",
+    "debitDynamic": "Por la asignación y acumulación de costos directos de producción y operación.",
+    "creditDynamic": "Por la cancelación o traslado de saldos al cierre del periodo contable.",
     "parentCode": null
   },
   {
@@ -27414,9 +27414,9 @@
     "name": "COSTOS DE TRANSFORMACIÓN",
     "level": "CLASE",
     "nature": "DEBITO",
-    "description": "Costos de transformación de bienes y servicios educativos.",
-    "debitDynamic": "Costos directos e indirectos de transformación.",
-    "creditDynamic": "Traslado al costo o cancelación de cierre.",
+    "description": "Agrupa las cuentas que representan los costos de transformación de bienes y la prestación de servicios educativos o de salud propios de la misión institucional.",
+    "debitDynamic": "Por los costos directos de materiales, mano de obra docente y administrativa, y costos indirectos de transformación.",
+    "creditDynamic": "Por el traslado al costo del servicio prestado o la cancelación de cierre de periodo.",
     "parentCode": null
   },
   {
@@ -39914,9 +39914,9 @@
     "name": "CUENTAS DE ORDEN DEUDORAS",
     "level": "CLASE",
     "nature": "DEBITO",
-    "description": "Derechos contingentes y de control.",
-    "debitDynamic": "Litigios a favor o garantías.",
-    "creditDynamic": "Cancelación de las contingencias.",
+    "description": "Registra los derechos contingentes, bienes de terceros recibidos y cuentas deudoras de control que no afectan directamente la situación financiera de la entidad.",
+    "debitDynamic": "Por el valor de los litigios a favor, garantías recibidas, bienes de terceros y compromisos eventuales.",
+    "creditDynamic": "Por la extinción, cancelación o liquidación de las contingencias o bienes reconocidos.",
     "parentCode": null
   },
   {
@@ -40944,9 +40944,9 @@
     "name": "CUENTAS DE ORDEN ACREEDORAS",
     "level": "CLASE",
     "nature": "CREDITO",
-    "description": "Obligaciones contingentes y de control.",
-    "debitDynamic": "Extinción de los compromisos contingentes.",
-    "creditDynamic": "Litigios en contra o garantías otorgadas.",
+    "description": "Registra las obligaciones contingentes, bienes entregados a terceros y cuentas acreedoras de control que no afectan la situación financiera de la entidad.",
+    "debitDynamic": "Por la terminación, extinción o cancelación de los compromisos contingentes.",
+    "creditDynamic": "Por los litigios en contra, garantías otorgadas, contratos de riesgo y bienes entregados a terceros.",
     "parentCode": null
   },
   {
