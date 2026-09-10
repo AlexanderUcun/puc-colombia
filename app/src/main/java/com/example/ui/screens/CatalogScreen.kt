@@ -161,19 +161,19 @@ fun CatalogScreen(
         modifier = modifier
             .fillMaxSize()
             .background(CleanPaperBackground)
-            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .padding(horizontal = 16.dp, vertical = 4.dp)
     ) {
-        // Global Search Bar with refined styling
+        // Ultra-compact Global Search Bar
         Surface(
             color = CleanPaperSurface,
-            shape = RoundedCornerShape(16.dp),
-            shadowElevation = 2.dp,
+            shape = RoundedCornerShape(12.dp),
+            shadowElevation = 1.dp,
             modifier = Modifier
                 .fillMaxWidth()
                 .border(
-                    width = 1.2.dp,
+                    width = 1.dp,
                     color = Color(0xFFC8E6C9),
-                    shape = RoundedCornerShape(16.dp)
+                    shape = RoundedCornerShape(12.dp)
                 )
                 .testTag("catalog_search_bar")
         ) {
@@ -183,7 +183,7 @@ fun CatalogScreen(
                 placeholder = {
                     Text(
                         text = "Buscar por código (ej: 1105) o concepto...",
-                        fontSize = 13.sp,
+                        fontSize = 12.sp,
                         color = SoftCharcoalTextMuted
                     )
                 },
@@ -192,17 +192,20 @@ fun CatalogScreen(
                         imageVector = Icons.Default.Search,
                         contentDescription = "Buscar",
                         tint = MintGreenPrimary,
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(18.dp)
                     )
                 },
                 trailingIcon = {
                     if (searchQuery.isNotEmpty()) {
-                        IconButton(onClick = { viewModel.onSearchQueryChanged("") }) {
+                        IconButton(
+                            onClick = { viewModel.onSearchQueryChanged("") },
+                            modifier = Modifier.size(24.dp)
+                        ) {
                             Icon(
                                 imageVector = Icons.Default.Close,
                                 contentDescription = "Limpiar",
                                 tint = SoftCharcoalTextMuted,
-                                modifier = Modifier.size(18.dp)
+                                modifier = Modifier.size(16.dp)
                             )
                         }
                     }
@@ -215,11 +218,13 @@ fun CatalogScreen(
                     unfocusedIndicatorColor = Color.Transparent
                 ),
                 singleLine = true,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
             )
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(4.dp))
 
         if (searchQuery.isNotEmpty()) {
             Row(
@@ -233,7 +238,10 @@ fun CatalogScreen(
                     fontWeight = FontWeight.Bold,
                     color = SoftCharcoalTextSecondary
                 )
-                TextButton(onClick = { viewModel.onSearchQueryChanged("") }) {
+                TextButton(
+                    onClick = { viewModel.onSearchQueryChanged("") },
+                    contentPadding = androidx.compose.foundation.layout.PaddingValues(0.dp)
+                ) {
                     Text("Volver al Catálogo", fontSize = 11.sp, color = MintGreenPrimary)
                 }
             }
@@ -307,18 +315,43 @@ fun CatalogScreen(
                 }
             }
         } else {
+            // Compact Quick Search Tags & Recent Accounts in a single ultra-slim scrollable row
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .horizontalScroll(rememberScrollState()),
-                horizontalArrangement = Arrangement.spacedBy(6.dp),
+                horizontalArrangement = Arrangement.spacedBy(5.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                if (recentAccounts.isNotEmpty()) {
+                    Surface(
+                        color = Color(0xFFE8F5E9),
+                        shape = RoundedCornerShape(14.dp),
+                        border = androidx.compose.foundation.BorderStroke(0.8.dp, MintGreenPrimary)
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .clickable { viewModel.selectAccountForDetail(recentAccounts.first()) }
+                                .padding(horizontal = 8.dp, vertical = 3.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(imageVector = Icons.Default.History, contentDescription = null, modifier = Modifier.size(12.dp), tint = MintGreenPrimary)
+                            Spacer(modifier = Modifier.width(3.dp))
+                            Text(
+                                text = "Reciente: ${recentAccounts.first().code}",
+                                fontSize = 10.5.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = MintGreenPrimary
+                            )
+                        }
+                    }
+                }
+
                 quickSearchTags.forEach { tag ->
                     val codeOnly = tag.split(" ").first()
                     Surface(
                         color = Color(0xFFF6F8F6),
-                        shape = RoundedCornerShape(20.dp),
+                        shape = RoundedCornerShape(14.dp),
                         border = androidx.compose.foundation.BorderStroke(0.8.dp, Color(0xFFE0E6E2)),
                         modifier = Modifier.clickable {
                             viewModel.onSearchQueryChanged(codeOnly)
@@ -326,90 +359,17 @@ fun CatalogScreen(
                     ) {
                         Text(
                             text = tag,
-                            fontSize = 11.sp,
+                            fontSize = 10.5.sp,
                             color = SoftCharcoalTextSecondary,
-                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
                         )
                     }
                 }
             }
 
-            if (recentAccounts.isNotEmpty()) {
-                Spacer(modifier = Modifier.height(6.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(
-                            imageVector = Icons.Default.History,
-                            contentDescription = null,
-                            modifier = Modifier.size(13.dp),
-                            tint = SoftCharcoalTextMuted
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(
-                            text = "Consultadas recientemente",
-                            fontSize = 11.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            color = SoftCharcoalTextSecondary
-                        )
-                    }
-                    TextButton(
-                        onClick = { viewModel.clearRecentAccounts() },
-                        contentPadding = androidx.compose.foundation.layout.PaddingValues(0.dp)
-                    ) {
-                        Text("Borrar", fontSize = 10.sp, color = SoftCharcoalTextMuted)
-                    }
-                }
+            Spacer(modifier = Modifier.height(4.dp))
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .horizontalScroll(rememberScrollState()),
-                    horizontalArrangement = Arrangement.spacedBy(6.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    recentAccounts.forEach { recentAcc ->
-                        val theme = getPucClassTheme(recentAcc.code)
-                        Surface(
-                            color = CleanPaperSurface,
-                            shape = RoundedCornerShape(8.dp),
-                            border = androidx.compose.foundation.BorderStroke(0.8.dp, theme.borderColor),
-                            modifier = Modifier.clickable {
-                                val crumbs = viewModel.getBreadcrumbsForAccount(recentAcc)
-                                viewModel.selectAccountForDetail(recentAcc)
-                                navigationStack = navigationStack + CatalogDestination.Detail(recentAcc, crumbs)
-                            }
-                        ) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 5.dp)
-                            ) {
-                                Text(
-                                    text = recentAcc.code,
-                                    fontFamily = FontFamily.Monospace,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 11.sp,
-                                    color = theme.accentColor
-                                )
-                                Spacer(modifier = Modifier.width(4.dp))
-                                Text(
-                                    text = recentAcc.name,
-                                    fontSize = 11.sp,
-                                    maxLines = 1,
-                                    color = SoftCharcoalText
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            // Animated full-screen drill-down page container with buttery smooth transitions
+            // Animated full-screen drill-down page container
             AnimatedContent(
                 targetState = currentDestination,
                 transitionSpec = {
@@ -506,17 +466,9 @@ fun CatalogClassesPage(
     onSelectClass: (PucAccount) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
-        Text(
-            text = "Estructura Oficial del Plan Único de Cuentas (PUC)",
-            fontSize = 13.sp,
-            fontWeight = FontWeight.Bold,
-            color = SoftCharcoalTextSecondary,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(classes, key = { it.code }) { classAccount ->
                 val theme = getPucClassTheme(classAccount.code)
@@ -531,38 +483,38 @@ fun CatalogClassesPage(
                         .fillMaxWidth()
                         .clickable { onSelectClass(classAccount) }
                         .testTag("class_card_${classAccount.code}"),
-                    shape = RoundedCornerShape(16.dp),
+                    shape = RoundedCornerShape(14.dp),
                     colors = CardDefaults.cardColors(containerColor = theme.backgroundColor),
                     border = androidx.compose.foundation.BorderStroke(1.2.dp, theme.borderColor),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+                    elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
                 ) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp),
+                            .padding(12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Surface(
                             color = theme.accentColor,
-                            shape = RoundedCornerShape(12.dp),
-                            modifier = Modifier.size(46.dp)
+                            shape = RoundedCornerShape(10.dp),
+                            modifier = Modifier.size(42.dp)
                         ) {
                             Box(contentAlignment = Alignment.Center) {
                                 Icon(
                                     imageVector = classIcon,
                                     contentDescription = null,
                                     tint = Color.White,
-                                    modifier = Modifier.size(24.dp)
+                                    modifier = Modifier.size(22.dp)
                                 )
                             }
                         }
 
-                        Spacer(modifier = Modifier.width(14.dp))
+                        Spacer(modifier = Modifier.width(12.dp))
 
                         Column(modifier = Modifier.weight(1f)) {
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                horizontalArrangement = Arrangement.spacedBy(6.dp)
                             ) {
                                 Surface(
                                     color = theme.accentColor.copy(alpha = 0.15f),
@@ -572,24 +524,24 @@ fun CatalogClassesPage(
                                         text = "Clase ${classAccount.code}",
                                         fontFamily = FontFamily.Monospace,
                                         fontWeight = FontWeight.Bold,
-                                        fontSize = 11.sp,
+                                        fontSize = 10.5.sp,
                                         color = theme.accentColor,
-                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                                        modifier = Modifier.padding(horizontal = 5.dp, vertical = 1.dp)
                                     )
                                 }
                                 NatureBadge(nature = classAccount.nature)
                             }
-                            Spacer(modifier = Modifier.height(4.dp))
+                            Spacer(modifier = Modifier.height(2.dp))
                             Text(
                                 text = classAccount.name,
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 15.sp,
+                                fontSize = 14.5.sp,
                                 color = SoftCharcoalText
                             )
-                            Spacer(modifier = Modifier.height(2.dp))
+                            Spacer(modifier = Modifier.height(1.dp))
                             Text(
-                                text = "$groupCount grupos • ${microGuide.take(65)}...",
-                                fontSize = 11.5.sp,
+                                text = "$groupCount grupos • ${microGuide.take(55)}...",
+                                fontSize = 11.sp,
                                 color = SoftCharcoalTextSecondary,
                                 maxLines = 1
                             )
@@ -599,7 +551,7 @@ fun CatalogClassesPage(
                             imageVector = Icons.AutoMirrored.Filled.NavigateNext,
                             contentDescription = "Abrir",
                             tint = theme.accentColor,
-                            modifier = Modifier.size(26.dp)
+                            modifier = Modifier.size(24.dp)
                         )
                     }
                 }
@@ -625,44 +577,44 @@ fun CatalogGroupsPage(
     Column(modifier = Modifier.fillMaxSize()) {
         Surface(
             color = theme.backgroundColor,
-            shape = RoundedCornerShape(14.dp),
+            shape = RoundedCornerShape(12.dp),
             border = androidx.compose.foundation.BorderStroke(1.2.dp, theme.borderColor),
             modifier = Modifier.fillMaxWidth()
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(12.dp),
+                    .padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(onClick = onBack, modifier = Modifier.size(36.dp)) {
+                IconButton(onClick = onBack, modifier = Modifier.size(32.dp)) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "Atrás",
                         tint = theme.accentColor
                     )
                 }
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(6.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        Icon(imageVector = classIcon, contentDescription = null, tint = theme.accentColor, modifier = Modifier.size(16.dp))
+                        Icon(imageVector = classIcon, contentDescription = null, tint = theme.accentColor, modifier = Modifier.size(15.dp))
                         Text(
                             text = "Clase ${classAccount.code} • ${classAccount.name}",
-                            fontSize = 12.sp,
+                            fontSize = 11.5.sp,
                             fontWeight = FontWeight.Bold,
                             color = theme.accentColor
                         )
                     }
                     Text(
                         text = "Seleccione un Grupo Contable",
-                        fontSize = 11.sp,
+                        fontSize = 10.5.sp,
                         color = SoftCharcoalTextMuted
                     )
                 }
             }
         }
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
@@ -687,32 +639,32 @@ fun CatalogGroupsPage(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(12.dp),
+                            .padding(10.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Surface(
                             color = theme.accentColor.copy(alpha = 0.12f),
                             shape = RoundedCornerShape(8.dp),
-                            modifier = Modifier.size(width = 50.dp, height = 36.dp)
+                            modifier = Modifier.size(width = 46.dp, height = 32.dp)
                         ) {
                             Box(contentAlignment = Alignment.Center) {
                                 Text(
                                     text = groupAccount.code,
                                     fontFamily = FontFamily.Monospace,
                                     fontWeight = FontWeight.Bold,
-                                    fontSize = 13.sp,
+                                    fontSize = 12.sp,
                                     color = theme.accentColor
                                 )
                             }
                         }
 
-                        Spacer(modifier = Modifier.width(12.dp))
+                        Spacer(modifier = Modifier.width(10.dp))
 
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
                                 text = groupAccount.name,
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 13.5.sp,
+                                fontSize = 13.sp,
                                 color = SoftCharcoalText
                             )
                             Spacer(modifier = Modifier.height(2.dp))
@@ -774,21 +726,21 @@ fun CatalogAccountsPage(
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = "${classAccount.name} > ${groupAccount.code} ${groupAccount.name}",
-                        fontSize = 11.5.sp,
+                        fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,
                         color = theme.accentColor,
                         maxLines = 1
                     )
                     Text(
                         text = "Seleccione una Cuenta (4 dígitos)",
-                        fontSize = 11.sp,
+                        fontSize = 10.5.sp,
                         color = SoftCharcoalTextMuted
                     )
                 }
             }
         }
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
@@ -813,13 +765,13 @@ fun CatalogAccountsPage(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(12.dp),
+                            .padding(10.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Surface(
                             color = Color(0xFFE8F5E9),
                             shape = RoundedCornerShape(8.dp),
-                            modifier = Modifier.size(width = 56.dp, height = 34.dp)
+                            modifier = Modifier.size(width = 50.dp, height = 32.dp)
                         ) {
                             Box(contentAlignment = Alignment.Center) {
                                 Text(
@@ -832,20 +784,15 @@ fun CatalogAccountsPage(
                             }
                         }
 
-                        Spacer(modifier = Modifier.width(12.dp))
+                        Spacer(modifier = Modifier.width(10.dp))
 
                         Column(modifier = Modifier.weight(1f)) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(6.dp)
-                            ) {
-                                Text(
-                                    text = account.name,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 13.5.sp,
-                                    color = SoftCharcoalText
-                                )
-                            }
+                            Text(
+                                text = account.name,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 13.sp,
+                                color = SoftCharcoalText
+                            )
                             Spacer(modifier = Modifier.height(2.dp))
                             Text(
                                 text = "$subCount subcuentas • $microGuide",
@@ -897,17 +844,17 @@ fun CatalogAccountDetailPage(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(10.dp),
+                    .padding(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(onClick = onBack, modifier = Modifier.size(32.dp)) {
+                IconButton(onClick = onBack, modifier = Modifier.size(30.dp)) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "Atrás",
                         tint = theme.accentColor
                     )
                 }
-                Spacer(modifier = Modifier.width(6.dp))
+                Spacer(modifier = Modifier.width(4.dp))
                 Row(
                     modifier = Modifier
                         .weight(1f)
@@ -938,7 +885,7 @@ fun CatalogAccountDetailPage(
             }
         }
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         Card(
             modifier = Modifier.fillMaxWidth(),
@@ -1102,7 +1049,7 @@ fun CatalogAccountDetailPage(
                     }
                 }
 
-                Spacer(modifier = Modifier.height(16.dp))
+Spacer(modifier = Modifier.height(16.dp))
 
                 Surface(
                     onClick = { onCopyCode(account.code) },
@@ -1121,7 +1068,7 @@ fun CatalogAccountDetailPage(
                             tint = Color.White,
                             modifier = Modifier.size(16.dp)
                         )
-                        Spacer(modifier = Modifier.width(6.dp))
+                        Spacer(modifier = Modifier.width(12.dp))
                         Text(
                             text = "Copiar Código (${account.code})",
                             fontWeight = FontWeight.Bold,
