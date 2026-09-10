@@ -24,13 +24,13 @@ interface PucDao {
     @Query("SELECT * FROM puc_accounts WHERE LENGTH(code) = 1 ORDER BY CAST(code AS INTEGER), code ASC")
     fun getClasses(): Flow<List<PucAccountEntity>>
 
-    @Query("SELECT * FROM puc_accounts WHERE LENGTH(code) = 2 AND code LIKE :classCode || '%' ORDER BY CAST(code AS INTEGER), code ASC")
+    @Query("SELECT * FROM puc_accounts WHERE code LIKE :classCode || '%' AND LENGTH(code) > 1 AND LENGTH(code) <= 3 ORDER BY CAST(code AS INTEGER), code ASC")
     fun getGroupsForClass(classCode: String): Flow<List<PucAccountEntity>>
 
-    @Query("SELECT * FROM puc_accounts WHERE LENGTH(code) = 4 AND code LIKE :groupCode || '%' ORDER BY CAST(code AS INTEGER), code ASC")
+    @Query("SELECT * FROM puc_accounts WHERE code LIKE :groupCode || '%' AND code != :groupCode AND LENGTH(code) <= 5 ORDER BY CAST(code AS INTEGER), code ASC")
     fun getAccountsForGroup(groupCode: String): Flow<List<PucAccountEntity>>
 
-    @Query("SELECT * FROM puc_accounts WHERE LENGTH(code) >= 6 AND code LIKE :accountCode || '%' ORDER BY CAST(code AS INTEGER), code ASC")
+    @Query("SELECT * FROM puc_accounts WHERE code LIKE :accountCode || '%' AND code != :accountCode ORDER BY CAST(code AS INTEGER), code ASC")
     fun getSubaccountsForAccount(accountCode: String): Flow<List<PucAccountEntity>>
 
     @Query("""
