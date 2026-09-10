@@ -331,7 +331,12 @@ fun CatalogScreen(
                     ) {
                         Row(
                             modifier = Modifier
-                                .clickable { viewModel.selectAccountForDetail(recentAccounts.first()) }
+                                .clickable {
+                                    val recent = recentAccounts.first()
+                                    val crumbs = viewModel.getBreadcrumbsForAccount(recent)
+                                    viewModel.selectAccountForDetail(recent)
+                                    navigationStack = navigationStack + CatalogDestination.Detail(recent, crumbs)
+                                }
                                 .padding(horizontal = 8.dp, vertical = 3.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -369,7 +374,7 @@ fun CatalogScreen(
 
             Spacer(modifier = Modifier.height(4.dp))
 
-            // Animated full-screen drill-down page container
+            // Animated full-screen drill-down page container backed by reactive database queries
             AnimatedContent(
                 targetState = currentDestination,
                 transitionSpec = {
@@ -389,7 +394,8 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Groups -> {
-                        val groups = remember(allAccounts, dest.classAccount.code) { viewModel.getGroupsForClass(dest.classAccount.code) }
+                        val groups by viewModel.getGroupsForClassFlow(dest.classAccount.code)
+                            .collectAsStateWithLifecycle(initialValue = emptyList())
                         CatalogGroupsPage(
                             classAccount = dest.classAccount,
                             groups = groups,
@@ -405,7 +411,8 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Accounts -> {
-                        val accounts = remember(allAccounts, dest.groupAccount.code) { viewModel.getAccountsForGroup(dest.groupAccount.code) }
+                        val accounts by viewModel.getAccountsForGroupFlow(dest.groupAccount.code)
+                            .collectAsStateWithLifecycle(initialValue = emptyList())
                         CatalogAccountsPage(
                             groupAccount = dest.groupAccount,
                             classAccount = dest.classAccount,
@@ -424,7 +431,8 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Detail -> {
-                        val subaccounts = remember(allAccounts, dest.account.code) { viewModel.getSubaccountsForAccount(dest.account.code) }
+                        val subaccounts by viewModel.getSubaccountsForAccountFlow(dest.account.code)
+                            .collectAsStateWithLifecycle(initialValue = emptyList())
                         CatalogAccountDetailPage(
                             account = dest.account,
                             subaccounts = subaccounts,
@@ -457,7 +465,7 @@ fun CatalogScreen(
 }
 
 // -------------------------------------------------------------
-// Page 1: Classes (Root) with Custom Icons & Polished UI
+// Page 1: Classes (Root)
 // -------------------------------------------------------------
 @Composable
 fun CatalogClassesPage(
@@ -475,7 +483,6 @@ fun CatalogClassesPage(
                 val microGuide = remember(classAccount.code) {
                     viewModel.getMicroGuide(classAccount.code, classAccount.name, classAccount.nature)
                 }
-                val groupCount = viewModel.getGroupsForClass(classAccount.code).size
                 val classIcon = getClassIcon(classAccount.code)
 
                 Card(
@@ -540,7 +547,7 @@ fun CatalogClassesPage(
                             )
                             Spacer(modifier = Modifier.height(1.dp))
                             Text(
-                                text = "$groupCount grupos • ${microGuide.take(55)}...",
+                                text = microGuide.take(55) + "...",
                                 fontSize = 11.sp,
                                 color = SoftCharcoalTextSecondary,
                                 maxLines = 1
@@ -561,7 +568,7 @@ fun CatalogClassesPage(
 }
 
 // -------------------------------------------------------------
-// Page 2: Groups with Polished Header & Cards
+// Page 2: Groups
 // -------------------------------------------------------------
 @Composable
 fun CatalogGroupsPage(
@@ -624,7 +631,6 @@ fun CatalogGroupsPage(
                 val microGuide = remember(groupAccount.code) {
                     viewModel.getMicroGuide(groupAccount.code, groupAccount.name, groupAccount.nature)
                 }
-                val accCount = viewModel.getAccountsForGroup(groupAccount.code).size
 
                 Card(
                     modifier = Modifier
@@ -669,7 +675,7 @@ fun CatalogGroupsPage(
                             )
                             Spacer(modifier = Modifier.height(2.dp))
                             Text(
-                                text = "$accCount cuentas • $microGuide",
+                                text = microGuide,
                                 fontSize = 11.sp,
                                 color = SoftCharcoalTextSecondary,
                                 maxLines = 1
@@ -750,7 +756,6 @@ fun CatalogAccountsPage(
                 val microGuide = remember(account.code) {
                     viewModel.getMicroGuide(account.code, account.name, account.nature)
                 }
-                val subCount = viewModel.getSubaccountsForAccount(account.code).size
 
                 Card(
                     modifier = Modifier
@@ -795,7 +800,7 @@ fun CatalogAccountsPage(
                             )
                             Spacer(modifier = Modifier.height(2.dp))
                             Text(
-                                text = "$subCount subcuentas • $microGuide",
+                                text = microGuide,
                                 fontSize = 11.sp,
                                 color = SoftCharcoalTextSecondary,
                                 maxLines = 1
@@ -1049,7 +1054,7 @@ fun CatalogAccountDetailPage(
                     }
                 }
 
-Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
                 Surface(
                     onClick = { onCopyCode(account.code) },

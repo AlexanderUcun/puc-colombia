@@ -38,6 +38,24 @@ class PucRepository(
             .flowOn(Dispatchers.IO)
     }
 
+    fun getGroupsForClass(classCode: String): Flow<List<PucAccount>> {
+        return dao.getGroupsForClass(classCode)
+            .map { list -> list.distinctBy { it.code }.map { it.toDomain() } }
+            .flowOn(Dispatchers.IO)
+    }
+
+    fun getAccountsForGroup(groupCode: String): Flow<List<PucAccount>> {
+        return dao.getAccountsForGroup(groupCode)
+            .map { list -> list.distinctBy { it.code }.map { it.toDomain() } }
+            .flowOn(Dispatchers.IO)
+    }
+
+    fun getSubaccountsForAccount(accountCode: String): Flow<List<PucAccount>> {
+        return dao.getSubaccountsForAccount(accountCode)
+            .map { list -> list.distinctBy { it.code }.map { it.toDomain() } }
+            .flowOn(Dispatchers.IO)
+    }
+
     fun search(query: String, classFilter: String = "ALL"): Flow<List<PucAccount>> {
         val trimmed = query.trim()
         val sourceFlow = if (trimmed.isEmpty()) {
@@ -66,11 +84,6 @@ class PucRepository(
             var domainList = list.distinctBy { it.code }.map { it.toDomain() }
             if (classFilter != "ALL") {
                 domainList = domainList.filter { it.code.startsWith(classFilter) }
-            }
-            // Fallback: If FTS query had zero results, try standard search
-            if (domainList.isEmpty() && trimmed.isNotEmpty()) {
-                // In case FTS token was too strict, get with standard substring
-                // (handled reactively via dao.searchAccounts)
             }
             domainList
         }.flowOn(Dispatchers.IO)

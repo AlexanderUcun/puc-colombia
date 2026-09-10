@@ -9,6 +9,7 @@ import com.example.model.PucExplanationHelper
 import com.example.model.PucLevel
 import com.example.model.PucNature
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -33,7 +34,7 @@ class PucViewModel(application: Application) : AndroidViewModel(application) {
     private val _recentAccounts = MutableStateFlow<List<PucAccount>>(emptyList())
     val recentAccounts: StateFlow<List<PucAccount>> = _recentAccounts.asStateFlow()
 
-    // All accounts flow for instant in-memory filtering
+    // All accounts flow for breadcrumb lookup and general caching
     val allAccountsState: StateFlow<List<PucAccount>> = repository.getAllAccounts().stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
@@ -81,7 +82,7 @@ class PucViewModel(application: Application) : AndroidViewModel(application) {
         _recentAccounts.value = emptyList()
     }
 
-    // High-performance direct drill-down getters (O(N) in-memory filtering without heavy tree generation)
+    // High-performance reactive database query flows
     fun getClasses(): List<PucAccount> {
         val all = allAccountsState.value
         return (1..9).map { i ->
@@ -107,16 +108,16 @@ class PucViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getGroupsForClass(classCode: String): List<PucAccount> {
-        return allAccountsState.value.filter { it.code.length == 2 && it.code.startsWith(classCode) }.sortedBy { it.code }
+    fun getGroupsForClassFlow(classCode: String): Flow<List<PucAccount>> {
+        return repository.getGroupsForClass(classCode)
     }
 
-    fun getAccountsForGroup(groupCode: String): List<PucAccount> {
-        return allAccountsState.value.filter { it.code.length == 4 && it.code.startsWith(groupCode) }.sortedBy { it.code }
+    fun getAccountsForGroupFlow(groupCode: String): Flow<List<PucAccount>> {
+        return repository.getAccountsForGroup(groupCode)
     }
 
-    fun getSubaccountsForAccount(accountCode: String): List<PucAccount> {
-        return allAccountsState.value.filter { it.code.length >= 6 && it.code.startsWith(accountCode) }.sortedBy { it.code }
+    fun getSubaccountsForAccountFlow(accountCode: String): Flow<List<PucAccount>> {
+        return repository.getSubaccountsForAccount(accountCode)
     }
 
     fun getMicroGuide(code: String, name: String, nature: PucNature): String {
