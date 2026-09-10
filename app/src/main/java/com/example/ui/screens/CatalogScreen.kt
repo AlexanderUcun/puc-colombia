@@ -2,6 +2,12 @@ package com.example.ui.screens
 
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -25,10 +31,18 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.NavigateNext
+import androidx.compose.material.icons.automirrored.outlined.TrendingUp
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.AccountBalance
+import androidx.compose.material.icons.outlined.Build
+import androidx.compose.material.icons.outlined.CreditCard
+import androidx.compose.material.icons.outlined.Description
+import androidx.compose.material.icons.outlined.Inventory
+import androidx.compose.material.icons.outlined.Receipt
+import androidx.compose.material.icons.outlined.Savings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -49,6 +63,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
@@ -86,6 +101,21 @@ sealed class CatalogDestination {
     data class Groups(val classAccount: PucAccount) : CatalogDestination()
     data class Accounts(val groupAccount: PucAccount, val classAccount: PucAccount) : CatalogDestination()
     data class Detail(val account: PucAccount, val breadcrumbPath: List<Pair<String, String>>) : CatalogDestination()
+}
+
+fun getClassIcon(code: String): ImageVector {
+    return when (code) {
+        "1" -> Icons.Outlined.AccountBalance
+        "2" -> Icons.Outlined.CreditCard
+        "3" -> Icons.Outlined.Savings
+        "4" -> Icons.AutoMirrored.Outlined.TrendingUp
+        "5" -> Icons.Outlined.Receipt
+        "6" -> Icons.Outlined.Inventory
+        "7" -> Icons.Outlined.Build
+        "8" -> Icons.Outlined.Description
+        "9" -> Icons.Outlined.Description
+        else -> Icons.Outlined.AccountBalance
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -133,7 +163,7 @@ fun CatalogScreen(
             .background(CleanPaperBackground)
             .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
-        // Global Search Bar
+        // Global Search Bar with refined styling
         Surface(
             color = CleanPaperSurface,
             shape = RoundedCornerShape(16.dp),
@@ -222,9 +252,10 @@ fun CatalogScreen(
                                 viewModel.selectAccountForDetail(acc)
                                 navigationStack = navigationStack + CatalogDestination.Detail(acc, crumbs)
                             },
-                        shape = RoundedCornerShape(10.dp),
+                        shape = RoundedCornerShape(12.dp),
                         colors = CardDefaults.cardColors(containerColor = CleanPaperSurface),
-                        border = androidx.compose.foundation.BorderStroke(1.dp, theme.borderColor)
+                        border = androidx.compose.foundation.BorderStroke(1.dp, theme.borderColor),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
                     ) {
                         Row(
                             modifier = Modifier.padding(12.dp),
@@ -232,8 +263,8 @@ fun CatalogScreen(
                         ) {
                             Surface(
                                 color = theme.accentColor,
-                                shape = RoundedCornerShape(6.dp),
-                                modifier = Modifier.size(width = 46.dp, height = 30.dp)
+                                shape = RoundedCornerShape(8.dp),
+                                modifier = Modifier.size(width = 50.dp, height = 32.dp)
                             ) {
                                 Box(contentAlignment = Alignment.Center) {
                                     Text(
@@ -245,19 +276,26 @@ fun CatalogScreen(
                                     )
                                 }
                             }
-                            Spacer(modifier = Modifier.width(10.dp))
+                            Spacer(modifier = Modifier.width(12.dp))
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
                                     text = acc.name,
                                     fontWeight = FontWeight.Bold,
-                                    fontSize = 13.sp,
+                                    fontSize = 13.5.sp,
                                     color = SoftCharcoalText
                                 )
-                                Text(
-                                    text = "Nivel: ${acc.level.name}",
-                                    fontSize = 11.sp,
-                                    color = SoftCharcoalTextMuted
-                                )
+                                Spacer(modifier = Modifier.height(2.dp))
+                                Row(
+                                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        text = "Nivel: ${acc.level.name}",
+                                        fontSize = 11.sp,
+                                        color = SoftCharcoalTextMuted
+                                    )
+                                    NatureBadge(nature = acc.nature)
+                                }
                             }
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.NavigateNext,
@@ -290,7 +328,7 @@ fun CatalogScreen(
                             text = tag,
                             fontSize = 11.sp,
                             color = SoftCharcoalTextSecondary,
-                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
+                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
                         )
                     }
                 }
@@ -312,7 +350,7 @@ fun CatalogScreen(
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = "Recientes",
+                            text = "Consultadas recientemente",
                             fontSize = 11.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = SoftCharcoalTextSecondary
@@ -347,7 +385,7 @@ fun CatalogScreen(
                         ) {
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 5.dp)
                             ) {
                                 Text(
                                     text = recentAcc.code,
@@ -371,79 +409,96 @@ fun CatalogScreen(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            when (val dest = currentDestination) {
-                is CatalogDestination.Classes -> {
-                    val classes = remember(allAccounts) { viewModel.getClasses() }
-                    CatalogClassesPage(
-                        classes = classes,
-                        viewModel = viewModel,
-                        onSelectClass = { classAccount ->
-                            navigationStack = navigationStack + CatalogDestination.Groups(classAccount)
-                        }
-                    )
-                }
-                is CatalogDestination.Groups -> {
-                    val groups = remember(allAccounts, dest.classAccount.code) { viewModel.getGroupsForClass(dest.classAccount.code) }
-                    CatalogGroupsPage(
-                        classAccount = dest.classAccount,
-                        groups = groups,
-                        viewModel = viewModel,
-                        onBack = {
-                            if (navigationStack.size > 1) {
-                                navigationStack = navigationStack.dropLast(1)
+            // Animated full-screen drill-down page container with buttery smooth transitions
+            AnimatedContent(
+                targetState = currentDestination,
+                transitionSpec = {
+                    fadeIn() + slideInHorizontally { it / 4 } togetherWith fadeOut() + slideOutHorizontally { -it / 4 }
+                },
+                label = "catalogNavigation"
+            ) { dest ->
+                when (dest) {
+                    is CatalogDestination.Classes -> {
+                        val classes = remember(allAccounts) { viewModel.getClasses() }
+                        CatalogClassesPage(
+                            classes = classes,
+                            viewModel = viewModel,
+                            onSelectClass = { classAccount ->
+                                navigationStack = navigationStack + CatalogDestination.Groups(classAccount)
                             }
-                        },
-                        onSelectGroup = { groupAccount ->
-                            navigationStack = navigationStack + CatalogDestination.Accounts(groupAccount, dest.classAccount)
-                        }
-                    )
-                }
-                is CatalogDestination.Accounts -> {
-                    val accounts = remember(allAccounts, dest.groupAccount.code) { viewModel.getAccountsForGroup(dest.groupAccount.code) }
-                    CatalogAccountsPage(
-                        groupAccount = dest.groupAccount,
-                        classAccount = dest.classAccount,
-                        accounts = accounts,
-                        viewModel = viewModel,
-                        onBack = {
-                            if (navigationStack.size > 1) {
-                                navigationStack = navigationStack.dropLast(1)
+                        )
+                    }
+                    is CatalogDestination.Groups -> {
+                        val groups = remember(allAccounts, dest.classAccount.code) { viewModel.getGroupsForClass(dest.classAccount.code) }
+                        CatalogGroupsPage(
+                            classAccount = dest.classAccount,
+                            groups = groups,
+                            viewModel = viewModel,
+                            onBack = {
+                                if (navigationStack.size > 1) {
+                                    navigationStack = navigationStack.dropLast(1)
+                                }
+                            },
+                            onSelectGroup = { groupAccount ->
+                                navigationStack = navigationStack + CatalogDestination.Accounts(groupAccount, dest.classAccount)
                             }
-                        },
-                        onSelectAccount = { account ->
-                            val crumbs = viewModel.getBreadcrumbsForAccount(account)
-                            viewModel.selectAccountForDetail(account)
-                            navigationStack = navigationStack + CatalogDestination.Detail(account, crumbs)
-                        }
-                    )
-                }
-                is CatalogDestination.Detail -> {
-                    val subaccounts = remember(allAccounts, dest.account.code) { viewModel.getSubaccountsForAccount(dest.account.code) }
-                    CatalogAccountDetailPage(
-                        account = dest.account,
-                        subaccounts = subaccounts,
-                        breadcrumbPath = dest.breadcrumbPath,
-                        onBack = {
-                            if (navigationStack.size > 1) {
-                                navigationStack = navigationStack.dropLast(1)
+                        )
+                    }
+                    is CatalogDestination.Accounts -> {
+                        val accounts = remember(allAccounts, dest.groupAccount.code) { viewModel.getAccountsForGroup(dest.groupAccount.code) }
+                        CatalogAccountsPage(
+                            groupAccount = dest.groupAccount,
+                            classAccount = dest.classAccount,
+                            accounts = accounts,
+                            viewModel = viewModel,
+                            onBack = {
+                                if (navigationStack.size > 1) {
+                                    navigationStack = navigationStack.dropLast(1)
+                                }
+                            },
+                            onSelectAccount = { account ->
+                                val crumbs = viewModel.getBreadcrumbsForAccount(account)
+                                viewModel.selectAccountForDetail(account)
+                                navigationStack = navigationStack + CatalogDestination.Detail(account, crumbs)
                             }
-                        },
-                        onSelectSubaccount = { subAcc ->
-                            val crumbs = viewModel.getBreadcrumbsForAccount(subAcc)
-                            viewModel.selectAccountForDetail(subAcc)
-                            navigationStack = navigationStack + CatalogDestination.Detail(subAcc, crumbs)
-                        },
-                        onCopyCode = { code ->
-                            clipboardManager.setText(AnnotatedString(code))
-                            Toast.makeText(context, "Código $code copiado", Toast.LENGTH_SHORT).show()
-                        }
-                    )
+                        )
+                    }
+                    is CatalogDestination.Detail -> {
+                        val subaccounts = remember(allAccounts, dest.account.code) { viewModel.getSubaccountsForAccount(dest.account.code) }
+                        CatalogAccountDetailPage(
+                            account = dest.account,
+                            subaccounts = subaccounts,
+                            breadcrumbPath = dest.breadcrumbPath,
+                            onBack = {
+                                if (navigationStack.size > 1) {
+                                    navigationStack = navigationStack.dropLast(1)
+                                }
+                            },
+                            onJumpToLevel = { targetIndex ->
+                                if (targetIndex >= 0 && targetIndex < navigationStack.size) {
+                                    navigationStack = navigationStack.take(targetIndex + 1)
+                                }
+                            },
+                            onSelectSubaccount = { subAcc ->
+                                val crumbs = viewModel.getBreadcrumbsForAccount(subAcc)
+                                viewModel.selectAccountForDetail(subAcc)
+                                navigationStack = navigationStack + CatalogDestination.Detail(subAcc, crumbs)
+                            },
+                            onCopyCode = { code ->
+                                clipboardManager.setText(AnnotatedString(code))
+                                Toast.makeText(context, "Código $code copiado", Toast.LENGTH_SHORT).show()
+                            }
+                        )
+                    }
                 }
             }
         }
     }
 }
 
+// -------------------------------------------------------------
+// Page 1: Classes (Root) with Custom Icons & Polished UI
+// -------------------------------------------------------------
 @Composable
 fun CatalogClassesPage(
     classes: List<PucAccount>,
@@ -452,7 +507,7 @@ fun CatalogClassesPage(
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         Text(
-            text = "Seleccione una Clase Contable (PUC)",
+            text = "Estructura Oficial del Plan Único de Cuentas (PUC)",
             fontSize = 13.sp,
             fontWeight = FontWeight.Bold,
             color = SoftCharcoalTextSecondary,
@@ -469,42 +524,62 @@ fun CatalogClassesPage(
                     viewModel.getMicroGuide(classAccount.code, classAccount.name, classAccount.nature)
                 }
                 val groupCount = viewModel.getGroupsForClass(classAccount.code).size
+                val classIcon = getClassIcon(classAccount.code)
 
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable { onSelectClass(classAccount) }
                         .testTag("class_card_${classAccount.code}"),
-                    shape = RoundedCornerShape(14.dp),
+                    shape = RoundedCornerShape(16.dp),
                     colors = CardDefaults.cardColors(containerColor = theme.backgroundColor),
                     border = androidx.compose.foundation.BorderStroke(1.2.dp, theme.borderColor),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
                 ) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(14.dp),
+                            .padding(16.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Surface(
                             color = theme.accentColor,
-                            shape = RoundedCornerShape(10.dp),
-                            modifier = Modifier.size(40.dp)
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.size(46.dp)
                         ) {
                             Box(contentAlignment = Alignment.Center) {
-                                Text(
-                                    text = classAccount.code,
-                                    fontWeight = FontWeight.Bold,
-                                    color = Color.White,
-                                    fontSize = 16.sp,
-                                    fontFamily = FontFamily.Monospace
+                                Icon(
+                                    imageVector = classIcon,
+                                    contentDescription = null,
+                                    tint = Color.White,
+                                    modifier = Modifier.size(24.dp)
                                 )
                             }
                         }
 
-                        Spacer(modifier = Modifier.width(12.dp))
+                        Spacer(modifier = Modifier.width(14.dp))
 
                         Column(modifier = Modifier.weight(1f)) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                Surface(
+                                    color = theme.accentColor.copy(alpha = 0.15f),
+                                    shape = RoundedCornerShape(4.dp)
+                                ) {
+                                    Text(
+                                        text = "Clase ${classAccount.code}",
+                                        fontFamily = FontFamily.Monospace,
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 11.sp,
+                                        color = theme.accentColor,
+                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                                    )
+                                }
+                                NatureBadge(nature = classAccount.nature)
+                            }
+                            Spacer(modifier = Modifier.height(4.dp))
                             Text(
                                 text = classAccount.name,
                                 fontWeight = FontWeight.Bold,
@@ -513,7 +588,7 @@ fun CatalogClassesPage(
                             )
                             Spacer(modifier = Modifier.height(2.dp))
                             Text(
-                                text = "$groupCount grupos contables • ${microGuide.take(65)}...",
+                                text = "$groupCount grupos • ${microGuide.take(65)}...",
                                 fontSize = 11.5.sp,
                                 color = SoftCharcoalTextSecondary,
                                 maxLines = 1
@@ -533,6 +608,9 @@ fun CatalogClassesPage(
     }
 }
 
+// -------------------------------------------------------------
+// Page 2: Groups with Polished Header & Cards
+// -------------------------------------------------------------
 @Composable
 fun CatalogGroupsPage(
     classAccount: PucAccount,
@@ -542,37 +620,41 @@ fun CatalogGroupsPage(
     onSelectGroup: (PucAccount) -> Unit
 ) {
     val theme = getPucClassTheme(classAccount.code)
+    val classIcon = getClassIcon(classAccount.code)
 
     Column(modifier = Modifier.fillMaxSize()) {
         Surface(
             color = theme.backgroundColor,
-            shape = RoundedCornerShape(12.dp),
-            border = androidx.compose.foundation.BorderStroke(1.dp, theme.borderColor),
+            shape = RoundedCornerShape(14.dp),
+            border = androidx.compose.foundation.BorderStroke(1.2.dp, theme.borderColor),
             modifier = Modifier.fillMaxWidth()
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(10.dp),
+                    .padding(12.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(onClick = onBack, modifier = Modifier.size(32.dp)) {
+                IconButton(onClick = onBack, modifier = Modifier.size(36.dp)) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                         contentDescription = "Atrás",
                         tint = theme.accentColor
                     )
                 }
-                Spacer(modifier = Modifier.width(6.dp))
+                Spacer(modifier = Modifier.width(8.dp))
                 Column(modifier = Modifier.weight(1f)) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        Icon(imageVector = classIcon, contentDescription = null, tint = theme.accentColor, modifier = Modifier.size(16.dp))
+                        Text(
+                            text = "Clase ${classAccount.code} • ${classAccount.name}",
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = theme.accentColor
+                        )
+                    }
                     Text(
-                        text = "Clase ${classAccount.code} • ${classAccount.name}",
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = theme.accentColor
-                    )
-                    Text(
-                        text = "Seleccione un Grupo",
+                        text = "Seleccione un Grupo Contable",
                         fontSize = 11.sp,
                         color = SoftCharcoalTextMuted
                     )
@@ -599,7 +681,8 @@ fun CatalogGroupsPage(
                         .testTag("group_card_${groupAccount.code}"),
                     shape = RoundedCornerShape(12.dp),
                     colors = CardDefaults.cardColors(containerColor = CleanPaperSurface),
-                    border = androidx.compose.foundation.BorderStroke(1.dp, CleanPaperBorder)
+                    border = androidx.compose.foundation.BorderStroke(1.dp, CleanPaperBorder),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
                 ) {
                     Row(
                         modifier = Modifier
@@ -608,9 +691,9 @@ fun CatalogGroupsPage(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Surface(
-                            color = Color(0xFFF0F4F1),
+                            color = theme.accentColor.copy(alpha = 0.12f),
                             shape = RoundedCornerShape(8.dp),
-                            modifier = Modifier.size(width = 46.dp, height = 34.dp)
+                            modifier = Modifier.size(width = 50.dp, height = 36.dp)
                         ) {
                             Box(contentAlignment = Alignment.Center) {
                                 Text(
@@ -653,6 +736,9 @@ fun CatalogGroupsPage(
     }
 }
 
+// -------------------------------------------------------------
+// Page 3: Accounts (4 Digits)
+// -------------------------------------------------------------
 @Composable
 fun CatalogAccountsPage(
     groupAccount: PucAccount,
@@ -719,9 +805,10 @@ fun CatalogAccountsPage(
                         .fillMaxWidth()
                         .clickable { onSelectAccount(account) }
                         .testTag("account_card_${account.code}"),
-                    shape = RoundedCornerShape(10.dp),
+                    shape = RoundedCornerShape(12.dp),
                     colors = CardDefaults.cardColors(containerColor = CleanPaperCard),
-                    border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFE4EAE5))
+                    border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFE4EAE5)),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
                 ) {
                     Row(
                         modifier = Modifier
@@ -731,8 +818,8 @@ fun CatalogAccountsPage(
                     ) {
                         Surface(
                             color = Color(0xFFE8F5E9),
-                            shape = RoundedCornerShape(6.dp),
-                            modifier = Modifier.size(width = 52.dp, height = 32.dp)
+                            shape = RoundedCornerShape(8.dp),
+                            modifier = Modifier.size(width = 56.dp, height = 34.dp)
                         ) {
                             Box(contentAlignment = Alignment.Center) {
                                 Text(
@@ -748,12 +835,17 @@ fun CatalogAccountsPage(
                         Spacer(modifier = Modifier.width(12.dp))
 
                         Column(modifier = Modifier.weight(1f)) {
-                            Text(
-                                text = account.name,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 13.sp,
-                                color = SoftCharcoalText
-                            )
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(6.dp)
+                            ) {
+                                Text(
+                                    text = account.name,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 13.5.sp,
+                                    color = SoftCharcoalText
+                                )
+                            }
                             Spacer(modifier = Modifier.height(2.dp))
                             Text(
                                 text = "$subCount subcuentas • $microGuide",
@@ -775,12 +867,16 @@ fun CatalogAccountsPage(
     }
 }
 
+// -------------------------------------------------------------
+// Page 4: Account Detail & Subaccounts with Interactive Breadcrumbs
+// -------------------------------------------------------------
 @Composable
 fun CatalogAccountDetailPage(
     account: PucAccount,
     subaccounts: List<PucAccount>,
     breadcrumbPath: List<Pair<String, String>>,
     onBack: () -> Unit,
+    onJumpToLevel: (Int) -> Unit,
     onSelectSubaccount: (PucAccount) -> Unit,
     onCopyCode: (String) -> Unit
 ) {
@@ -791,6 +887,7 @@ fun CatalogAccountDetailPage(
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
+        // Interactive Breadcrumb Header
         Surface(
             color = CleanPaperSurface,
             shape = RoundedCornerShape(12.dp),
@@ -811,20 +908,32 @@ fun CatalogAccountDetailPage(
                     )
                 }
                 Spacer(modifier = Modifier.width(6.dp))
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = breadcrumbPath.joinToString(" > ") { it.second },
-                        fontSize = 10.5.sp,
-                        color = SoftCharcoalTextMuted,
-                        maxLines = 1
-                    )
-                    Text(
-                        text = "${account.code} - ${account.name}",
-                        fontSize = 12.5.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = SoftCharcoalText,
-                        maxLines = 1
-                    )
+                Row(
+                    modifier = Modifier
+                        .weight(1f)
+                        .horizontalScroll(rememberScrollState()),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    breadcrumbPath.forEachIndexed { index, (code, _) ->
+                        val isLast = index == breadcrumbPath.size - 1
+                        TextButton(
+                            onClick = { if (!isLast) onJumpToLevel(index) },
+                            enabled = !isLast,
+                            contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 4.dp, vertical = 0.dp)
+                        ) {
+                            Text(
+                                text = code,
+                                fontSize = 11.sp,
+                                fontWeight = if (isLast) FontWeight.Bold else FontWeight.Medium,
+                                color = if (isLast) theme.accentColor else SoftCharcoalTextSecondary,
+                                fontFamily = FontFamily.Monospace
+                            )
+                        }
+                        if (!isLast) {
+                            Text(">", fontSize = 10.sp, color = SoftCharcoalTextMuted)
+                        }
+                    }
                 }
             }
         }
