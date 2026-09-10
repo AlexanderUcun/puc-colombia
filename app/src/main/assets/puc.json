@@ -160,6 +160,76 @@
     "parentCode": "1120"
   },
   {
+    "code": "1125",
+    "name": "FONDOS",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "11"
+  },
+  {
+    "code": "112505",
+    "name": "Rotatorios moneda nacional",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1125"
+  },
+  {
+    "code": "112510",
+    "name": "Rotatorios moneda extranjera",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1125"
+  },
+  {
+    "code": "112515",
+    "name": "Especiales moneda nacional",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1125"
+  },
+  {
+    "code": "112520",
+    "name": "Especiales moneda extranjera",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1125"
+  },
+  {
+    "code": "112525",
+    "name": "De amortización moneda nacional",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1125"
+  },
+  {
+    "code": "112530",
+    "name": "De amortización moneda extranjera",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1125"
+  },
+  {
     "code": "1132",
     "name": "EFECTIVO DE USO RESTRINGIDO",
     "level": "CUENTA",
