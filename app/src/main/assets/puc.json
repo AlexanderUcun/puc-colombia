@@ -4,9 +4,9 @@
     "name": "ACTIVOS",
     "level": "CLASE",
     "nature": "DEBITO",
-    "description": "Agrupa el conjunto de las cuentas que representan los bienes, derechos y otros recursos controlados por la entidad.",
-    "debitDynamic": "Por las entradas de dinero en efectivo, adquisición de derechos, bienes o servicios.",
-    "creditDynamic": "Por las salidas de efectivo, bajas en cuentas, amortizaciones y depreciaciones acumuladas.",
+    "description": "Agrupa los bienes y derechos de la entidad.",
+    "debitDynamic": "Entradas de dinero, adquisición de derechos o bienes.",
+    "creditDynamic": "Salidas de efectivo, bajas o amortizaciones.",
     "parentCode": null
   },
   {
@@ -311,7 +311,17 @@
   },
   {
     "code": "113304",
-    "name": "Compromisos de reventa de cuentas por cobrar Compromisos de reventa de inversiones de administración de liquidez",
+    "name": "Compromisos de reventa de cuentas por cobrar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1133"
+  },
+  {
+    "code": "113305",
+    "name": "Compromisos de reventa de inversiones de administración de liquidez",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -411,13 +421,33 @@
   },
   {
     "code": "1220",
-    "name": "DERECHOS DE RECOMPRA DE INVERSIONES Inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el resultado Inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral)",
+    "name": "DERECHOS DE RECOMPRA DE INVERSIONES",
     "level": "CUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "12"
+  },
+  {
+    "code": "122015",
+    "name": "Inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el resultado",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1220"
+  },
+  {
+    "code": "122016",
+    "name": "Inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral)",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1220"
   },
   {
     "code": "122017",
@@ -431,7 +461,7 @@
   },
   {
     "code": "122018",
-    "name": "Inversiones de administración de liquidez al costo INVERSIONES DE ADMINISTRACIÓN DE LIQUIDEZ A VALOR DE",
+    "name": "Inversiones de administración de liquidez al costo",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -441,7 +471,7 @@
   },
   {
     "code": "1221",
-    "name": "MERCADO (VALOR RAZONABLE) CON CAMBIOS EN EL RESULTADO",
+    "name": "INVERSIONES DE ADMINISTRACIÓN DE LIQUIDEZ A VALOR DE MERCADO (VALOR RAZONABLE) CON CAMBIOS EN EL RESULTADO",
     "level": "CUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -621,7 +651,17 @@
   },
   {
     "code": "122119",
-    "name": "Otros certificados Otras inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el resultado INVERSIONES DE ADMINISTRACIÓN DE LIQUIDEZ A VALOR DE",
+    "name": "Otros certificados",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1221"
+  },
+  {
+    "code": "122190",
+    "name": "Otras inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el resultado",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -631,7 +671,7 @@
   },
   {
     "code": "1222",
-    "name": "MERCADO (VALOR RAZONABLE) CON CAMBIOS EN EL PATRIMONIO (OTRO RESULTADO INTEGRAL)",
+    "name": "INVERSIONES DE ADMINISTRACIÓN DE LIQUIDEZ A VALOR DE MERCADO (VALOR RAZONABLE) CON CAMBIOS EN EL PATRIMONIO (OTRO RESULTADO INTEGRAL)",
     "level": "CUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -791,7 +831,7 @@
   },
   {
     "code": "122218",
-    "name": "Fondos de inversión colectiva Otras inversiones de administración de liquidez a valor de mercado",
+    "name": "Fondos de inversión colectiva",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -801,13 +841,23 @@
   },
   {
     "code": "122290",
-    "name": "(valor razonable) con cambios en el patrimonio (otro resultado integral) INVERSIONES DE ADMINISTRACIÓN DE LIQUIDEZ A COSTO AMORTIZADO",
+    "name": "Otras inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1222"
+  },
+  {
+    "code": "1223",
+    "name": "INVERSIONES DE ADMINISTRACIÓN DE LIQUIDEZ A COSTO AMORTIZADO",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "12"
   },
   {
     "code": "122301",
@@ -1091,13 +1141,23 @@
   },
   {
     "code": "122605",
-    "name": "Empresas públicas societarias INVERSIONES EN CONTROLADAS CONTABILIZADAS POR EL MÉTODO DE PARTICIPACIÓN PATRIMONIAL",
+    "name": "Empresas públicas societarias",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1226"
+  },
+  {
+    "code": "1227",
+    "name": "INVERSIONES EN CONTROLADAS CONTABILIZADAS POR EL MÉTODO DE PARTICIPACIÓN PATRIMONIAL",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "12"
   },
   {
     "code": "122701",
@@ -1231,13 +1291,23 @@
   },
   {
     "code": "122905",
-    "name": "Empresas públicas societarias INVERSIONES EN ASOCIADAS CONTABILIZADAS POR EL MÉTODO DE PARTICIPACIÓN PATRIMONIAL",
+    "name": "Empresas públicas societarias",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1229"
+  },
+  {
+    "code": "1230",
+    "name": "INVERSIONES EN ASOCIADAS CONTABILIZADAS POR EL MÉTODO DE PARTICIPACIÓN PATRIMONIAL",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "12"
   },
   {
     "code": "123001",
@@ -1321,13 +1391,23 @@
   },
   {
     "code": "123105",
-    "name": "Empresas públicas societarias INVERSIONES EN NEGOCIOS CONJUNTOS A VALOR RAZONABLE",
+    "name": "Empresas públicas societarias",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1231"
+  },
+  {
+    "code": "1232",
+    "name": "INVERSIONES EN NEGOCIOS CONJUNTOS A VALOR RAZONABLE",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "12"
   },
   {
     "code": "123201",
@@ -1361,13 +1441,23 @@
   },
   {
     "code": "123205",
-    "name": "Empresas públicas societarias INVERSIONES EN NEGOCIOS CONJUNTOS CONTABILIZADAS POR EL MÉTODO DE PARTICIPACIÓN PATRIMONIAL",
+    "name": "Empresas públicas societarias",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1232"
+  },
+  {
+    "code": "1233",
+    "name": "INVERSIONES EN NEGOCIOS CONJUNTOS CONTABILIZADAS POR EL MÉTODO DE PARTICIPACIÓN PATRIMONIAL",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "12"
   },
   {
     "code": "123301",
@@ -1511,13 +1601,23 @@
   },
   {
     "code": "123410",
-    "name": "Ganancia en la valoración de opciones compradas INSTRUMENTOS DERIVADOS CON FINES DE COBERTURA DE VALOR DE MERCADO (VALOR RAZONABLE)",
+    "name": "Ganancia en la valoración de opciones compradas",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1234"
+  },
+  {
+    "code": "1235",
+    "name": "INSTRUMENTOS DERIVADOS CON FINES DE COBERTURA DE VALOR DE MERCADO (VALOR RAZONABLE)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "12"
   },
   {
     "code": "123501",
@@ -1611,13 +1711,23 @@
   },
   {
     "code": "123510",
-    "name": "Ganancia en la valoración de opciones compradas INSTRUMENTOS DERIVADOS CON FINES DE COBERTURA DE FLUJOS DE EFECTIVO",
+    "name": "Ganancia en la valoración de opciones compradas",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1235"
+  },
+  {
+    "code": "1236",
+    "name": "INSTRUMENTOS DERIVADOS CON FINES DE COBERTURA DE FLUJOS DE EFECTIVO",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "12"
   },
   {
     "code": "123601",
@@ -1711,13 +1821,23 @@
   },
   {
     "code": "123610",
-    "name": "Ganancia en la valoración de opciones compradas INSTRUMENTOS DERIVADOS CON FINES DE COBERTURA DE UNA INVERSIÓN NETA EN UN NEGOCIO EN EL EXTRANJERO",
+    "name": "Ganancia en la valoración de opciones compradas",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1236"
+  },
+  {
+    "code": "1237",
+    "name": "INSTRUMENTOS DERIVADOS CON FINES DE COBERTURA DE UNA INVERSIÓN NETA EN UN NEGOCIO EN EL EXTRANJERO",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "12"
   },
   {
     "code": "123701",
@@ -1811,7 +1931,7 @@
   },
   {
     "code": "123710",
-    "name": "Ganancia en la valoración de opciones compradas AJUSTE POR COBERTURA DEL VALOR DE MERCADO (VALOR",
+    "name": "Ganancia en la valoración de opciones compradas",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -1821,7 +1941,7 @@
   },
   {
     "code": "1238",
-    "name": "RAZONABLE) DEL RIESGO DE TASA DE INTERÉS ASOCIADO CON UNA CARTERA DE ACTIVOS Y/O PASIVOS FINANCIEROS Ajuste por cobertura del valor de mercado (valor razonable) del",
+    "name": "AJUSTE POR COBERTURA DEL VALOR DE MERCADO (VALOR RAZONABLE) DEL RIESGO DE TASA DE INTERÉS ASOCIADO CON UNA CARTERA DE ACTIVOS Y/O PASIVOS FINANCIEROS",
     "level": "CUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -1831,7 +1951,7 @@
   },
   {
     "code": "123801",
-    "name": "riesgo de tasa de interés asociado con una cartera de activos financieros Ajuste por cobertura del valor de mercado (valor razonable) del",
+    "name": "Ajuste por cobertura del valor de mercado (valor razonable) del riesgo de tasa de interés asociado con una cartera de activos financieros",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -1841,7 +1961,7 @@
   },
   {
     "code": "123802",
-    "name": "riesgo de tasa de interés asociado con una cartera de pasivos financieros Ajuste por cobertura del valor de mercado (valor razonable) del",
+    "name": "Ajuste por cobertura del valor de mercado (valor razonable) del riesgo de tasa de interés asociado con una cartera de pasivos financieros",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -1851,13 +1971,23 @@
   },
   {
     "code": "123803",
-    "name": "riesgo de tasa de interés asociado con una cartera de activos y pasivos financieros GANANCIA EN LA VALORACIÓN DE COMPROMISOS EN FIRME DESIGNADOS COMO PARTIDAS CUBIERTAS",
+    "name": "Ajuste por cobertura del valor de mercado (valor razonable) del riesgo de tasa de interés asociado con una cartera de activos y pasivos financieros",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1238"
+  },
+  {
+    "code": "1239",
+    "name": "GANANCIA EN LA VALORACIÓN DE COMPROMISOS EN FIRME DESIGNADOS COMO PARTIDAS CUBIERTAS",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "12"
   },
   {
     "code": "123901",
@@ -1911,7 +2041,17 @@
   },
   {
     "code": "128043",
-    "name": "Inversiones en controladas al costo Inversiones en controladas contabilizadas por el método de participación patrimonial",
+    "name": "Inversiones en controladas al costo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1280"
+  },
+  {
+    "code": "128044",
+    "name": "Inversiones en controladas contabilizadas por el método de participación patrimonial",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -1921,7 +2061,17 @@
   },
   {
     "code": "128045",
-    "name": "Inversiones en asociadas al costo Inversiones en asociadas contabilizadas por el método de participación patrimonial",
+    "name": "Inversiones en asociadas al costo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1280"
+  },
+  {
+    "code": "128046",
+    "name": "Inversiones en asociadas contabilizadas por el método de participación patrimonial",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -1931,7 +2081,17 @@
   },
   {
     "code": "128047",
-    "name": "Inversiones en negocios conjuntos al costo Inversiones en negocios conjuntos contabilizadas por el método de participación patrimonial",
+    "name": "Inversiones en negocios conjuntos al costo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1280"
+  },
+  {
+    "code": "128048",
+    "name": "Inversiones en negocios conjuntos contabilizadas por el método de participación patrimonial",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -1941,13 +2101,23 @@
   },
   {
     "code": "13",
-    "name": "CUENTAS POR COBRAR IMPUESTOS, RETENCIÓN EN LA FUENTE Y ANTICIPOS DE IMPUESTOS",
+    "name": "CUENTAS POR COBRAR",
     "level": "GRUPO",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1"
+  },
+  {
+    "code": "1305",
+    "name": "IMPUESTOS, RETENCIÓN EN LA FUENTE Y ANTICIPOS DE IMPUESTOS",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "13"
   },
   {
     "code": "130588",
@@ -2381,7 +2551,7 @@
   },
   {
     "code": "1319",
-    "name": "PRESTACIÓN DE SERVICIOS DE SALUD Plan de Beneficios en Salud (PBS) por EPS - sin facturar o con facturación pendiente de radicar Plan de Beneficios en Salud (PBS) por EPS - con facturación radicada Plan subsidiado de salud (PBSS) por EPS - sin facturar o con facturación pendiente de radicar",
+    "name": "PRESTACIÓN DE SERVICIOS DE SALUD",
     "level": "CUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -2390,8 +2560,58 @@
     "parentCode": "13"
   },
   {
+    "code": "131901",
+    "name": "Plan de Beneficios en Salud (PBS) por EPS - sin facturar o con facturación pendiente de radicar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131902",
+    "name": "Plan de Beneficios en Salud (PBS) por EPS - con facturación radicada",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131903",
+    "name": "Plan subsidiado de salud (PBSS) por EPS - sin facturar o con facturación pendiente de radicar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
     "code": "131904",
-    "name": "Plan subsidiado de salud (PBSS) por EPS - con facturación radicada Empresas de medicina prepagada (EMP) - sin facturar o con facturación pendiente de radicar Empresas de medicina prepagada (EMP) - con facturación radicada",
+    "name": "Plan subsidiado de salud (PBSS) por EPS - con facturación radicada",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131905",
+    "name": "Empresas de medicina prepagada (EMP) - sin facturar o con facturación pendiente de radicar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131906",
+    "name": "Empresas de medicina prepagada (EMP) - con facturación radicada",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -2401,7 +2621,17 @@
   },
   {
     "code": "131907",
-    "name": "Planes complementarios de EPS Servicios de salud por IPS privadas - sin facturar o con facturación pendiente de radicar",
+    "name": "Planes complementarios de EPS",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131908",
+    "name": "Servicios de salud por IPS privadas - sin facturar o con facturación pendiente de radicar",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -2411,7 +2641,17 @@
   },
   {
     "code": "131909",
-    "name": "Servicios de salud por IPS privadas - con facturación radicada Servicios de salud por IPS públicas - sin facturar o con facturación pendiente de radicar",
+    "name": "Servicios de salud por IPS privadas - con facturación radicada",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131910",
+    "name": "Servicios de salud por IPS públicas - sin facturar o con facturación pendiente de radicar",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -2421,7 +2661,47 @@
   },
   {
     "code": "131911",
-    "name": "Servicios de salud por IPS públicas - con facturación radicada Servicios de salud por compañías aseguradoras - sin facturar o con facturación pendiente de radicar Servicios de salud por compañías aseguradoras - con facturación radicada Servicios de Salud por entidades con régimen especial - sin facturar o con facturación pendiente de radicar Servicios de Salud por entidades con régimen especial - con facturación radicada",
+    "name": "Servicios de salud por IPS públicas - con facturación radicada",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131912",
+    "name": "Servicios de salud por compañías aseguradoras - sin facturar o con facturación pendiente de radicar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131913",
+    "name": "Servicios de salud por compañías aseguradoras - con facturación radicada",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131914",
+    "name": "Servicios de Salud por entidades con régimen especial - sin facturar o con facturación pendiente de radicar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131915",
+    "name": "Servicios de Salud por entidades con régimen especial - con facturación radicada",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -2431,7 +2711,77 @@
   },
   {
     "code": "131916",
-    "name": "Servicios de salud por particulares Atención accidentes de tránsito SOAT por compañías de seguros - sin facturar o con facturación pendiente de radicar Atención accidentes de tránsito SOAT por compañías de seguros - con facturación radicada Atención con cargo a recursos de acciones de salud pública - sin facturar o con facturación pendiente de radicar Atención con cargo a recursos de acciones de salud pública - con facturación radicada Atención con cargo al subsidio a la oferta - sin facturar o con facturación pendiente de radicar Atención con cargo al subsidio a la oferta - con facturación radicada Riesgos laborales (ARL) - sin facturar o con facturación pendiente de radicar",
+    "name": "Servicios de salud por particulares",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131917",
+    "name": "Atención accidentes de tránsito SOAT por compañías de seguros - sin facturar o con facturación pendiente de radicar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131918",
+    "name": "Atención accidentes de tránsito SOAT por compañías de seguros - con facturación radicada",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131919",
+    "name": "Atención con cargo a recursos de acciones de salud pública - sin facturar o con facturación pendiente de radicar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131920",
+    "name": "Atención con cargo a recursos de acciones de salud pública - con facturación radicada",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131921",
+    "name": "Atención con cargo al subsidio a la oferta - sin facturar o con facturación pendiente de radicar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131922",
+    "name": "Atención con cargo al subsidio a la oferta - con facturación radicada",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131923",
+    "name": "Riesgos laborales (ARL) - sin facturar o con facturación pendiente de radicar",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -2441,7 +2791,7 @@
   },
   {
     "code": "131924",
-    "name": "Riesgos laborales (ARL) - con facturación radicada Convenios con recursos del Sistema General de Seguridad Social",
+    "name": "Riesgos laborales (ARL) - con facturación radicada",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -2451,7 +2801,7 @@
   },
   {
     "code": "131925",
-    "name": "en Salud para trauma mayor y desplazados - sin facturar o con facturación pendiente de radicar Convenios con recursos del Sistema General de Seguridad Social",
+    "name": "Convenios con recursos del Sistema General de Seguridad Social en Salud para trauma mayor y desplazados - sin facturar o con facturación pendiente de radicar",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -2461,7 +2811,7 @@
   },
   {
     "code": "131926",
-    "name": "en Salud para trauma mayor y desplazados - con facturación radicada Reclamaciones con cargo a los recursos del Sistema General de",
+    "name": "Convenios con recursos del Sistema General de Seguridad Social en Salud para trauma mayor y desplazados - con facturación radicada",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -2471,7 +2821,17 @@
   },
   {
     "code": "131927",
-    "name": "Seguridad Social en Salud - sin facturar o con facturación pendiente de radicar Reclamaciones con cargo a los recursos del Sistema General de Seguridad Social en Salud - con facturación radicada",
+    "name": "Reclamaciones con cargo a los recursos del Sistema General de Seguridad Social en Salud - sin facturar o con facturación pendiente de radicar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1319"
+  },
+  {
+    "code": "131928",
+    "name": "Reclamaciones con cargo a los recursos del Sistema General de Seguridad Social en Salud - con facturación radicada",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -2571,7 +2931,27 @@
   },
   {
     "code": "132214",
-    "name": "Cuotas de inscripción y afiliación a planes complementarios Aportes del empleado y del empleador a los regímenes exceptuados en salud Otras cuentas por cobrar por la administración de la de seguridad social en salud",
+    "name": "Cuotas de inscripción y afiliación a planes complementarios",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1322"
+  },
+  {
+    "code": "132224",
+    "name": "Aportes del empleado y del empleador a los regímenes exceptuados en salud",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1322"
+  },
+  {
+    "code": "132290",
+    "name": "Otras cuentas por cobrar por la administración de la de seguridad social en salud",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -2711,13 +3091,23 @@
   },
   {
     "code": "13371205",
-    "name": "Otras entidades SENTENCIAS, LAUDOS ARBITRALES Y CONCILIACIONES EXTRAJUDICIALES A FAVOR DE LA ENTIDAD",
+    "name": "Otras entidades",
     "level": "AUXILIAR",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "133712"
+  },
+  {
+    "code": "1338",
+    "name": "SENTENCIAS, LAUDOS ARBITRALES Y CONCILIACIONES EXTRAJUDICIALES A FAVOR DE LA ENTIDAD",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "13"
   },
   {
     "code": "133801",
@@ -2901,7 +3291,17 @@
   },
   {
     "code": "138436",
-    "name": "Otros intereses por cobrar Compensación o indemnización procedente de terceros por elementos deteriorados",
+    "name": "Otros intereses por cobrar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1384"
+  },
+  {
+    "code": "138438",
+    "name": "Compensación o indemnización procedente de terceros por elementos deteriorados",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -2911,7 +3311,17 @@
   },
   {
     "code": "138439",
-    "name": "Arrendamiento operativo Derechos a favor en acuerdos no clasificados como operaciones conjuntas",
+    "name": "Arrendamiento operativo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1384"
+  },
+  {
+    "code": "138445",
+    "name": "Derechos a favor en acuerdos no clasificados como operaciones conjuntas",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -2931,7 +3341,27 @@
   },
   {
     "code": "138451",
-    "name": "Reembolso por concurrencia en el pago de cesantías retroactivas Aportes del empleador para cubrir los accidentes de trabajo y las enfermedades profesionales de los regímenes de excepción Derechos de reembolso relacionados con demandas, arbitrajes y conciliaciones extrajudiciales",
+    "name": "Reembolso por concurrencia en el pago de cesantías retroactivas",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1384"
+  },
+  {
+    "code": "138452",
+    "name": "Aportes del empleador para cubrir los accidentes de trabajo y las enfermedades profesionales de los regímenes de excepción",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1384"
+  },
+  {
+    "code": "138454",
+    "name": "Derechos de reembolso relacionados con demandas, arbitrajes y conciliaciones extrajudiciales",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -3131,7 +3561,17 @@
   },
   {
     "code": "138516",
-    "name": "Aportes sobre la nómina Sentencias, laudos arbitrales y conciliaciones extrajudiciales a favor de la entidad",
+    "name": "Aportes sobre la nómina",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1385"
+  },
+  {
+    "code": "138520",
+    "name": "Sentencias, laudos arbitrales y conciliaciones extrajudiciales a favor de la entidad",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -3321,7 +3761,17 @@
   },
   {
     "code": "138615",
-    "name": "Aportes sobre la nómina Sentencias, laudos arbitrales y conciliaciones extrajudiciales a favor de la entidad",
+    "name": "Aportes sobre la nómina",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1386"
+  },
+  {
+    "code": "138619",
+    "name": "Sentencias, laudos arbitrales y conciliaciones extrajudiciales a favor de la entidad",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -3381,13 +3831,23 @@
   },
   {
     "code": "138790",
-    "name": "Otras cuentas por cobrar a costo amortizado DETERIORO ACUMULADO DE CUENTAS POR COBRAR A COSTO AMORTIZADO (CR)",
+    "name": "Otras cuentas por cobrar a costo amortizado",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1387"
+  },
+  {
+    "code": "1388",
+    "name": "DETERIORO ACUMULADO DE CUENTAS POR COBRAR A COSTO AMORTIZADO (CR)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "13"
   },
   {
     "code": "138801",
@@ -6161,7 +6621,17 @@
   },
   {
     "code": "167006",
-    "name": "Equipos de comunicación y computación pendientes de legalizar Equipos de comunicación y computación de propiedad de terceros",
+    "name": "Equipos de comunicación y computación pendientes de legalizar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1670"
+  },
+  {
+    "code": "167007",
+    "name": "Equipos de comunicación y computación de propiedad de terceros",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -6251,7 +6721,17 @@
   },
   {
     "code": "167507",
-    "name": "Equipos de transporte, tracción y elevación pendientes de legalizar Equipos de transporte, tracción y elevación de propiedad de terceros",
+    "name": "Equipos de transporte, tracción y elevación pendientes de legalizar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1675"
+  },
+  {
+    "code": "167508",
+    "name": "Equipos de transporte, tracción y elevación de propiedad de terceros",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -6311,7 +6791,27 @@
   },
   {
     "code": "168004",
-    "name": "Equipo de lavandería Equipos de comedor, cocina, despensa y hotelería pendientes de legalizar Equipos de comedor, cocina, despensa y hotelería de propiedad de terceros",
+    "name": "Equipo de lavandería",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1680"
+  },
+  {
+    "code": "168005",
+    "name": "Equipos de comedor, cocina, despensa y hotelería pendientes de legalizar",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1680"
+  },
+  {
+    "code": "168006",
+    "name": "Equipos de comedor, cocina, despensa y hotelería de propiedad de terceros",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -6401,13 +6901,23 @@
   },
   {
     "code": "168190",
-    "name": "Otros bienes de arte y cultura DEPRECIACIÓN ACUMULADA DE PROPIEDADES, PLANTA Y EQUIPO (CR)",
+    "name": "Otros bienes de arte y cultura",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1681"
+  },
+  {
+    "code": "1685",
+    "name": "DEPRECIACIÓN ACUMULADA DE PROPIEDADES, PLANTA Y EQUIPO (CR)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "16"
   },
   {
     "code": "168501",
@@ -6561,13 +7071,23 @@
   },
   {
     "code": "168517",
-    "name": "Terrenos con vida útil finita DETERIORO ACUMULADO DE PROPIEDADES, PLANTA Y EQUIPO (CR)",
+    "name": "Terrenos con vida útil finita",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1685"
+  },
+  {
+    "code": "1695",
+    "name": "DETERIORO ACUMULADO DE PROPIEDADES, PLANTA Y EQUIPO (CR)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "16"
   },
   {
     "code": "169501",
@@ -6971,13 +7491,23 @@
   },
   {
     "code": "169621",
-    "name": "Propiedades, planta y equipo no explotados DEPRECIACIÓN ACUMULADA DE PROPIEDADES, PLANTA Y EQUIPO - MODELO REVALUADO (CR)",
+    "name": "Propiedades, planta y equipo no explotados",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1696"
+  },
+  {
+    "code": "1697",
+    "name": "DEPRECIACIÓN ACUMULADA DE PROPIEDADES, PLANTA Y EQUIPO - MODELO REVALUADO (CR)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "16"
   },
   {
     "code": "169701",
@@ -7131,13 +7661,23 @@
   },
   {
     "code": "169717",
-    "name": "Terrenos con vida útil finita DETERIORO ACUMULADO DE PROPIEDADES, PLANTA Y EQUIPO - MODELO REVALUADO (CR)",
+    "name": "Terrenos con vida útil finita",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1697"
+  },
+  {
+    "code": "1698",
+    "name": "DETERIORO ACUMULADO DE PROPIEDADES, PLANTA Y EQUIPO - MODELO REVALUADO (CR)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "16"
   },
   {
     "code": "169801",
@@ -7601,13 +8141,23 @@
   },
   {
     "code": "171590",
-    "name": "Otros bienes históricos y culturales BIENES DE USO PÚBLICO REPRESENTADOS EN BIENES DE ARTE Y CULTURA",
+    "name": "Otros bienes históricos y culturales",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1715"
+  },
+  {
+    "code": "1721",
+    "name": "BIENES DE USO PÚBLICO REPRESENTADOS EN BIENES DE ARTE Y CULTURA",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "17"
   },
   {
     "code": "172101",
@@ -7641,13 +8191,33 @@
   },
   {
     "code": "172104",
-    "name": "Libros y publicaciones de investigación y consulta Otros bienes de uso público representados en bienes de arte y cultura DEPRECIACIÓN ACUMULADA DE BIENES DE USO PÚBLICO EN SERVICIO (CR)",
+    "name": "Libros y publicaciones de investigación y consulta",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1721"
+  },
+  {
+    "code": "172190",
+    "name": "Otros bienes de uso público representados en bienes de arte y cultura",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1721"
+  },
+  {
+    "code": "1785",
+    "name": "DEPRECIACIÓN ACUMULADA DE BIENES DE USO PÚBLICO EN SERVICIO (CR)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "17"
   },
   {
     "code": "178510",
@@ -7691,13 +8261,23 @@
   },
   {
     "code": "178590",
-    "name": "Otros bienes de uso público en servicio DEPRECIACIÓN ACUMULADA DE RESTAURACIONES DE BIENES HISTÓRICOS Y CULTURALES (CR)",
+    "name": "Otros bienes de uso público en servicio",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1785"
+  },
+  {
+    "code": "1786",
+    "name": "DEPRECIACIÓN ACUMULADA DE RESTAURACIONES DE BIENES HISTÓRICOS Y CULTURALES (CR)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "17"
   },
   {
     "code": "178601",
@@ -7851,7 +8431,7 @@
   },
   {
     "code": "19",
-    "name": "OTROS ACTIVOS PLAN DE ACTIVOS PARA BENEFICIOS A LOS EMPLEADOS A LARGO PLAZO",
+    "name": "OTROS ACTIVOS",
     "level": "GRUPO",
     "nature": "DEBITO",
     "description": null,
@@ -7860,8 +8440,28 @@
     "parentCode": "1"
   },
   {
+    "code": "1902",
+    "name": "PLAN DE ACTIVOS PARA BENEFICIOS A LOS EMPLEADOS A LARGO PLAZO",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "19"
+  },
+  {
     "code": "190201",
-    "name": "Efectivo y equivalentes al efectivo Recursos entregados en administración a entidades distintas de las sociedades fiduciarias",
+    "name": "Efectivo y equivalentes al efectivo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1902"
+  },
+  {
+    "code": "190202",
+    "name": "Recursos entregados en administración a entidades distintas de las sociedades fiduciarias",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -7941,7 +8541,7 @@
   },
   {
     "code": "190210",
-    "name": "Cuentas por cobrar PLAN DE ACTIVOS PARA BENEFICIOS A LOS EMPLEADOS POR TERMINACIÓN DEL VINCULO LABORAL O CONTRACTUAL",
+    "name": "Cuentas por cobrar",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -7950,8 +8550,28 @@
     "parentCode": "1902"
   },
   {
+    "code": "1903",
+    "name": "PLAN DE ACTIVOS PARA BENEFICIOS A LOS EMPLEADOS POR TERMINACIÓN DEL VINCULO LABORAL O CONTRACTUAL",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "19"
+  },
+  {
     "code": "190301",
-    "name": "Efectivo y equivalentes al efectivo Recursos entregados en administración a entidades distintas de las sociedades fiduciarias",
+    "name": "Efectivo y equivalentes al efectivo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1903"
+  },
+  {
+    "code": "190302",
+    "name": "Recursos entregados en administración a entidades distintas de las sociedades fiduciarias",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -8021,7 +8641,17 @@
   },
   {
     "code": "190401",
-    "name": "Efectivo y equivalentes al efectivo Recursos entregados en administración a entidades distintas de las sociedades fiduciarias",
+    "name": "Efectivo y equivalentes al efectivo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1904"
+  },
+  {
+    "code": "190402",
+    "name": "Recursos entregados en administración a entidades distintas de las sociedades fiduciarias",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -8251,7 +8881,17 @@
   },
   {
     "code": "190515",
-    "name": "Otros beneficios a los empleados Beneficios a empleados por préstamos condicionados a tasa de interés cero o inferior a la del mercado",
+    "name": "Otros beneficios a los empleados",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1905"
+  },
+  {
+    "code": "190516",
+    "name": "Beneficios a empleados por préstamos condicionados a tasa de interés cero o inferior a la del mercado",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -8341,13 +8981,23 @@
   },
   {
     "code": "190690",
-    "name": "Otros avances y anticipos DERECHOS DE COMPENSACIONES POR IMPUESTOS Y CONTRIBUCIONES",
+    "name": "Otros avances y anticipos",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1906"
+  },
+  {
+    "code": "1907",
+    "name": "DERECHOS DE COMPENSACIONES POR IMPUESTOS Y CONTRIBUCIONES",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "19"
   },
   {
     "code": "190702",
@@ -8411,7 +9061,17 @@
   },
   {
     "code": "190712",
-    "name": "Descuento de IVA en el impuesto sobre la renta Otros derechos de compensaciones por impuestos y contribuciones",
+    "name": "Descuento de IVA en el impuesto sobre la renta",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1907"
+  },
+  {
+    "code": "190790",
+    "name": "Otros derechos de compensaciones por impuestos y contribuciones",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -8631,13 +9291,23 @@
   },
   {
     "code": "194690",
-    "name": "Otros activos DETERIORO ACUMULADO DE ACTIVOS NO CORRIENTES MANTENIDOS PARA LA VENTA (CR)",
+    "name": "Otros activos",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1946"
+  },
+  {
+    "code": "1947",
+    "name": "DETERIORO ACUMULADO DE ACTIVOS NO CORRIENTES MANTENIDOS PARA LA VENTA (CR)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "19"
   },
   {
     "code": "194701",
@@ -8741,13 +9411,23 @@
   },
   {
     "code": "195105",
-    "name": "Construcciones en curso DEPRECIACIÓN ACUMULADA DE PROPIEDADES DE INVERSIÓN (CR)",
+    "name": "Construcciones en curso",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1951"
+  },
+  {
+    "code": "1952",
+    "name": "DEPRECIACIÓN ACUMULADA DE PROPIEDADES DE INVERSIÓN (CR)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "19"
   },
   {
     "code": "195201",
@@ -8761,13 +9441,23 @@
   },
   {
     "code": "195202",
-    "name": "Edificaciones con uso indeterminado DETERIORO ACUMULADO DE PROPIEDADES DE INVERSIÓN (CR)",
+    "name": "Edificaciones con uso indeterminado",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1952"
+  },
+  {
+    "code": "1953",
+    "name": "DETERIORO ACUMULADO DE PROPIEDADES DE INVERSIÓN (CR)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "19"
   },
   {
     "code": "195301",
@@ -8801,13 +9491,23 @@
   },
   {
     "code": "195304",
-    "name": "Edificaciones con uso indeterminado PROPIEDADES DE INVERSIÓN - MODELO DEL VALOR RAZONABLE",
+    "name": "Edificaciones con uso indeterminado",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1953"
+  },
+  {
+    "code": "1954",
+    "name": "PROPIEDADES DE INVERSIÓN - MODELO DEL VALOR RAZONABLE",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "19"
   },
   {
     "code": "195401",
@@ -9201,13 +9901,23 @@
   },
   {
     "code": "197790",
-    "name": "Otros activos intangibles AMORTIZACIÓN ACUMULADA DE ACTIVOS INTANGIBLES - MODELO REVALUADO (CR)",
+    "name": "Otros activos intangibles",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1977"
+  },
+  {
+    "code": "1978",
+    "name": "AMORTIZACIÓN ACUMULADA DE ACTIVOS INTANGIBLES - MODELO REVALUADO (CR)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "19"
   },
   {
     "code": "197801",
@@ -9271,13 +9981,23 @@
   },
   {
     "code": "197890",
-    "name": "Otros activos intangibles DETERIORO ACUMULADO DE ACTIVOS INTANGIBLES - MODELO REVALUADO (CR)",
+    "name": "Otros activos intangibles",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1978"
+  },
+  {
+    "code": "1979",
+    "name": "DETERIORO ACUMULADO DE ACTIVOS INTANGIBLES - MODELO REVALUADO (CR)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "19"
   },
   {
     "code": "197902",
@@ -9351,13 +10071,23 @@
   },
   {
     "code": "197990",
-    "name": "Otros activos intangibles ACTIVOS BIOLÓGICOS A VALOR DE MERCADO (VALOR RAZONABLE) MENOS COSTOS DE DISPOSICIÓN",
+    "name": "Otros activos intangibles",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1979"
+  },
+  {
+    "code": "1980",
+    "name": "ACTIVOS BIOLÓGICOS A VALOR DE MERCADO (VALOR RAZONABLE) MENOS COSTOS DE DISPOSICIÓN",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "19"
   },
   {
     "code": "198001",
@@ -9491,13 +10221,23 @@
   },
   {
     "code": "198204",
-    "name": "Por madurar para producir frutos DEPRECIACIÓN ACUMULADA DE ACTIVOS BIOLÓGICOS AL COSTO (CR)",
+    "name": "Por madurar para producir frutos",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1982"
+  },
+  {
+    "code": "1983",
+    "name": "DEPRECIACIÓN ACUMULADA DE ACTIVOS BIOLÓGICOS AL COSTO (CR)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "19"
   },
   {
     "code": "198301",
@@ -9531,13 +10271,23 @@
   },
   {
     "code": "198304",
-    "name": "Por madurar para producir frutos DETERIORO ACUMULADO DE ACTIVOS BIOLÓGICOS AL COSTO (CR)",
+    "name": "Por madurar para producir frutos",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1983"
+  },
+  {
+    "code": "1984",
+    "name": "DETERIORO ACUMULADO DE ACTIVOS BIOLÓGICOS AL COSTO (CR)",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "19"
   },
   {
     "code": "198401",
@@ -9751,13 +10501,23 @@
   },
   {
     "code": "1986",
-    "name": "ACTIVOS DIFERIDOS Pérdida diferida por transacciones de venta con arrendamiento posterior",
+    "name": "ACTIVOS DIFERIDOS",
     "level": "CUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "19"
+  },
+  {
+    "code": "198603",
+    "name": "Pérdida diferida por transacciones de venta con arrendamiento posterior",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1986"
   },
   {
     "code": "198605",
@@ -9771,13 +10531,23 @@
   },
   {
     "code": "198606",
-    "name": "Costos de transacción - Activos y pasivos financieros DERECHOS DE REEMBOLSO Y DE SUSTITUCIÓN DE ACTIVOS DETERIORADOS",
+    "name": "Costos de transacción - Activos y pasivos financieros",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "1986"
+  },
+  {
+    "code": "1990",
+    "name": "DERECHOS DE REEMBOLSO Y DE SUSTITUCIÓN DE ACTIVOS DETERIORADOS",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "19"
   },
   {
     "code": "199001",
@@ -9791,7 +10561,37 @@
   },
   {
     "code": "199002",
-    "name": "Derechos de reembolso relacionados con provisiones Derechos de reembolso relacionados con cuotas partes de pensiones Derechos de reembolso relacionados con la concurrencia en el pago del pasivo pensional Derechos de reembolso relacionados con la concurrencia en el pago de cesantías retroactivas",
+    "name": "Derechos de reembolso relacionados con provisiones",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1990"
+  },
+  {
+    "code": "199003",
+    "name": "Derechos de reembolso relacionados con cuotas partes de pensiones",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1990"
+  },
+  {
+    "code": "199004",
+    "name": "Derechos de reembolso relacionados con la concurrencia en el pago del pasivo pensional",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "1990"
+  },
+  {
+    "code": "199006",
+    "name": "Derechos de reembolso relacionados con la concurrencia en el pago de cesantías retroactivas",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -9804,9 +10604,9 @@
     "name": "PASIVOS",
     "level": "CLASE",
     "nature": "CREDITO",
-    "description": "Agrupa las obligaciones contraídas por la institución surgidas de sucesos pasados.",
-    "debitDynamic": "Por los pagos totales o parciales de las deudas y obligaciones.",
-    "creditDynamic": "Por las deudas y obligaciones contraídas con terceros, nómina e impuestos por pagar.",
+    "description": "Agrupa las obligaciones contraídas por la institución.",
+    "debitDynamic": "Pagos totales o parciales de las deudas.",
+    "creditDynamic": "Obligaciones contraídas con terceros.",
     "parentCode": null
   },
   {
@@ -10071,13 +10871,33 @@
   },
   {
     "code": "231790",
-    "name": "Otros préstamos PRÉSTAMOS ORIGINADOS POR LA TRANSFERENCIA DE ACTIVOS FINANCIEROS QUE NO SE DAN DE BAJA Inversiones de administración de liquidez transferidas que no se dan de baja",
+    "name": "Otros préstamos",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "2317"
+  },
+  {
+    "code": "2319",
+    "name": "PRÉSTAMOS ORIGINADOS POR LA TRANSFERENCIA DE ACTIVOS FINANCIEROS QUE NO SE DAN DE BAJA",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "23"
+  },
+  {
+    "code": "231901",
+    "name": "Inversiones de administración de liquidez transferidas que no se dan de baja",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "2319"
   },
   {
     "code": "231902",
@@ -10141,13 +10961,33 @@
   },
   {
     "code": "2402",
-    "name": "SUBVENCIONES POR PAGAR Otras subvenciones por recursos transferidos a las empresas públicas Otras subvenciones por recursos transferidos a entidades de naturaleza privada",
+    "name": "SUBVENCIONES POR PAGAR",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "24"
+  },
+  {
+    "code": "240205",
+    "name": "Otras subvenciones por recursos transferidos a las empresas públicas",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "2402"
+  },
+  {
+    "code": "240290",
+    "name": "Otras subvenciones por recursos transferidos a entidades de naturaleza privada",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "2402"
   },
   {
     "code": "2406",
@@ -10251,7 +11091,17 @@
   },
   {
     "code": "240726",
-    "name": "Rendimientos financieros Retención a contratistas por aportes al Sistema de Seguridad Social Integral",
+    "name": "Rendimientos financieros",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "2407"
+  },
+  {
+    "code": "240727",
+    "name": "Retención a contratistas por aportes al Sistema de Seguridad Social Integral",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -10771,7 +11621,17 @@
   },
   {
     "code": "244029",
-    "name": "Impuesto nacional al consumo Impuesto de normalización tributaria complementario al de renta y al de patrimonio",
+    "name": "Impuesto nacional al consumo",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "2440"
+  },
+  {
+    "code": "244032",
+    "name": "Impuesto de normalización tributaria complementario al de renta y al de patrimonio",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -11081,7 +11941,27 @@
   },
   {
     "code": "248122",
-    "name": "Licencias de maternidad y paternidad Servicios y tecnologías en salud de los regímenes especiales o exceptuados en salud Otras obligaciones por la administración de la seguridad social en salud",
+    "name": "Licencias de maternidad y paternidad",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "2481"
+  },
+  {
+    "code": "248123",
+    "name": "Servicios y tecnologías en salud de los regímenes especiales o exceptuados en salud",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "2481"
+  },
+  {
+    "code": "248190",
+    "name": "Otras obligaciones por la administración de la seguridad social en salud",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -11281,13 +12161,53 @@
   },
   {
     "code": "249053",
-    "name": "Comisiones Comisiones sobre recursos entregados en administración-IES públicas Comisiones sobre recursos entregados en administración-IES privadas Comisiones sobre recursos entregados en administración-Otras Entidades públicas Comisiones sobre recursos entregados en administración- Otras Entidades privadas",
+    "name": "Comisiones",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "2490"
+  },
+  {
+    "code": "24905301",
+    "name": "Comisiones sobre recursos entregados en administración -IES públicas",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "249053"
+  },
+  {
+    "code": "24905302",
+    "name": "Comisiones sobre recursos entregados en administración -IES privadas",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "249053"
+  },
+  {
+    "code": "24905303",
+    "name": "Comisiones sobre recursos entregados en administración-Otras Entidades públicas",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "249053"
+  },
+  {
+    "code": "24905304",
+    "name": "Comisiones sobre recursos entregados en administración- Otras Entidades privadas",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "249053"
   },
   {
     "code": "24905390",
@@ -11331,7 +12251,17 @@
   },
   {
     "code": "249058",
-    "name": "Arrendamiento operativo Obligaciones a cargo en acuerdos no clasificados como operaciones conjuntas",
+    "name": "Arrendamiento operativo",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "2490"
+  },
+  {
+    "code": "249060",
+    "name": "Obligaciones a cargo en acuerdos no clasificados como operaciones conjuntas",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -11341,7 +12271,17 @@
   },
   {
     "code": "249061",
-    "name": "Aportes a sindicatos Obligaciones de reembolso relacionadas con demandas, arbitrajes y conciliaciones extrajudiciales",
+    "name": "Aportes a sindicatos",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "2490"
+  },
+  {
+    "code": "249068",
+    "name": "Obligaciones de reembolso relacionadas con demandas, arbitrajes y conciliaciones extrajudiciales",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -11751,13 +12691,23 @@
   },
   {
     "code": "251290",
-    "name": "Otros beneficios a los empleados a largo plazo BENEFICIOS POR TERMINACIÓN DEL VÍNCULO LABORAL O CONTRACTUAL",
+    "name": "Otros beneficios a los empleados a largo plazo",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "2512"
+  },
+  {
+    "code": "2513",
+    "name": "BENEFICIOS POR TERMINACIÓN DEL VÍNCULO LABORAL O CONTRACTUAL",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "25"
   },
   {
     "code": "251301",
@@ -11901,13 +12851,23 @@
   },
   {
     "code": "2515",
-    "name": "OTROS BENEFICIOS POSEMPLEO Capacitación, bienestar social, estímulos y otros beneficios legales o extralegales",
+    "name": "OTROS BENEFICIOS POSEMPLEO",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "25"
+  },
+  {
+    "code": "251501",
+    "name": "Capacitación, bienestar social, estímulos y otros beneficios legales o extralegales",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "2515"
   },
   {
     "code": "251502",
@@ -12041,13 +13001,23 @@
   },
   {
     "code": "260111",
-    "name": "Pérdida en la valoración de opciones vendidas INSTRUMENTOS DERIVADOS CON FINES DE COBERTURA DE VALOR DE MERCADO (VALOR RAZONABLE)",
+    "name": "Pérdida en la valoración de opciones vendidas",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "2601"
+  },
+  {
+    "code": "2602",
+    "name": "INSTRUMENTOS DERIVADOS CON FINES DE COBERTURA DE VALOR DE MERCADO (VALOR RAZONABLE)",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "26"
   },
   {
     "code": "260201",
@@ -12141,13 +13111,23 @@
   },
   {
     "code": "260211",
-    "name": "Pérdida en la valoración de opciones vendidas INSTRUMENTOS DERIVADOS CON FINES DE COBERTURA DE FLUJOS DE EFECTIVO",
+    "name": "Pérdida en la valoración de opciones vendidas",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "2602"
+  },
+  {
+    "code": "2603",
+    "name": "INSTRUMENTOS DERIVADOS CON FINES DE COBERTURA DE FLUJOS DE EFECTIVO",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "26"
   },
   {
     "code": "260301",
@@ -12241,13 +13221,23 @@
   },
   {
     "code": "260311",
-    "name": "Pérdida en la valoración de opciones vendidas INSTRUMENTOS DERIVADOS CON FINES DE COBERTURA DE UNA INVERSIÓN NETA EN UN NEGOCIO EN EL EXTRANJERO",
+    "name": "Pérdida en la valoración de opciones vendidas",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "2603"
+  },
+  {
+    "code": "2604",
+    "name": "INSTRUMENTOS DERIVADOS CON FINES DE COBERTURA DE UNA INVERSIÓN NETA EN UN NEGOCIO EN EL EXTRANJERO",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "26"
   },
   {
     "code": "260401",
@@ -12341,7 +13331,7 @@
   },
   {
     "code": "260411",
-    "name": "Pérdida en la valoración de opciones vendidas AJUSTE POR COBERTURA DEL VALOR DE MERCADO (VALOR",
+    "name": "Pérdida en la valoración de opciones vendidas",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -12351,7 +13341,7 @@
   },
   {
     "code": "2605",
-    "name": "RAZONABLE) DEL RIESGO DE TASA DE INTERÉS ASOCIADO CON UNA CARTERA DE ACTIVOS O PASIVOS FINANCIEROS Ajuste por cobertura del valor de mercado (valor razonable) del",
+    "name": "AJUSTE POR COBERTURA DEL VALOR DE MERCADO (VALOR RAZONABLE) DEL RIESGO DE TASA DE INTERÉS ASOCIADO CON UNA CARTERA DE ACTIVOS O PASIVOS FINANCIEROS",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -12361,7 +13351,7 @@
   },
   {
     "code": "260501",
-    "name": "riesgo de tasa de interés asociado con una cartera de activos financieros Ajuste por cobertura del valor de mercado (valor razonable) del",
+    "name": "Ajuste por cobertura del valor de mercado (valor razonable) del riesgo de tasa de interés asociado con una cartera de activos financieros",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -12371,7 +13361,7 @@
   },
   {
     "code": "260502",
-    "name": "riesgo de tasa de interés asociado con una cartera de pasivos financieros Ajuste por cobertura del valor de mercado (valor razonable) del",
+    "name": "Ajuste por cobertura del valor de mercado (valor razonable) del riesgo de tasa de interés asociado con una cartera de pasivos financieros",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -12381,13 +13371,23 @@
   },
   {
     "code": "260503",
-    "name": "riesgo de tasa de interés asociado con una cartera de activos y pasivos financieros PÉRDIDA EN LA VALORACIÓN DE COMPROMISOS EN FIRME COMO PARTIDAS CUBIERTAS",
+    "name": "Ajuste por cobertura del valor de mercado (valor razonable) del riesgo de tasa de interés asociado con una cartera de activos y pasivos financieros",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "2605"
+  },
+  {
+    "code": "2606",
+    "name": "PÉRDIDA EN LA VALORACIÓN DE COMPROMISOS EN FIRME COMO PARTIDAS CUBIERTAS",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "26"
   },
   {
     "code": "260601",
@@ -12511,13 +13511,23 @@
   },
   {
     "code": "2732",
-    "name": "SERVICIOS Y TECNOLOGÍAS EN SALUD Servicios y tecnologías en salud de los regímenes especiales o exceptuados en salud",
+    "name": "SERVICIOS Y TECNOLOGÍAS EN SALUD",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "27"
+  },
+  {
+    "code": "273213",
+    "name": "Servicios y tecnologías en salud de los regímenes especiales o exceptuados en salud",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "2732"
   },
   {
     "code": "273290",
@@ -12581,7 +13591,27 @@
   },
   {
     "code": "279020",
-    "name": "Desmantelamientos Obligaciones originadas por inversiones en entidades en liquidación Obligaciones de reembolso relacionadas con demandas, arbitrajes y conciliaciones extrajudiciales",
+    "name": "Desmantelamientos",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "2790"
+  },
+  {
+    "code": "279025",
+    "name": "Obligaciones originadas por inversiones en entidades en liquidación",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "2790"
+  },
+  {
+    "code": "279029",
+    "name": "Obligaciones de reembolso relacionadas con demandas, arbitrajes y conciliaciones extrajudiciales",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -13081,13 +14111,23 @@
   },
   {
     "code": "291818",
-    "name": "Otros pasivos PASIVOS ASOCIADOS A ACTIVOS MANTENIDOS PARA LA VENTA",
+    "name": "Otros pasivos",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "2918"
+  },
+  {
+    "code": "2920",
+    "name": "PASIVOS ASOCIADOS A ACTIVOS MANTENIDOS PARA LA VENTA",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "29"
   },
   {
     "code": "292001",
@@ -13141,13 +14181,23 @@
   },
   {
     "code": "2990",
-    "name": "OTROS PASIVOS DIFERIDOS Ganancia diferida por transacciones de venta con arrendamiento posterior",
+    "name": "OTROS PASIVOS DIFERIDOS",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "29"
+  },
+  {
+    "code": "299001",
+    "name": "Ganancia diferida por transacciones de venta con arrendamiento posterior",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "2990"
   },
   {
     "code": "299002",
@@ -13184,9 +14234,9 @@
     "name": "PATRIMONIO",
     "level": "CLASE",
     "nature": "CREDITO",
-    "description": "Representa el valor residual de los activos de la entidad, deducidos todos sus pasivos.",
-    "debitDynamic": "Por las pérdidas o déficits del ejercicio contable.",
-    "creditDynamic": "Por el capital aportado, reservas y los excedentes o utilidades del ejercicio.",
+    "description": "Valor residual de los activos de la entidad.",
+    "debitDynamic": "Pérdidas o déficits del ejercicio contable.",
+    "creditDynamic": "Capital aportado, reservas y excedentes.",
     "parentCode": null
   },
   {
@@ -13341,7 +14391,7 @@
   },
   {
     "code": "311490",
-    "name": "Otras reservas GANANCIAS O PÉRDIDAS EN INVERSIONES DE",
+    "name": "Otras reservas",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -13351,7 +14401,7 @@
   },
   {
     "code": "3146",
-    "name": "ADMINISTRACIÓN DE LIQUIDEZ A VALOR DE MERCADO CON CAMBIOS EN EL PATRIMONIO",
+    "name": "GANANCIAS O PÉRDIDAS EN INVERSIONES DE ADMINISTRACIÓN DE LIQUIDEZ A VALOR DE MERCADO CON CAMBIOS EN EL PATRIMONIO",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -13501,7 +14551,7 @@
   },
   {
     "code": "314616",
-    "name": "Fondos de inversión colectiva Otras inversiones de administración de liquidez a valor de mercado con cambios en el patrimonio GANANCIAS O PÉRDIDAS POR COBERTURAS DE FLUJOS DE EFECTIVO",
+    "name": "Fondos de inversión colectiva",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -13510,8 +14560,28 @@
     "parentCode": "3146"
   },
   {
+    "code": "314690",
+    "name": "Otras inversiones de administración de liquidez a valor de mercado con cambios en el patrimonio",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "3146"
+  },
+  {
+    "code": "3147",
+    "name": "GANANCIAS O PÉRDIDAS POR COBERTURAS DE FLUJOS DE EFECTIVO",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "31"
+  },
+  {
     "code": "314701",
-    "name": "Ganancias o pérdidas por cobertura de flujos de efectivo GANANCIAS O PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO",
+    "name": "Ganancias o pérdidas por cobertura de flujos de efectivo",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -13521,7 +14591,7 @@
   },
   {
     "code": "3148",
-    "name": "DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN CONTROLADAS",
+    "name": "GANANCIAS O PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN CONTROLADAS",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -13551,7 +14621,7 @@
   },
   {
     "code": "314804",
-    "name": "Inversiones en empresas privadas GANANCIAS O PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO",
+    "name": "Inversiones en empresas privadas",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -13561,7 +14631,7 @@
   },
   {
     "code": "3149",
-    "name": "DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN ASOCIADAS",
+    "name": "GANANCIAS O PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN ASOCIADAS",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -13591,7 +14661,7 @@
   },
   {
     "code": "314904",
-    "name": "Inversiones en empresas privadas GANANCIAS O PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO",
+    "name": "Inversiones en empresas privadas",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -13601,7 +14671,7 @@
   },
   {
     "code": "3150",
-    "name": "DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN NEGOCIOS CONJUNTOS",
+    "name": "GANANCIAS O PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN NEGOCIOS CONJUNTOS",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -13641,7 +14711,37 @@
   },
   {
     "code": "3151",
-    "name": "GANANCIAS O PÉRDIDAS POR BENEFICIOS POSEMPLEO Ganancias o pérdidas actuariales por planes de beneficios posempleo Ganancias o pérdidas del plan de activos para beneficios posempleo GANANCIAS O PÉRDIDAS EN INVERSIONES DE ADMINISTRACIÓN DE LIQUIDEZ A VALOR DE MERCADO CON CAMBIOS EN EL PATRIMONIO RECLASIFICADAS A LA CATEGORÍA DEL COSTO",
+    "name": "GANANCIAS O PÉRDIDAS POR BENEFICIOS POSEMPLEO",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "31"
+  },
+  {
+    "code": "315101",
+    "name": "Ganancias o pérdidas actuariales por planes de beneficios posempleo",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "3151"
+  },
+  {
+    "code": "315102",
+    "name": "Ganancias o pérdidas del plan de activos para beneficios posempleo",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "3151"
+  },
+  {
+    "code": "3152",
+    "name": "GANANCIAS O PÉRDIDAS EN INVERSIONES DE ADMINISTRACIÓN DE LIQUIDEZ A VALOR DE MERCADO CON CAMBIOS EN EL PATRIMONIO RECLASIFICADAS A LA CATEGORÍA DEL COSTO",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -13681,13 +14781,33 @@
   },
   {
     "code": "315206",
-    "name": "Instrumentos de patrimonio - Empresas públicas societarias Otras inversiones de administración de liquidez a valor de mercado con cambios en el patrimonio reclasificadas a la categoría del costo GANANCIAS O PÉRDIDAS EN INVERSIONES EN ENTIDADES EN LIQUIDACIÓN",
+    "name": "Instrumentos de patrimonio - Empresas públicas societarias",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "3152"
+  },
+  {
+    "code": "315290",
+    "name": "Otras inversiones de administración de liquidez a valor de mercado con cambios en el patrimonio reclasificadas a la categoría del costo",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "3152"
+  },
+  {
+    "code": "3153",
+    "name": "GANANCIAS O PÉRDIDAS EN INVERSIONES EN ENTIDADES EN LIQUIDACIÓN",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "31"
   },
   {
     "code": "315301",
@@ -13761,13 +14881,23 @@
   },
   {
     "code": "320403",
-    "name": "Capital suscrito por cobrar (Db) PRIMA EN COLOCACIÓN DE ACCIONES, CUOTAS O PARTES DE INTERÉS SOCIAL",
+    "name": "Capital suscrito por cobrar (Db)",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "3204"
+  },
+  {
+    "code": "3210",
+    "name": "PRIMA EN COLOCACIÓN DE ACCIONES, CUOTAS O PARTES DE INTERÉS SOCIAL",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "32"
   },
   {
     "code": "321001",
@@ -13791,7 +14921,17 @@
   },
   {
     "code": "321003",
-    "name": "Prima en colocación de cuotas o partes de interés social Prima en colocación de cuotas o partes de interés social por cobrar (Db)",
+    "name": "Prima en colocación de cuotas o partes de interés social",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "3210"
+  },
+  {
+    "code": "321004",
+    "name": "Prima en colocación de cuotas o partes de interés social por cobrar (Db)",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -14001,7 +15141,7 @@
   },
   {
     "code": "323002",
-    "name": "Pérdida o déficit del ejercicio GANANCIAS O PÉRDIDAS EN INVERSIONES DE",
+    "name": "Pérdida o déficit del ejercicio",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -14011,7 +15151,7 @@
   },
   {
     "code": "3271",
-    "name": "ADMINISTRACIÓN DE LIQUIDEZ A VALOR RAZONABLE CON CAMBIOS EN EL OTRO RESULTADO INTEGRAL",
+    "name": "GANANCIAS O PÉRDIDAS EN INVERSIONES DE ADMINISTRACIÓN DE LIQUIDEZ A VALOR RAZONABLE CON CAMBIOS EN EL OTRO RESULTADO INTEGRAL",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -14171,7 +15311,7 @@
   },
   {
     "code": "327118",
-    "name": "Fondos de inversión colectiva Otras inversiones de administración de liquidez a valor razonable con cambios en el otro resultado integral GANANCIAS O PÉRDIDAS POR COBERTURAS DE FLUJOS DE EFECTIVO",
+    "name": "Fondos de inversión colectiva",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -14180,8 +15320,28 @@
     "parentCode": "3271"
   },
   {
+    "code": "327190",
+    "name": "Otras inversiones de administración de liquidez a valor razonable con cambios en el otro resultado integral",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "3271"
+  },
+  {
+    "code": "3272",
+    "name": "GANANCIAS O PÉRDIDAS POR COBERTURAS DE FLUJOS DE EFECTIVO",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "32"
+  },
+  {
     "code": "327201",
-    "name": "Ganancias o pérdidas por cobertura de flujos de efectivo GANANCIAS O PÉRDIDAS POR COBERTURA DE UNA INVERSIÓN NETA EN UN NEGOCIO EN EL EXTRANJERO Ganancias o pérdidas por cobertura de una inversión neta en un negocio en el extranjero GANANCIAS O PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO",
+    "name": "Ganancias o pérdidas por cobertura de flujos de efectivo",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -14190,8 +15350,28 @@
     "parentCode": "3272"
   },
   {
+    "code": "3273",
+    "name": "GANANCIAS O PÉRDIDAS POR COBERTURA DE UNA INVERSIÓN NETA EN UN NEGOCIO EN EL EXTRANJERO",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "32"
+  },
+  {
+    "code": "327301",
+    "name": "Ganancias o pérdidas por cobertura de una inversión neta en un negocio en el extranjero",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "3273"
+  },
+  {
     "code": "3274",
-    "name": "DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN CONTROLADAS",
+    "name": "GANANCIAS O PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN CONTROLADAS",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -14231,7 +15411,7 @@
   },
   {
     "code": "327405",
-    "name": "Inversiones en empresas del exterior GANANCIAS O PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO",
+    "name": "Inversiones en empresas del exterior",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -14241,7 +15421,7 @@
   },
   {
     "code": "3275",
-    "name": "DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN ASOCIADAS",
+    "name": "GANANCIAS O PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN ASOCIADAS",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -14281,7 +15461,7 @@
   },
   {
     "code": "327505",
-    "name": "Inversiones en empresas del exterior GANANCIAS O PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO",
+    "name": "Inversiones en empresas del exterior",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -14291,7 +15471,7 @@
   },
   {
     "code": "3276",
-    "name": "DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN NEGOCIOS CONJUNTOS",
+    "name": "GANANCIAS O PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN NEGOCIOS CONJUNTOS",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -14331,13 +15511,23 @@
   },
   {
     "code": "327605",
-    "name": "Inversiones en empresas del exterior GANANCIAS O PÉRDIDAS POR REVALUACIÓN DE PROPIEDADES, PLANTA Y EQUIPO",
+    "name": "Inversiones en empresas del exterior",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "3276"
+  },
+  {
+    "code": "3277",
+    "name": "GANANCIAS O PÉRDIDAS POR REVALUACIÓN DE PROPIEDADES, PLANTA Y EQUIPO",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "32"
   },
   {
     "code": "327701",
@@ -14531,13 +15721,23 @@
   },
   {
     "code": "327720",
-    "name": "Propiedades, planta y equipo no explotados GANANCIAS O PÉRDIDAS POR REVALUACIÓN DE ACTIVOS INTANGIBLES",
+    "name": "Propiedades, planta y equipo no explotados",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "3277"
+  },
+  {
+    "code": "3278",
+    "name": "GANANCIAS O PÉRDIDAS POR REVALUACIÓN DE ACTIVOS INTANGIBLES",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "32"
   },
   {
     "code": "327801",
@@ -14621,7 +15821,7 @@
   },
   {
     "code": "327890",
-    "name": "Otros activos intangibles GANANCIAS O PÉRDIDAS POR CAMBIOS EN EL VALOR",
+    "name": "Otros activos intangibles",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -14631,7 +15831,7 @@
   },
   {
     "code": "3279",
-    "name": "RAZONABLE DE PASIVOS FINANCIEROS POR RIESGO DE CRÉDITO Ganancias o pérdidas por cambio en el valor razonable de pasivos financieros generados por riesgo de crédito",
+    "name": "GANANCIAS O PÉRDIDAS POR CAMBIOS EN EL VALOR RAZONABLE DE PASIVOS FINANCIEROS POR RIESGO DE CRÉDITO",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -14640,8 +15840,48 @@
     "parentCode": "32"
   },
   {
+    "code": "327901",
+    "name": "Ganancias o pérdidas por cambio en el valor razonable de pasivos financieros generados por riesgo de crédito",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "3279"
+  },
+  {
     "code": "3280",
-    "name": "GANANCIAS O PÉRDIDAS POR BENEFICIOS POSEMPLEO Ganancias o pérdidas actuariales por planes de beneficios posempleo Ganancias o pérdidas del plan de activos para beneficios posempleo GANANCIAS O PÉRDIDAS EN INVERSIONES EN ENTIDADES EN LIQUIDACIÓN",
+    "name": "GANANCIAS O PÉRDIDAS POR BENEFICIOS POSEMPLEO",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "32"
+  },
+  {
+    "code": "328001",
+    "name": "Ganancias o pérdidas actuariales por planes de beneficios posempleo",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "3280"
+  },
+  {
+    "code": "328003",
+    "name": "Ganancias o pérdidas del plan de activos para beneficios posempleo",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "3280"
+  },
+  {
+    "code": "3284",
+    "name": "GANANCIAS O PÉRDIDAS EN INVERSIONES EN ENTIDADES EN LIQUIDACIÓN",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -14664,9 +15904,9 @@
     "name": "INGRESOS",
     "level": "CLASE",
     "nature": "CREDITO",
-    "description": "Agrupa las cuentas que representan los incrementos en los beneficios económicos producidos a lo largo del periodo contable.",
-    "debitDynamic": "Por la cancelación de saldos al cierre del periodo contable.",
-    "creditDynamic": "Por los ingresos devengados en prestación de servicios, ventas, transferencias o subsidios.",
+    "description": "Incrementos en los beneficios económicos producidos.",
+    "debitDynamic": "Cancelación de saldos al cierre del periodo.",
+    "creditDynamic": "Ingresos por ventas, transferencias o subsidios.",
     "parentCode": null
   },
   {
@@ -15131,13 +16371,23 @@
   },
   {
     "code": "421090",
-    "name": "Otros bienes comercializados DEVOLUCIONES, REBAJAS Y DESCUENTOS EN VENTA DE BIENES (DB)",
+    "name": "Otros bienes comercializados",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "4210"
+  },
+  {
+    "code": "4295",
+    "name": "DEVOLUCIONES, REBAJAS Y DESCUENTOS EN VENTA DE BIENES (DB)",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "42"
   },
   {
     "code": "429502",
@@ -15231,13 +16481,53 @@
   },
   {
     "code": "430512",
-    "name": "Educación formal - Superior formación técnica profesional Educación formal - Superior formación técnica profesional - Inscripción Educación formal - Superior formación técnica profesional - Matrícula Educación formal - Superior formación técnica profesional - Extemporaneidad Educación formal - Superior formación técnica profesional - otros Derechos académicos",
+    "name": "Educación formal - Superior formación técnica profesional",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "4305"
+  },
+  {
+    "code": "43051201",
+    "name": "Educación formal - Superior formación técnica profesional - Inscripción",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "430512"
+  },
+  {
+    "code": "43051202",
+    "name": "Educación formal - Superior formación técnica profesional - Matrícula",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "430512"
+  },
+  {
+    "code": "43051203",
+    "name": "Educación formal - Superior formación técnica profesional - Extemporaneidad",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "430512"
+  },
+  {
+    "code": "43051204",
+    "name": "Educación formal - Superior formación técnica profesional - otros Derechos académicos",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "430512"
   },
   {
     "code": "430513",
@@ -15261,7 +16551,27 @@
   },
   {
     "code": "43051302",
-    "name": "Educación formal - Superior formación tecnológica - Matrícula Educación formal - Superior formación tecnológica - Extemporaneidad Educación formal - Superior formación tecnológica - Derechos académicos",
+    "name": "Educación formal - Superior formación tecnológica - Matrícula",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "430513"
+  },
+  {
+    "code": "43051303",
+    "name": "Educación formal - Superior formación tecnológica - Extemporaneidad",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "430513"
+  },
+  {
+    "code": "43051304",
+    "name": "Educación formal - Superior formación tecnológica - Derechos académicos",
     "level": "AUXILIAR",
     "nature": "CREDITO",
     "description": null,
@@ -15291,7 +16601,27 @@
   },
   {
     "code": "43051402",
-    "name": "Educación formal - Superior formación profesional - Matrícula Educación formal - Superior formación profesional - Extemporaneidad Educación formal - Superior formación profesional - Derechos académicos",
+    "name": "Educación formal - Superior formación profesional - Matrícula",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "430514"
+  },
+  {
+    "code": "43051403",
+    "name": "Educación formal - Superior formación profesional - Extemporaneidad",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "430514"
+  },
+  {
+    "code": "43051404",
+    "name": "Educación formal - Superior formación profesional - Derechos académicos",
     "level": "AUXILIAR",
     "nature": "CREDITO",
     "description": null,
@@ -15351,7 +16681,7 @@
   },
   {
     "code": "430516",
-    "name": "Educación formal - Investigación Educación para el trabajo y el desarrollo humano - Formación en artes y oficios Educación para el trabajo y el desarrollo humano - Validación de niveles y grados Educación para el trabajo y el desarrollo humano - Formación extensiva Educación para el trabajo y el desarrollo humano - Formación extensiva - Congresos",
+    "name": "Educación formal - Investigación",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -15360,8 +16690,58 @@
     "parentCode": "4305"
   },
   {
+    "code": "430525",
+    "name": "Educación para el trabajo y el desarrollo humano - Formación en artes y oficios",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4305"
+  },
+  {
+    "code": "430526",
+    "name": "Educación para el trabajo y el desarrollo humano - Validación de niveles y grados",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4305"
+  },
+  {
+    "code": "430527",
+    "name": "Educación para el trabajo y el desarrollo humano - Formación extensiva",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4305"
+  },
+  {
+    "code": "43052701",
+    "name": "Educación para el trabajo y el desarrollo humano - Formación extensiva - Congresos",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "430527"
+  },
+  {
     "code": "43052702",
-    "name": "Educación para el trabajo y el desarrollo humano - Diplomados Educación para el trabajo y el desarrollo humano - Formación extensiva - Seminarios",
+    "name": "Educación para el trabajo y el desarrollo humano - Diplomados",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "430527"
+  },
+  {
+    "code": "43052703",
+    "name": "Educación para el trabajo y el desarrollo humano - Formación extensiva - Seminarios",
     "level": "AUXILIAR",
     "nature": "CREDITO",
     "description": null,
@@ -15491,7 +16871,17 @@
   },
   {
     "code": "431114",
-    "name": "Cuotas de inscripción y afiliación a planes complementarios Aportes del empleado y del empleador a los regímenes exceptuados en salud",
+    "name": "Cuotas de inscripción y afiliación a planes complementarios",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4311"
+  },
+  {
+    "code": "431124",
+    "name": "Aportes del empleado y del empleador a los regímenes exceptuados en salud",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -15871,7 +17261,27 @@
   },
   {
     "code": "431295",
-    "name": "Servicios conexos a la salud - Otros servicios Servicios de salud prestados con el mecanismo de pago por capitación Servicios de salud prestados con el mecanismo de pago global prospectivo",
+    "name": "Servicios conexos a la salud - Otros servicios",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4312"
+  },
+  {
+    "code": "431296",
+    "name": "Servicios de salud prestados con el mecanismo de pago por capitación",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4312"
+  },
+  {
+    "code": "431297",
+    "name": "Servicios de salud prestados con el mecanismo de pago global prospectivo",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16081,13 +17491,23 @@
   },
   {
     "code": "439090",
-    "name": "Otros servicios DEVOLUCIONES, REBAJAS Y DESCUENTOS EN VENTA DE SERVICIOS (DB)",
+    "name": "Otros servicios",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "4390"
+  },
+  {
+    "code": "4395",
+    "name": "DEVOLUCIONES, REBAJAS Y DESCUENTOS EN VENTA DE SERVICIOS (DB)",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "43"
   },
   {
     "code": "439501",
@@ -16141,7 +17561,37 @@
   },
   {
     "code": "43950116",
-    "name": "Educación formal - Investigación Educación para el trabajo y el desarrollo humano - Formación en artes y oficios Educación para el trabajo y el desarrollo humano - Validación de niveles y grados Educación para el trabajo y el desarrollo humano - Formación extensiva",
+    "name": "Educación formal - Investigación",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "439501"
+  },
+  {
+    "code": "43950125",
+    "name": "Educación para el trabajo y el desarrollo humano - Formación en artes y oficios",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "439501"
+  },
+  {
+    "code": "43950126",
+    "name": "Educación para el trabajo y el desarrollo humano - Validación de niveles y grados",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "439501"
+  },
+  {
+    "code": "43950127",
+    "name": "Educación para el trabajo y el desarrollo humano - Formación extensiva",
     "level": "AUXILIAR",
     "nature": "CREDITO",
     "description": null,
@@ -16451,7 +17901,17 @@
   },
   {
     "code": "442806",
-    "name": "Transferencias por condonación de deudas Otros bienes, derechos y recursos en efectivo procedentes de entidades de gobierno",
+    "name": "Transferencias por condonación de deudas",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4428"
+  },
+  {
+    "code": "442807",
+    "name": "Otros bienes, derechos y recursos en efectivo procedentes de entidades de gobierno",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16461,7 +17921,47 @@
   },
   {
     "code": "442821",
-    "name": "Transferencias por asunción de deudas Bienes y recursos en efectivo procedentes de gobiernos extranjeros Bienes y recursos en efectivo procedentes de organismos internacionales Bienes, derechos y recursos en efectivo procedentes de empresas públicas Bienes, derechos y recursos en efectivo procedentes del sector privado",
+    "name": "Transferencias por asunción de deudas",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4428"
+  },
+  {
+    "code": "442827",
+    "name": "Bienes y recursos en efectivo procedentes de gobiernos extranjeros",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4428"
+  },
+  {
+    "code": "442828",
+    "name": "Bienes y recursos en efectivo procedentes de organismos internacionales",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4428"
+  },
+  {
+    "code": "442829",
+    "name": "Bienes, derechos y recursos en efectivo procedentes de empresas públicas",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4428"
+  },
+  {
+    "code": "442830",
+    "name": "Bienes, derechos y recursos en efectivo procedentes del sector privado",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16491,7 +17991,17 @@
   },
   {
     "code": "443001",
-    "name": "Subvención por préstamos con tasa de interés cero Subvención por préstamos con tasas de interés inferiores a las del mercado",
+    "name": "Subvención por préstamos con tasa de interés cero",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4430"
+  },
+  {
+    "code": "443002",
+    "name": "Subvención por préstamos con tasas de interés inferiores a las del mercado",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16501,7 +18011,17 @@
   },
   {
     "code": "443003",
-    "name": "Subvención por préstamos condonables Bienes, derechos y recursos en efectivo procedentes de entidades de gobierno",
+    "name": "Subvención por préstamos condonables",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4430"
+  },
+  {
+    "code": "443005",
+    "name": "Bienes, derechos y recursos en efectivo procedentes de entidades de gobierno",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16511,7 +18031,47 @@
   },
   {
     "code": "443007",
-    "name": "Subvención por asunción de deudas Bienes y recursos en efectivo procedentes de gobiernos extranjeros Bienes y recursos en efectivo procedentes de organismos internacionales Bienes, derechos y recursos en efectivo procedentes de empresas públicas Bienes, derechos y recursos en efectivo procedentes del sector privado",
+    "name": "Subvención por asunción de deudas",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4430"
+  },
+  {
+    "code": "443008",
+    "name": "Bienes y recursos en efectivo procedentes de gobiernos extranjeros",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4430"
+  },
+  {
+    "code": "443009",
+    "name": "Bienes y recursos en efectivo procedentes de organismos internacionales",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4430"
+  },
+  {
+    "code": "443010",
+    "name": "Bienes, derechos y recursos en efectivo procedentes de empresas públicas",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4430"
+  },
+  {
+    "code": "443011",
+    "name": "Bienes, derechos y recursos en efectivo procedentes del sector privado",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16681,7 +18241,7 @@
   },
   {
     "code": "480204",
-    "name": "Intereses de fondos de uso restringido Ganancia por medición inicial de inversiones de administración de",
+    "name": "Intereses de fondos de uso restringido",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16691,7 +18251,7 @@
   },
   {
     "code": "480205",
-    "name": "liquidez a valor de mercado (valor razonable) con cambios en el resultado Ganancia por valoración de inversiones de administración de",
+    "name": "Ganancia por medición inicial de inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el resultado",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16701,7 +18261,7 @@
   },
   {
     "code": "480206",
-    "name": "liquidez a valor de mercado (valor razonable) con cambios en el resultado Ganancia por baja en cuentas de inversiones de administración de",
+    "name": "Ganancia por valoración de inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el resultado",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16711,7 +18271,7 @@
   },
   {
     "code": "480207",
-    "name": "liquidez a valor de mercado (valor razonable) con cambios en el resultado Ganancia por medición inicial de inversiones de administración de",
+    "name": "Ganancia por baja en cuentas de inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el resultado",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16721,7 +18281,7 @@
   },
   {
     "code": "480208",
-    "name": "liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral) Ganancia por baja en cuentas de inversiones de administración de",
+    "name": "Ganancia por medición inicial de inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral)",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16731,7 +18291,97 @@
   },
   {
     "code": "480209",
-    "name": "liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral) Ganancia por medición inicial de inversiones de administración de liquidez a costo amortizado Rendimiento efectivo de inversiones de administración de liquidez a costo amortizado Ganancia por baja en cuentas de inversiones de administración de liquidez a costo amortizado Intereses, dividendos y participaciones de inversiones de administración de liquidez al costo Ganancia por baja en cuentas de inversiones de administración de liquidez al costo Ganancia por valoración de instrumentos derivados con fines de especulación Ganancia por valoración de instrumentos derivados con fines de cobertura de valor de mercado (valor razonable) Ganancia por valoración de instrumentos derivados con fines de cobertura de flujos de efectivo Ganancia por valoración de instrumentos derivados con fines de cobertura de una inversión neta en un negocio en el extranjero",
+    "name": "Ganancia por baja en cuentas de inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral)",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4802"
+  },
+  {
+    "code": "480210",
+    "name": "Ganancia por medición inicial de inversiones de administración de liquidez a costo amortizado",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4802"
+  },
+  {
+    "code": "480211",
+    "name": "Rendimiento efectivo de inversiones de administración de liquidez a costo amortizado",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4802"
+  },
+  {
+    "code": "480212",
+    "name": "Ganancia por baja en cuentas de inversiones de administración de liquidez a costo amortizado",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4802"
+  },
+  {
+    "code": "480213",
+    "name": "Intereses, dividendos y participaciones de inversiones de administración de liquidez al costo",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4802"
+  },
+  {
+    "code": "480214",
+    "name": "Ganancia por baja en cuentas de inversiones de administración de liquidez al costo",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4802"
+  },
+  {
+    "code": "480215",
+    "name": "Ganancia por valoración de instrumentos derivados con fines de especulación",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4802"
+  },
+  {
+    "code": "480216",
+    "name": "Ganancia por valoración de instrumentos derivados con fines de cobertura de valor de mercado (valor razonable)",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4802"
+  },
+  {
+    "code": "480217",
+    "name": "Ganancia por valoración de instrumentos derivados con fines de cobertura de flujos de efectivo",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4802"
+  },
+  {
+    "code": "480218",
+    "name": "Ganancia por valoración de instrumentos derivados con fines de cobertura de una inversión neta en un negocio en el extranjero",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16781,7 +18431,17 @@
   },
   {
     "code": "480223",
-    "name": "Comisiones Ganancia por medición inicial de cuentas por pagar a costo amortizado",
+    "name": "Comisiones",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4802"
+  },
+  {
+    "code": "480230",
+    "name": "Ganancia por medición inicial de cuentas por pagar a costo amortizado",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16811,7 +18471,7 @@
   },
   {
     "code": "480233",
-    "name": "Otros intereses de mora Rendimiento efectivo, dividendos y participaciones de inversiones",
+    "name": "Otros intereses de mora",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16821,7 +18481,17 @@
   },
   {
     "code": "480236",
-    "name": "de administración de liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral) Ajuste de partida cubierta que hace parte de una relación de cobertura de valor de mercado (valor razonable)",
+    "name": "Rendimiento efectivo, dividendos y participaciones de inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral)",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4802"
+  },
+  {
+    "code": "480238",
+    "name": "Ajuste de partida cubierta que hace parte de una relación de cobertura de valor de mercado (valor razonable)",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16851,7 +18521,17 @@
   },
   {
     "code": "480243",
-    "name": "Interés del plan de activos para beneficios a los empleados Actualización financiera de derechos de reembolso relacionados con provisiones",
+    "name": "Interés del plan de activos para beneficios a los empleados",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4802"
+  },
+  {
+    "code": "480248",
+    "name": "Actualización financiera de derechos de reembolso relacionados con provisiones",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16861,7 +18541,27 @@
   },
   {
     "code": "480250",
-    "name": "Intereses de sentencias a favor de la entidad Intereses de laudos arbitrales y conciliaciones extrajudiciales a favor de la entidad Recuperación de cuentas por cobrar, préstamos por cobrar e inversiones dados de baja en periodos anteriores",
+    "name": "Intereses de sentencias a favor de la entidad",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4802"
+  },
+  {
+    "code": "480251",
+    "name": "Intereses de laudos arbitrales y conciliaciones extrajudiciales a favor de la entidad",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4802"
+  },
+  {
+    "code": "480253",
+    "name": "Recuperación de cuentas por cobrar, préstamos por cobrar e inversiones dados de baja en periodos anteriores",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -16931,7 +18631,47 @@
   },
   {
     "code": "480636",
-    "name": "Inversiones Financiamiento interno de corto plazo en emisión y colocación de títulos de deuda Financiamiento interno de largo plazo en emisión y colocación de títulos de deuda Financiamiento externo de corto plazo en emisión y colocación de títulos de deuda Financiamiento externo de largo plazo en emisión y colocación de títulos de deuda",
+    "name": "Inversiones",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4806"
+  },
+  {
+    "code": "480637",
+    "name": "Financiamiento interno de corto plazo en emisión y colocación de títulos de deuda",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4806"
+  },
+  {
+    "code": "480638",
+    "name": "Financiamiento interno de largo plazo en emisión y colocación de títulos de deuda",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4806"
+  },
+  {
+    "code": "480639",
+    "name": "Financiamiento externo de corto plazo en emisión y colocación de títulos de deuda",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4806"
+  },
+  {
+    "code": "480640",
+    "name": "Financiamiento externo de largo plazo en emisión y colocación de títulos de deuda",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -17151,7 +18891,27 @@
   },
   {
     "code": "480829",
-    "name": "Responsabilidades fiscales Ganancia por negociación y venta de activos no corrientes mantenidos para la venta Ganancia por baja en cuentas de inversiones en controladas, asociadas o negocios conjuntos",
+    "name": "Responsabilidades fiscales",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4808"
+  },
+  {
+    "code": "480830",
+    "name": "Ganancia por negociación y venta de activos no corrientes mantenidos para la venta",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4808"
+  },
+  {
+    "code": "480832",
+    "name": "Ganancia por baja en cuentas de inversiones en controladas, asociadas o negocios conjuntos",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -17181,7 +18941,27 @@
   },
   {
     "code": "480836",
-    "name": "Variaciones de pensiones por el costo del servicio pasado Variaciones de beneficios a los empleados a largo plazo y de beneficios por terminación del vínculo laboral o contractual Compensación o indemnización procedente de terceros por elementos deteriorados Ganancias del plan de activos para beneficios a los empleados a",
+    "name": "Variaciones de pensiones por el costo del servicio pasado",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4808"
+  },
+  {
+    "code": "480837",
+    "name": "Variaciones de beneficios a los empleados a largo plazo y de beneficios por terminación del vínculo laboral o contractual",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4808"
+  },
+  {
+    "code": "480839",
+    "name": "Compensación o indemnización procedente de terceros por elementos deteriorados",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -17191,7 +18971,7 @@
   },
   {
     "code": "480849",
-    "name": "largo plazo y para beneficios por terminación del vínculo laboral o contractual",
+    "name": "Ganancias del plan de activos para beneficios a los empleados a largo plazo y para beneficios por terminación del vínculo laboral o contractual",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -17231,7 +19011,37 @@
   },
   {
     "code": "480856",
-    "name": "Ganancia por la liquidación final de beneficios a los empleados Variaciones de otros beneficios posempleo por el costo del servicio pasado Aportes del empleador para cubrir los accidentes de trabajo y las enfermedades profesionales de los regímenes de excepción Ganancia por medición inicial de inventarios y propiedades, planta y equipo provenientes de semovientes y plantas",
+    "name": "Ganancia por la liquidación final de beneficios a los empleados",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4808"
+  },
+  {
+    "code": "480857",
+    "name": "Variaciones de otros beneficios posempleo por el costo del servicio pasado",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4808"
+  },
+  {
+    "code": "480858",
+    "name": "Aportes del empleador para cubrir los accidentes de trabajo y las enfermedades profesionales de los regímenes de excepción",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4808"
+  },
+  {
+    "code": "480859",
+    "name": "Ganancia por medición inicial de inventarios y propiedades, planta y equipo provenientes de semovientes y plantas",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -17241,7 +19051,17 @@
   },
   {
     "code": "480860",
-    "name": "Sentencias a favor de la entidad Laudos arbitrales y conciliaciones extrajudiciales a favor de la entidad",
+    "name": "Sentencias a favor de la entidad",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4808"
+  },
+  {
+    "code": "480861",
+    "name": "Laudos arbitrales y conciliaciones extrajudiciales a favor de la entidad",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -17261,7 +19081,17 @@
   },
   {
     "code": "480863",
-    "name": "Reintegros Recuperación de activos no financieros dados de baja en periodos anteriores",
+    "name": "Reintegros",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "4808"
+  },
+  {
+    "code": "480866",
+    "name": "Recuperación de activos no financieros dados de baja en periodos anteriores",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -17271,13 +19101,23 @@
   },
   {
     "code": "480890",
-    "name": "Otros ingresos diversos Otros ingresos diversos - certificaciones exempleados y contratistas",
+    "name": "Otros ingresos diversos",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "4808"
+  },
+  {
+    "code": "48089001",
+    "name": "Otros ingresos diversos - certificaciones exempleados y contratistas",
+    "level": "AUXILIAR",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "480890"
   },
   {
     "code": "48089002",
@@ -17291,7 +19131,7 @@
   },
   {
     "code": "48089003",
-    "name": "Otros GANANCIAS POR LA APLICACIÓN DEL MÉTODO DE",
+    "name": "Otros",
     "level": "AUXILIAR",
     "nature": "CREDITO",
     "description": null,
@@ -17301,7 +19141,7 @@
   },
   {
     "code": "4811",
-    "name": "PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN CONTROLADAS",
+    "name": "GANANCIAS POR LA APLICACIÓN DEL MÉTODO DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN CONTROLADAS",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -17341,7 +19181,7 @@
   },
   {
     "code": "481105",
-    "name": "Empresas públicas societarias GANANCIAS POR LA APLICACIÓN DEL MÉTODO DE",
+    "name": "Empresas públicas societarias",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -17351,7 +19191,7 @@
   },
   {
     "code": "4812",
-    "name": "PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN ASOCIADAS",
+    "name": "GANANCIAS POR LA APLICACIÓN DEL MÉTODO DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN ASOCIADAS",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -17391,7 +19231,7 @@
   },
   {
     "code": "481205",
-    "name": "Empresas públicas societarias GANANCIAS POR LA APLICACIÓN DEL MÉTODO DE",
+    "name": "Empresas públicas societarias",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -17401,7 +19241,7 @@
   },
   {
     "code": "4813",
-    "name": "PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN NEGOCIOS CONJUNTOS",
+    "name": "GANANCIAS POR LA APLICACIÓN DEL MÉTODO DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN NEGOCIOS CONJUNTOS",
     "level": "CUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -17441,13 +19281,23 @@
   },
   {
     "code": "481305",
-    "name": "Empresas públicas societarias GANANCIAS POR ACTUALIZACIÓN DE PROPIEDADES, PLANTA Y EQUIPO - MODELO REVALUADO",
+    "name": "Empresas públicas societarias",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "4813"
+  },
+  {
+    "code": "4820",
+    "name": "GANANCIAS POR ACTUALIZACIÓN DE PROPIEDADES, PLANTA Y EQUIPO - MODELO REVALUADO",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "48"
   },
   {
     "code": "482001",
@@ -17651,13 +19501,23 @@
   },
   {
     "code": "482021",
-    "name": "Propiedades, planta y equipo no explotados GANANCIAS POR ACTUALIZACIÓN DE PROPIEDADES DE INVERSIÓN - MODELO VALOR RAZONABLE",
+    "name": "Propiedades, planta y equipo no explotados",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "4820"
+  },
+  {
+    "code": "4821",
+    "name": "GANANCIAS POR ACTUALIZACIÓN DE PROPIEDADES DE INVERSIÓN - MODELO VALOR RAZONABLE",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "48"
   },
   {
     "code": "482101",
@@ -17691,13 +19551,23 @@
   },
   {
     "code": "482104",
-    "name": "Edificaciones con uso indeterminado GANANCIAS POR ACTUALIZACIÓN DE ACTIVOS INTANGIBLES - MODELO REVALUADO",
+    "name": "Edificaciones con uso indeterminado",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "4821"
+  },
+  {
+    "code": "4822",
+    "name": "GANANCIAS POR ACTUALIZACIÓN DE ACTIVOS INTANGIBLES - MODELO REVALUADO",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "48"
   },
   {
     "code": "482202",
@@ -18174,9 +20044,9 @@
     "name": "GASTOS",
     "level": "CLASE",
     "nature": "DEBITO",
-    "description": "Agrupa los decrementos en los beneficios económicos generados para la administración y operación normal.",
-    "debitDynamic": "Por los gastos de personal, suministros, honorarios, servicios públicos y seguros.",
-    "creditDynamic": "Por la cancelación de saldos al cierre del ejercicio contable.",
+    "description": "Decrementos generados para administración y operación.",
+    "debitDynamic": "Gastos de personal, servicios, seguros.",
+    "creditDynamic": "Cancelación de saldos al cierre.",
     "parentCode": null
   },
   {
@@ -18461,7 +20331,27 @@
   },
   {
     "code": "510305",
-    "name": "Cotizaciones a riesgos laborales Cotizaciones a entidades administradoras del régimen de prima media Cotizaciones a entidades administradoras del régimen de ahorro individual",
+    "name": "Cotizaciones a riesgos laborales",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5103"
+  },
+  {
+    "code": "510306",
+    "name": "Cotizaciones a entidades administradoras del régimen de prima media",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5103"
+  },
+  {
+    "code": "510307",
+    "name": "Cotizaciones a entidades administradoras del régimen de ahorro individual",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -18721,7 +20611,37 @@
   },
   {
     "code": "510810",
-    "name": "Viáticos Variaciones de beneficios a los empleados a largo plazo y de beneficios por terminación del vínculo laboral o contractual Beneficios por préstamos a empleados a tasa de interés cero o inferior a la del mercado Variaciones de otros beneficios posempleo por el costo del servicio presente",
+    "name": "Viáticos",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5108"
+  },
+  {
+    "code": "510812",
+    "name": "Variaciones de beneficios a los empleados a largo plazo y de beneficios por terminación del vínculo laboral o contractual",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5108"
+  },
+  {
+    "code": "510813",
+    "name": "Beneficios por préstamos a empleados a tasa de interés cero o inferior a la del mercado",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5108"
+  },
+  {
+    "code": "510814",
+    "name": "Variaciones de otros beneficios posempleo por el costo del servicio presente",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -19201,7 +21121,17 @@
   },
   {
     "code": "511180",
-    "name": "Servicios Servicios de telecomunicaciones, transmisión y suministro de información",
+    "name": "Servicios",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5111"
+  },
+  {
+    "code": "511183",
+    "name": "Servicios de telecomunicaciones, transmisión y suministro de información",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -19381,7 +21311,17 @@
   },
   {
     "code": "512030",
-    "name": "Impuesto nacional al consumo Impuesto de normalización tributaria complementario al de renta y al de patrimonio",
+    "name": "Impuesto nacional al consumo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5120"
+  },
+  {
+    "code": "512033",
+    "name": "Impuesto de normalización tributaria complementario al de renta y al de patrimonio",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -19701,7 +21641,27 @@
   },
   {
     "code": "520405",
-    "name": "Cotizaciones a riesgos laborales Cotizaciones a entidades administradoras del régimen de prima media Cotizaciones a entidades administradoras del régimen de ahorro individual",
+    "name": "Cotizaciones a riesgos laborales",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5204"
+  },
+  {
+    "code": "520406",
+    "name": "Cotizaciones a entidades administradoras del régimen de prima media",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5204"
+  },
+  {
+    "code": "520407",
+    "name": "Cotizaciones a entidades administradoras del régimen de ahorro individual",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -20211,7 +22171,37 @@
   },
   {
     "code": "521210",
-    "name": "Viáticos Variaciones de beneficios a los empleados a largo plazo y de beneficios por terminación del vínculo laboral o contractual Beneficios por préstamos a empleados a tasa de interés cero o inferior a la del mercado Variaciones de otros beneficios posempleo por el costo del servicio presente",
+    "name": "Viáticos",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5212"
+  },
+  {
+    "code": "521212",
+    "name": "Variaciones de beneficios a los empleados a largo plazo y de beneficios por terminación del vínculo laboral o contractual",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5212"
+  },
+  {
+    "code": "521213",
+    "name": "Beneficios por préstamos a empleados a tasa de interés cero o inferior a la del mercado",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5212"
+  },
+  {
+    "code": "521214",
+    "name": "Variaciones de otros beneficios posempleo por el costo del servicio presente",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -20381,7 +22371,7 @@
   },
   {
     "code": "522090",
-    "name": "Otros impuestos, contribuciones y tasas DETERIORO, DEPRECIACIONES, AMORTIZACIONES Y PROVISIONES",
+    "name": "Otros impuestos, contribuciones y tasas",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -20390,14 +22380,34 @@
     "parentCode": "5220"
   },
   {
+    "code": "53",
+    "name": "DETERIORO, DEPRECIACIONES, AMORTIZACIONES Y PROVISIONES",
+    "level": "GRUPO",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5"
+  },
+  {
     "code": "5346",
-    "name": "DETERIORO DE INVERSIONES Inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral)",
+    "name": "DETERIORO DE INVERSIONES",
     "level": "CUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "53"
+  },
+  {
+    "code": "534601",
+    "name": "Inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral)",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5346"
   },
   {
     "code": "534602",
@@ -20421,7 +22431,17 @@
   },
   {
     "code": "534604",
-    "name": "En controladas al costo En controladas contabilizadas por el método de participación patrimonial",
+    "name": "En controladas al costo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5346"
+  },
+  {
+    "code": "534605",
+    "name": "En controladas contabilizadas por el método de participación patrimonial",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -20431,7 +22451,17 @@
   },
   {
     "code": "534606",
-    "name": "En asociadas al costo En asociadas contabilizadas por el método de participación patrimonial",
+    "name": "En asociadas al costo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5346"
+  },
+  {
+    "code": "534607",
+    "name": "En asociadas contabilizadas por el método de participación patrimonial",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -20441,7 +22471,17 @@
   },
   {
     "code": "534608",
-    "name": "En negocios conjuntos al costo En negocios conjuntos contabilizadas por el método de participación patrimonial",
+    "name": "En negocios conjuntos al costo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5346"
+  },
+  {
+    "code": "534609",
+    "name": "En negocios conjuntos contabilizadas por el método de participación patrimonial",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -20501,7 +22541,17 @@
   },
   {
     "code": "534715",
-    "name": "Aportes sobre la nómina Sentencias, laudos arbitrales y conciliaciones extrajudiciales a favor de la entidad",
+    "name": "Aportes sobre la nómina",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5347"
+  },
+  {
+    "code": "534719",
+    "name": "Sentencias, laudos arbitrales y conciliaciones extrajudiciales a favor de la entidad",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -20881,13 +22931,23 @@
   },
   {
     "code": "535121",
-    "name": "Propiedades, planta y equipo no explotados DETERIORO DE PROPIEDADES, PLANTA Y EQUIPO - MODELO REVALUADO",
+    "name": "Propiedades, planta y equipo no explotados",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "5351"
+  },
+  {
+    "code": "5352",
+    "name": "DETERIORO DE PROPIEDADES, PLANTA Y EQUIPO - MODELO REVALUADO",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "53"
   },
   {
     "code": "535201",
@@ -21091,13 +23151,23 @@
   },
   {
     "code": "535221",
-    "name": "Propiedades, planta y equipo no explotados DETERIORO ACTIVOS NO CORRIENTES MANTENIDOS PARA LA VENTA",
+    "name": "Propiedades, planta y equipo no explotados",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "5352"
+  },
+  {
+    "code": "5353",
+    "name": "DETERIORO ACTIVOS NO CORRIENTES MANTENIDOS PARA LA VENTA",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "53"
   },
   {
     "code": "535301",
@@ -21601,13 +23671,23 @@
   },
   {
     "code": "536017",
-    "name": "Terrenos con vida útil finita DEPRECIACIÓN DE PROPIEDADES, PLANTA Y EQUIPO - MODELO REVALUADO",
+    "name": "Terrenos con vida útil finita",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "5360"
+  },
+  {
+    "code": "5361",
+    "name": "DEPRECIACIÓN DE PROPIEDADES, PLANTA Y EQUIPO - MODELO REVALUADO",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "53"
   },
   {
     "code": "536101",
@@ -21901,13 +23981,23 @@
   },
   {
     "code": "536490",
-    "name": "Otros bienes de uso público en servicio DEPRECIACIÓN DE RESTAURACIONES DE BIENES HISTÓRICOS Y CULTURALES",
+    "name": "Otros bienes de uso público en servicio",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "5364"
+  },
+  {
+    "code": "5365",
+    "name": "DEPRECIACIÓN DE RESTAURACIONES DE BIENES HISTÓRICOS Y CULTURALES",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "53"
   },
   {
     "code": "536501",
@@ -22051,13 +24141,23 @@
   },
   {
     "code": "536690",
-    "name": "Otros activos intangibles AMORTIZACIÓN DE ACTIVOS INTANGIBLES - MODELO REVALUADO",
+    "name": "Otros activos intangibles",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "5366"
+  },
+  {
+    "code": "5367",
+    "name": "AMORTIZACIÓN DE ACTIVOS INTANGIBLES - MODELO REVALUADO",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "53"
   },
   {
     "code": "536701",
@@ -22221,13 +24321,23 @@
   },
   {
     "code": "5372",
-    "name": "SERVICIOS Y TECNOLOGÍAS EN SALUD Servicios y tecnologías en salud de los regímenes especiales o exceptuados en salud",
+    "name": "SERVICIOS Y TECNOLOGÍAS EN SALUD",
     "level": "CUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "53"
+  },
+  {
+    "code": "537212",
+    "name": "Servicios y tecnologías en salud de los regímenes especiales o exceptuados en salud",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5372"
   },
   {
     "code": "537290",
@@ -22291,7 +24401,27 @@
   },
   {
     "code": "537307",
-    "name": "Desmantelamientos Obligaciones originadas por inversiones en entidades en liquidación Obligaciones de reembolso relacionadas con demandas, arbitrajes y conciliaciones extrajudiciales",
+    "name": "Desmantelamientos",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5373"
+  },
+  {
+    "code": "537308",
+    "name": "Obligaciones originadas por inversiones en entidades en liquidación",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5373"
+  },
+  {
+    "code": "537316",
+    "name": "Obligaciones de reembolso relacionadas con demandas, arbitrajes y conciliaciones extrajudiciales",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -22431,7 +24561,27 @@
   },
   {
     "code": "542401",
-    "name": "Subvención por préstamos con tasa de interés cero Subvención por préstamos con tasas de interés inferiores a las del mercado Otras subvenciones por recursos transferidos a las empresas públicas",
+    "name": "Subvención por préstamos con tasa de interés cero",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5424"
+  },
+  {
+    "code": "542402",
+    "name": "Subvención por préstamos con tasas de interés inferiores a las del mercado",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5424"
+  },
+  {
+    "code": "542405",
+    "name": "Otras subvenciones por recursos transferidos a las empresas públicas",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -22441,7 +24591,17 @@
   },
   {
     "code": "542407",
-    "name": "Bienes entregados sin contraprestación Otras subvenciones por recursos transferidos a entidades de naturaleza privada",
+    "name": "Bienes entregados sin contraprestación",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5424"
+  },
+  {
+    "code": "542490",
+    "name": "Otras subvenciones por recursos transferidos a entidades de naturaleza privada",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -22741,7 +24901,47 @@
   },
   {
     "code": "580336",
-    "name": "Inversiones Financiamiento interno de corto plazo en emisión y colocación de títulos de deuda Financiamiento interno de largo plazo en emisión y colocación de títulos de deuda Financiamiento externo de corto plazo en emisión y colocación de títulos de deuda Financiamiento externo de largo plazo en emisión y colocación de títulos de deuda",
+    "name": "Inversiones",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5803"
+  },
+  {
+    "code": "580337",
+    "name": "Financiamiento interno de corto plazo en emisión y colocación de títulos de deuda",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5803"
+  },
+  {
+    "code": "580338",
+    "name": "Financiamiento interno de largo plazo en emisión y colocación de títulos de deuda",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5803"
+  },
+  {
+    "code": "580339",
+    "name": "Financiamiento externo de corto plazo en emisión y colocación de títulos de deuda",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5803"
+  },
+  {
+    "code": "580340",
+    "name": "Financiamiento externo de largo plazo en emisión y colocación de títulos de deuda",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -22891,7 +25091,7 @@
   },
   {
     "code": "580407",
-    "name": "Descuento en venta de cartera Pérdida por medición inicial de inversiones de administración de",
+    "name": "Descuento en venta de cartera",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -22901,7 +25101,7 @@
   },
   {
     "code": "580410",
-    "name": "liquidez a valor de mercado (valor razonable) con cambios en el resultado Pérdida por valoración de inversiones de administración de",
+    "name": "Pérdida por medición inicial de inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el resultado",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -22911,7 +25111,7 @@
   },
   {
     "code": "580411",
-    "name": "liquidez a valor de mercado (valor razonable) con cambios en el resultado Pérdida por baja en cuentas de inversiones de administración de",
+    "name": "Pérdida por valoración de inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el resultado",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -22921,7 +25121,7 @@
   },
   {
     "code": "580412",
-    "name": "liquidez a valor de mercado (valor razonable) con cambios en el resultado Pérdida por medición inicial de inversiones de administración de",
+    "name": "Pérdida por baja en cuentas de inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el resultado",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -22931,7 +25131,7 @@
   },
   {
     "code": "580413",
-    "name": "liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral) Pérdida por baja en cuentas de inversiones de administración de",
+    "name": "Pérdida por medición inicial de inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -22941,7 +25141,87 @@
   },
   {
     "code": "580414",
-    "name": "liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral) Pérdida por medición inicial de inversiones de administración de liquidez a costo amortizado Pérdida por baja en cuentas de inversiones de administración de liquidez a costo amortizado Pérdida por baja en cuentas de inversiones de administración de liquidez al costo Pérdida por valoración de instrumentos derivados con fines de especulación Pérdida por valoración de instrumentos derivados con fines de cobertura de valor de mercado (valor razonable) Pérdida por valoración de instrumentos derivados con fines de cobertura de flujos de efectivo Pérdida por valoración de instrumentos derivados con fines de cobertura de una inversión neta en un negocio el extranjero Pérdida por medición inicial de cuentas por cobrar a costo amortizado",
+    "name": "Pérdida por baja en cuentas de inversiones de administración de liquidez a valor de mercado (valor razonable) con cambios en el patrimonio (otro resultado integral)",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5804"
+  },
+  {
+    "code": "580415",
+    "name": "Pérdida por medición inicial de inversiones de administración de liquidez a costo amortizado",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5804"
+  },
+  {
+    "code": "580416",
+    "name": "Pérdida por baja en cuentas de inversiones de administración de liquidez a costo amortizado",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5804"
+  },
+  {
+    "code": "580417",
+    "name": "Pérdida por baja en cuentas de inversiones de administración de liquidez al costo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5804"
+  },
+  {
+    "code": "580418",
+    "name": "Pérdida por valoración de instrumentos derivados con fines de especulación",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5804"
+  },
+  {
+    "code": "580419",
+    "name": "Pérdida por valoración de instrumentos derivados con fines de cobertura de valor de mercado (valor razonable)",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5804"
+  },
+  {
+    "code": "580420",
+    "name": "Pérdida por valoración de instrumentos derivados con fines de cobertura de flujos de efectivo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5804"
+  },
+  {
+    "code": "580421",
+    "name": "Pérdida por valoración de instrumentos derivados con fines de cobertura de una inversión neta en un negocio el extranjero",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5804"
+  },
+  {
+    "code": "580422",
+    "name": "Pérdida por medición inicial de cuentas por cobrar a costo amortizado",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -22991,7 +25271,47 @@
   },
   {
     "code": "580433",
-    "name": "Costo efectivo de cuentas por pagar a costo amortizado Costo efectivo de préstamos por pagar - Financiamiento interno de corto plazo Costo efectivo de préstamos por pagar - Financiamiento interno de largo plazo Costo efectivo de préstamos por pagar - Financiamiento externo de corto plazo Costo efectivo de préstamos por pagar - Financiamiento externo de largo plazo",
+    "name": "Costo efectivo de cuentas por pagar a costo amortizado",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5804"
+  },
+  {
+    "code": "580434",
+    "name": "Costo efectivo de préstamos por pagar - Financiamiento interno de corto plazo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5804"
+  },
+  {
+    "code": "580435",
+    "name": "Costo efectivo de préstamos por pagar - Financiamiento interno de largo plazo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5804"
+  },
+  {
+    "code": "580436",
+    "name": "Costo efectivo de préstamos por pagar - Financiamiento externo de corto plazo",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5804"
+  },
+  {
+    "code": "580437",
+    "name": "Costo efectivo de préstamos por pagar - Financiamiento externo de largo plazo",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -23021,7 +25341,17 @@
   },
   {
     "code": "580442",
-    "name": "Intereses crédito de redescuento Ajuste de partida cubierta que hace parte de una relación de cobertura de valor de mercado (valor razonable)",
+    "name": "Intereses crédito de redescuento",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5804"
+  },
+  {
+    "code": "580444",
+    "name": "Ajuste de partida cubierta que hace parte de una relación de cobertura de valor de mercado (valor razonable)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -23071,7 +25401,7 @@
   },
   {
     "code": "580490",
-    "name": "Otros gastos financieros PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO DE",
+    "name": "Otros gastos financieros",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -23081,7 +25411,7 @@
   },
   {
     "code": "5811",
-    "name": "PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN CONTROLADAS",
+    "name": "PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN CONTROLADAS",
     "level": "CUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -23121,7 +25451,7 @@
   },
   {
     "code": "581105",
-    "name": "Empresas públicas societarias PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO DE",
+    "name": "Empresas públicas societarias",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -23131,7 +25461,7 @@
   },
   {
     "code": "5812",
-    "name": "PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN ASOCIADAS",
+    "name": "PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN ASOCIADAS",
     "level": "CUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -23171,7 +25501,7 @@
   },
   {
     "code": "581205",
-    "name": "Empresas públicas societarias PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO DE",
+    "name": "Empresas públicas societarias",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -23181,7 +25511,7 @@
   },
   {
     "code": "5813",
-    "name": "PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN NEGOCIOS CONJUNTOS",
+    "name": "PÉRDIDAS POR LA APLICACIÓN DEL MÉTODO DE PARTICIPACIÓN PATRIMONIAL DE INVERSIONES EN NEGOCIOS CONJUNTOS",
     "level": "CUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -23221,13 +25551,23 @@
   },
   {
     "code": "581305",
-    "name": "Empresas públicas societarias PÉRDIDAS POR ACTUALIZACIÓN DE PROPIEDADES, PLANTA Y EQUIPO - MODELO REVALUADO",
+    "name": "Empresas públicas societarias",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "5813"
+  },
+  {
+    "code": "5817",
+    "name": "PÉRDIDAS POR ACTUALIZACIÓN DE PROPIEDADES, PLANTA Y EQUIPO - MODELO REVALUADO",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "58"
   },
   {
     "code": "581701",
@@ -23431,13 +25771,23 @@
   },
   {
     "code": "581721",
-    "name": "Propiedades, planta y equipo no explotados PÉRDIDAS POR ACTUALIZACIÓN DE PROPIEDADES DE INVERSIÓN - MODELO VALOR RAZONABLE",
+    "name": "Propiedades, planta y equipo no explotados",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "5817"
+  },
+  {
+    "code": "5818",
+    "name": "PÉRDIDAS POR ACTUALIZACIÓN DE PROPIEDADES DE INVERSIÓN - MODELO VALOR RAZONABLE",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "58"
   },
   {
     "code": "581801",
@@ -23471,13 +25821,23 @@
   },
   {
     "code": "581804",
-    "name": "Edificaciones con uso indeterminado PÉRDIDAS POR ACTUALIZACIÓN DE ACTIVOS INTANGIBLES - MODELO REVALUADO",
+    "name": "Edificaciones con uso indeterminado",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "5818"
+  },
+  {
+    "code": "5819",
+    "name": "PÉRDIDAS POR ACTUALIZACIÓN DE ACTIVOS INTANGIBLES - MODELO REVALUADO",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "58"
   },
   {
     "code": "581902",
@@ -23801,13 +26161,23 @@
   },
   {
     "code": "5890",
-    "name": "GASTOS DIVERSOS Pérdida en negociación y venta de activos no corrientes mantenidos para la venta",
+    "name": "GASTOS DIVERSOS",
     "level": "CUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "58"
+  },
+  {
+    "code": "589001",
+    "name": "Pérdida en negociación y venta de activos no corrientes mantenidos para la venta",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5890"
   },
   {
     "code": "589003",
@@ -23861,7 +26231,17 @@
   },
   {
     "code": "589019",
-    "name": "Pérdida por baja en cuentas de activos no financieros Pérdida por baja en cuentas de inversiones en controladas, asociadas o negocios conjuntos",
+    "name": "Pérdida por baja en cuentas de activos no financieros",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5890"
+  },
+  {
+    "code": "589020",
+    "name": "Pérdida por baja en cuentas de inversiones en controladas, asociadas o negocios conjuntos",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -23871,7 +26251,17 @@
   },
   {
     "code": "589021",
-    "name": "Desembolso intangibles durante la fase de investigación Desembolsos del proceso de transformación de los activos biológicos",
+    "name": "Desembolso intangibles durante la fase de investigación",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5890"
+  },
+  {
+    "code": "589022",
+    "name": "Desembolsos del proceso de transformación de los activos biológicos",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -23911,7 +26301,7 @@
   },
   {
     "code": "589027",
-    "name": "Indemnizaciones Pérdidas del plan de activos para beneficios a los empleados a",
+    "name": "Indemnizaciones",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -23921,7 +26311,7 @@
   },
   {
     "code": "589034",
-    "name": "largo plazo y para beneficios por terminación del vínculo laboral o contractual",
+    "name": "Pérdidas del plan de activos para beneficios a los empleados a largo plazo y para beneficios por terminación del vínculo laboral o contractual",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -23961,7 +26351,37 @@
   },
   {
     "code": "589042",
-    "name": "Variaciones de pensiones por el costo del servicio pasado Variaciones de otros beneficios posempleo por el costo del servicio pasado Devolución de transferencias no condicionadas reconocidas en periodos anteriores Devolución de subvenciones no condicionadas reconocidas en periodos anteriores",
+    "name": "Variaciones de pensiones por el costo del servicio pasado",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5890"
+  },
+  {
+    "code": "589043",
+    "name": "Variaciones de otros beneficios posempleo por el costo del servicio pasado",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5890"
+  },
+  {
+    "code": "589044",
+    "name": "Devolución de transferencias no condicionadas reconocidas en periodos anteriores",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "5890"
+  },
+  {
+    "code": "589045",
+    "name": "Devolución de subvenciones no condicionadas reconocidas en periodos anteriores",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -23991,13 +26411,23 @@
   },
   {
     "code": "589361",
-    "name": "Estampillas DEVOLUCIONES, REBAJAS Y DESCUENTOS EN VENTA DE BIENES",
+    "name": "Estampillas",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "5893"
+  },
+  {
+    "code": "5894",
+    "name": "DEVOLUCIONES, REBAJAS Y DESCUENTOS EN VENTA DE BIENES",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "58"
   },
   {
     "code": "589401",
@@ -24011,13 +26441,23 @@
   },
   {
     "code": "589405",
-    "name": "Bienes producidos DEVOLUCIONES, REBAJAS Y DESCUENTOS EN VENTA DE SERVICIOS",
+    "name": "Bienes producidos",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "5894"
+  },
+  {
+    "code": "5895",
+    "name": "DEVOLUCIONES, REBAJAS Y DESCUENTOS EN VENTA DE SERVICIOS",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "58"
   },
   {
     "code": "589501",
@@ -24124,9 +26564,9 @@
     "name": "COSTOS DE VENTAS",
     "level": "CLASE",
     "nature": "DEBITO",
-    "description": "Agrupa las cuentas que representan los costos de ventas de bienes y prestación de servicios.",
-    "debitDynamic": "Por la asignación y acumulación de costos directos de la operación.",
-    "creditDynamic": "Por la cancelación o traslado al cierre contable.",
+    "description": "Costos de ventas de bienes y prestación de servicios.",
+    "debitDynamic": "Asignación y acumulación de costos.",
+    "creditDynamic": "Cancelación al cierre contable.",
     "parentCode": null
   },
   {
@@ -24451,7 +26891,37 @@
   },
   {
     "code": "630509",
-    "name": "Educación formal - Superior postgrado Educación para el trabajo y el desarrollo humano - Formación en artes y oficios Educación para el trabajo y el desarrollo humano - Validación de niveles y grados Educación para el trabajo y el desarrollo humano - Formación extensiva",
+    "name": "Educación formal - Superior postgrado",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "6305"
+  },
+  {
+    "code": "630510",
+    "name": "Educación para el trabajo y el desarrollo humano - Formación en artes y oficios",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "6305"
+  },
+  {
+    "code": "630511",
+    "name": "Educación para el trabajo y el desarrollo humano - Validación de niveles y grados",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "6305"
+  },
+  {
+    "code": "630512",
+    "name": "Educación para el trabajo y el desarrollo humano - Formación extensiva",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -24944,9 +27414,9 @@
     "name": "COSTOS DE TRANSFORMACIÓN",
     "level": "CLASE",
     "nature": "DEBITO",
-    "description": "Agrupa los costos de transformación de bienes y servicios educativos o de salud.",
-    "debitDynamic": "Por los costos directos de materiales, mano de obra docente y costos indirectos de transformación.",
-    "creditDynamic": "Por el traslado al costo del servicio prestado o cancelación de cierre.",
+    "description": "Costos de transformación de bienes y servicios educativos.",
+    "debitDynamic": "Costos directos e indirectos de transformación.",
+    "creditDynamic": "Traslado al costo o cancelación de cierre.",
     "parentCode": null
   },
   {
@@ -27331,13 +29801,23 @@
   },
   {
     "code": "720595",
-    "name": "Traslado de costos (Cr) EDUCACIÓN FORMAL - SUPERIOR - FORMACIÓN TÉCNICA PROFESIONAL",
+    "name": "Traslado de costos (Cr)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "7205"
+  },
+  {
+    "code": "7206",
+    "name": "EDUCACIÓN FORMAL - SUPERIOR - FORMACIÓN TÉCNICA PROFESIONAL",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "72"
   },
   {
     "code": "720601",
@@ -29421,13 +31901,23 @@
   },
   {
     "code": "721095",
-    "name": "Traslado de costos (Cr) EDUCACIÓN PARA EL TRABAJO Y EL DESARROLLO HUMANO - FORMACIÓN EN ARTES Y OFICIOS",
+    "name": "Traslado de costos (Cr)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "7210"
+  },
+  {
+    "code": "7219",
+    "name": "EDUCACIÓN PARA EL TRABAJO Y EL DESARROLLO HUMANO - FORMACIÓN EN ARTES Y OFICIOS",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "72"
   },
   {
     "code": "721901",
@@ -29831,13 +32321,23 @@
   },
   {
     "code": "721995",
-    "name": "Traslado de costos (Cr) EDUCACIÓN PARA EL TRABAJO Y EL DESARROLLO HUMANO - VALIDACIÓN DE NIVELES Y GRADOS",
+    "name": "Traslado de costos (Cr)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "7219"
+  },
+  {
+    "code": "7220",
+    "name": "EDUCACIÓN PARA EL TRABAJO Y EL DESARROLLO HUMANO - VALIDACIÓN DE NIVELES Y GRADOS",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "72"
   },
   {
     "code": "722001",
@@ -30241,13 +32741,23 @@
   },
   {
     "code": "722095",
-    "name": "Traslado de costos (Cr) EDUCACIÓN PARA EL TRABAJO Y EL DESARROLLO HUMANO - FORMACIÓN EXTENSIVA",
+    "name": "Traslado de costos (Cr)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "7220"
+  },
+  {
+    "code": "7221",
+    "name": "EDUCACIÓN PARA EL TRABAJO Y EL DESARROLLO HUMANO - FORMACIÓN EXTENSIVA",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "72"
   },
   {
     "code": "722101",
@@ -31071,13 +33581,23 @@
   },
   {
     "code": "723195",
-    "name": "Traslado de costos (Cr) EDUCACIÓN INFORMAL - VALIDACIÓN PARA LA EDUCACIÓN FORMAL",
+    "name": "Traslado de costos (Cr)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "7231"
+  },
+  {
+    "code": "7232",
+    "name": "EDUCACIÓN INFORMAL - VALIDACIÓN PARA LA EDUCACIÓN FORMAL",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "72"
   },
   {
     "code": "723201",
@@ -32571,13 +35091,23 @@
   },
   {
     "code": "730295",
-    "name": "Traslado de costos (Cr) SERVICIOS AMBULATORIOS - CONSULTA EXTERNA Y PROCEDIMIENTOS",
+    "name": "Traslado de costos (Cr)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "7302"
+  },
+  {
+    "code": "7310",
+    "name": "SERVICIOS AMBULATORIOS - CONSULTA EXTERNA Y PROCEDIMIENTOS",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "73"
   },
   {
     "code": "731001",
@@ -33041,13 +35571,23 @@
   },
   {
     "code": "731395",
-    "name": "Traslado de costos (Cr) SERVICIOS AMBULATORIOS - OTRAS ACTIVIDADES EXTRAMURALES",
+    "name": "Traslado de costos (Cr)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "7313"
+  },
+  {
+    "code": "7314",
+    "name": "SERVICIOS AMBULATORIOS - OTRAS ACTIVIDADES EXTRAMURALES",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "73"
   },
   {
     "code": "731401",
@@ -34591,13 +37131,23 @@
   },
   {
     "code": "734295",
-    "name": "Traslado de costos (Cr) APOYO DIAGNÓSTICO - OTRAS UNIDADES DE APOYO DIAGNÓSTICO",
+    "name": "Traslado de costos (Cr)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "7342"
+  },
+  {
+    "code": "7343",
+    "name": "APOYO DIAGNÓSTICO - OTRAS UNIDADES DE APOYO DIAGNÓSTICO",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "73"
   },
   {
     "code": "734301",
@@ -34821,13 +37371,23 @@
   },
   {
     "code": "734995",
-    "name": "Traslado de costos (Cr) APOYO TERAPÉUTICO - BANCO DE COMPONENTES ANATÓMICOS",
+    "name": "Traslado de costos (Cr)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "7349"
+  },
+  {
+    "code": "7350",
+    "name": "APOYO TERAPÉUTICO - BANCO DE COMPONENTES ANATÓMICOS",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "73"
   },
   {
     "code": "735001",
@@ -35531,13 +38091,23 @@
   },
   {
     "code": "735595",
-    "name": "Traslado de costos (Cr) APOYO TERAPÉUTICO - OTRAS UNIDADES DE APOYO TERAPÉUTICO",
+    "name": "Traslado de costos (Cr)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "7355"
+  },
+  {
+    "code": "7356",
+    "name": "APOYO TERAPÉUTICO - OTRAS UNIDADES DE APOYO TERAPÉUTICO",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "73"
   },
   {
     "code": "735601",
@@ -35881,13 +38451,23 @@
   },
   {
     "code": "738195",
-    "name": "Traslado de costos (Cr) SERVICIOS CONEXOS A LA SALUD - CENTROS Y PUESTOS DE SALUD",
+    "name": "Traslado de costos (Cr)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "7381"
+  },
+  {
+    "code": "7382",
+    "name": "SERVICIOS CONEXOS A LA SALUD - CENTROS Y PUESTOS DE SALUD",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "73"
   },
   {
     "code": "738201",
@@ -36351,13 +38931,23 @@
   },
   {
     "code": "738595",
-    "name": "Traslado de costos (Cr) SERVICIOS CONEXOS A LA SALUD - SERVICIO DE AMBULANCIAS",
+    "name": "Traslado de costos (Cr)",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "7385"
+  },
+  {
+    "code": "7386",
+    "name": "SERVICIOS CONEXOS A LA SALUD - SERVICIO DE AMBULANCIAS",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "73"
   },
   {
     "code": "738601",
@@ -37324,20 +39914,30 @@
     "name": "CUENTAS DE ORDEN DEUDORAS",
     "level": "CLASE",
     "nature": "DEBITO",
-    "description": "Registra los derechos contingentes y cuentas deudoras de control.",
-    "debitDynamic": "Por los litigios a favor, garantías y compromisos eventuales.",
-    "creditDynamic": "Por la extinción o cancelación de las contingencias reconocidas.",
+    "description": "Derechos contingentes y de control.",
+    "debitDynamic": "Litigios a favor o garantías.",
+    "creditDynamic": "Cancelación de las contingencias.",
     "parentCode": null
   },
   {
     "code": "81",
-    "name": "ACTIVOS CONTINGENTES LITIGIOS Y MECANISMOS ALTERNATIVOS DE SOLUCIÓN DE CONFLICTOS",
+    "name": "ACTIVOS CONTINGENTES",
     "level": "GRUPO",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "8"
+  },
+  {
+    "code": "8120",
+    "name": "LITIGIOS Y MECANISMOS ALTERNATIVOS DE SOLUCIÓN DE CONFLICTOS",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "81"
   },
   {
     "code": "812001",
@@ -37501,7 +40101,27 @@
   },
   {
     "code": "819003",
-    "name": "Intereses de mora Derechos de reembolso relacionados con demandas, arbitrajes y conciliaciones extrajudiciales Derechos contingentes a favor en acuerdos no clasificados como operaciones conjuntas",
+    "name": "Intereses de mora",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "8190"
+  },
+  {
+    "code": "819004",
+    "name": "Derechos de reembolso relacionados con demandas, arbitrajes y conciliaciones extrajudiciales",
+    "level": "SUBCUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "8190"
+  },
+  {
+    "code": "819005",
+    "name": "Derechos contingentes a favor en acuerdos no clasificados como operaciones conjuntas",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
@@ -37971,13 +40591,23 @@
   },
   {
     "code": "836980",
-    "name": "Diversos GASTOS DE INVESTIGACIÓN INSTITUCIONES DE EDUCACIÓN SUPERIOR",
+    "name": "Diversos",
     "level": "SUBCUENTA",
     "nature": "DEBITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "8369"
+  },
+  {
+    "code": "8370",
+    "name": "GASTOS DE INVESTIGACIÓN INSTITUCIONES DE EDUCACIÓN SUPERIOR",
+    "level": "CUENTA",
+    "nature": "DEBITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "83"
   },
   {
     "code": "837001",
@@ -38314,20 +40944,30 @@
     "name": "CUENTAS DE ORDEN ACREEDORAS",
     "level": "CLASE",
     "nature": "CREDITO",
-    "description": "Registra las obligaciones contingentes y cuentas acreedoras de control.",
-    "debitDynamic": "Por la terminación o extinción de los compromisos contingentes.",
-    "creditDynamic": "Por los litigios en contra, garantías otorgadas o contratos de riesgo.",
+    "description": "Obligaciones contingentes y de control.",
+    "debitDynamic": "Extinción de los compromisos contingentes.",
+    "creditDynamic": "Litigios en contra o garantías otorgadas.",
     "parentCode": null
   },
   {
     "code": "91",
-    "name": "PASIVOS CONTINGENTES LITIGIOS Y MECANISMOS ALTERNATIVOS DE SOLUCIÓN DE CONFLICTOS",
+    "name": "PASIVOS CONTINGENTES",
     "level": "GRUPO",
     "nature": "CREDITO",
     "description": null,
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "9"
+  },
+  {
+    "code": "9120",
+    "name": "LITIGIOS Y MECANISMOS ALTERNATIVOS DE SOLUCIÓN DE CONFLICTOS",
+    "level": "CUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "91"
   },
   {
     "code": "912001",
@@ -38471,7 +41111,27 @@
   },
   {
     "code": "919002",
-    "name": "Garantías y avales otorgados Obligaciones contingentes a cargo en acuerdos no clasificados como operaciones conjuntas Obligaciones de reembolso relacionadas con demandas, arbitrajes y conciliaciones extrajudiciales",
+    "name": "Garantías y avales otorgados",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "9190"
+  },
+  {
+    "code": "919003",
+    "name": "Obligaciones contingentes a cargo en acuerdos no clasificados como operaciones conjuntas",
+    "level": "SUBCUENTA",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "9190"
+  },
+  {
+    "code": "919004",
+    "name": "Obligaciones de reembolso relacionadas con demandas, arbitrajes y conciliaciones extrajudiciales",
     "level": "SUBCUENTA",
     "nature": "CREDITO",
     "description": null,
@@ -38488,6 +41148,16 @@
     "debitDynamic": null,
     "creditDynamic": null,
     "parentCode": "9190"
+  },
+  {
+    "code": "93",
+    "name": "ACREEDORAS DE CONTROL",
+    "level": "GRUPO",
+    "nature": "CREDITO",
+    "description": null,
+    "debitDynamic": null,
+    "creditDynamic": null,
+    "parentCode": "9"
   },
   {
     "code": "9308",
