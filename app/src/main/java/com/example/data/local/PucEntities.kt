@@ -3,12 +3,16 @@ package com.example.data.local
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Fts4
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.model.PucAccount
 import com.example.model.PucLevel
 import com.example.model.PucNature
 
-@Entity(tableName = "puc_accounts")
+@Entity(
+    tableName = "puc_accounts",
+    indices = [Index(value = ["code"], unique = true)]
+)
 data class PucAccountEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "rowid")

@@ -17,6 +17,7 @@ object PucTreeBuilder {
         expandedOverrides: Map<String, Boolean>,
         classFilter: String = "ALL"
     ): List<PucClassNode> {
+        val uniqueAccounts = allAccounts.distinctBy { it.code }
         val trimmedQuery = query.trim()
         val normalizedQuery = normalize(trimmedQuery)
         val isSearching = normalizedQuery.isNotEmpty()
@@ -29,10 +30,10 @@ object PucTreeBuilder {
         }
 
         // Group accounts by length / code
-        val classesRaw = allAccounts.filter { it.code.length == 1 }.sortedBy { it.code }
-        val groupsByClass = allAccounts.filter { it.code.length == 2 }.groupBy { it.code.take(1) }
-        val accountsByGroup = allAccounts.filter { it.code.length == 4 }.groupBy { it.code.take(2) }
-        val subaccountsByAccount = allAccounts.filter { it.code.length >= 6 }.groupBy { it.code.take(4) }
+        val classesRaw = uniqueAccounts.filter { it.code.length == 1 }.sortedBy { it.code }
+        val groupsByClass = uniqueAccounts.filter { it.code.length == 2 }.groupBy { it.code.take(1) }
+        val accountsByGroup = uniqueAccounts.filter { it.code.length == 4 }.groupBy { it.code.take(2) }
+        val subaccountsByAccount = uniqueAccounts.filter { it.code.length >= 6 }.groupBy { it.code.take(4) }
 
         fun matchesQuery(account: PucAccount, guide: String): Boolean {
             if (!isSearching) return false

@@ -34,7 +34,7 @@ class PucRepository(
 
     fun getAllAccounts(): Flow<List<PucAccount>> {
         return dao.getAllAccounts()
-            .map { list -> list.map { it.toDomain() } }
+            .map { list -> list.distinctBy { it.code }.map { it.toDomain() } }
             .flowOn(Dispatchers.IO)
     }
 
@@ -63,7 +63,7 @@ class PucRepository(
         }
 
         return sourceFlow.map { list ->
-            var domainList = list.map { it.toDomain() }
+            var domainList = list.distinctBy { it.code }.map { it.toDomain() }
             if (classFilter != "ALL") {
                 domainList = domainList.filter { it.code.startsWith(classFilter) }
             }
