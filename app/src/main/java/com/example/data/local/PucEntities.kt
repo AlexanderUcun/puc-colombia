@@ -6,6 +6,7 @@ import androidx.room.Fts4
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.model.PucAccount
+import com.example.model.PucExplanationHelper
 import com.example.model.PucLevel
 import com.example.model.PucNature
 
@@ -51,14 +52,24 @@ data class PucAccountEntity(
         } else {
             PucNature.DEBITO
         }
+
+        val cleanDesc = if (description.isBlank() || description == "null") {
+            PucExplanationHelper.getMicroGuide(code, name, parsedNature)
+        } else {
+            description
+        }
+
+        val cleanDebit = if (debitDynamic.isBlank() || debitDynamic == "null") "" else debitDynamic
+        val cleanCredit = if (creditDynamic.isBlank() || creditDynamic == "null") "" else creditDynamic
+
         return PucAccount(
             code = code,
             name = name,
             level = parsedLevel,
             nature = parsedNature,
-            description = description,
-            debitDynamic = debitDynamic,
-            creditDynamic = creditDynamic,
+            description = cleanDesc,
+            debitDynamic = cleanDebit,
+            creditDynamic = cleanCredit,
             parentCode = parentCode
         )
     }

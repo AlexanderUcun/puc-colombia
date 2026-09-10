@@ -17,7 +17,7 @@ import kotlinx.coroutines.sync.withLock
 
 @Database(
     entities = [PucAccountEntity::class, PucAccountFts::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class PucDatabase : RoomDatabase() {
@@ -63,8 +63,6 @@ abstract class PucDatabase : RoomDatabase() {
         suspend fun populateDatabase(context: Context, dao: PucDao) {
             populateMutex.withLock {
                 try {
-                    if (dao.getAccountCount() > 0) return
-
                     val existingCodes = mutableSetOf<String>()
                     val accountsToInsert = mutableListOf<PucAccountEntity>()
 
@@ -77,15 +75,18 @@ abstract class PucDatabase : RoomDatabase() {
                             val code = obj.getString("code")
                             if (!existingCodes.contains(code)) {
                                 existingCodes.add(code)
+                                val desc = obj.optString("description", "").let { if (it.isNullOrBlank() || it == "null") "" else it }
+                                val debit = obj.optString("debitDynamic", "").let { if (it.isNullOrBlank() || it == "null") "" else it }
+                                val credit = obj.optString("creditDynamic", "").let { if (it.isNullOrBlank() || it == "null") "" else it }
                                 accountsToInsert.add(
                                     PucAccountEntity(
                                         code = code,
                                         name = obj.getString("name"),
                                         level = obj.getString("level"),
                                         nature = obj.getString("nature"),
-                                        description = obj.optString("description", ""),
-                                        debitDynamic = obj.optString("debitDynamic", ""),
-                                        creditDynamic = obj.optString("creditDynamic", ""),
+                                        description = desc,
+                                        debitDynamic = debit,
+                                        creditDynamic = credit,
                                         parentCode = if (obj.has("parentCode") && !obj.isNull("parentCode")) obj.getString("parentCode") else null
                                     )
                                 )
@@ -120,7 +121,7 @@ abstract class PucDatabase : RoomDatabase() {
 
                     if (accountsToInsert.isNotEmpty()) {
                         dao.insertAll(accountsToInsert)
-                        Log.d(TAG, "Inserted ${accountsToInsert.size} accounts into Room SQLite database.")
+                        Log.d(TAG, "Inserted/Updated ${accountsToInsert.size} accounts into Room SQLite database.")
                     }
                 } catch (e: Exception) {
                     Log.e(TAG, "Failed to populate database", e)
