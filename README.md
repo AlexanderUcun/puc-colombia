@@ -62,3 +62,7 @@ Desde la raíz del repositorio:
 - Las tarifas tributarias son de referencia y deben validarse contra normativa vigente antes de uso productivo.
 - No hay sincronización remota ni autenticación de usuarios.
 - No reemplaza asesoría contable o tributaria profesional.
+
+## Material de presentación
+
+- Estructura de diapositivas + guion hablado (5 y 10 minutos): [`PRESENTACION.md`](./PRESENTACION.md)
