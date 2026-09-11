@@ -122,6 +122,21 @@ class PucViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun getGroupsForClass(classCode: String): List<PucAccount> {
+        val all = allAccountsState.value
+        return all.filter { it.code.startsWith(classCode) && it.code.length > 1 && it.code.length <= 3 }.distinctBy { it.code }.sortedBy { it.code }
+    }
+
+    fun getAccountsForGroup(groupCode: String): List<PucAccount> {
+        val all = allAccountsState.value
+        return all.filter { it.code.startsWith(groupCode) && it.code != groupCode && it.code.length <= 5 }.distinctBy { it.code }.sortedBy { it.code }
+    }
+
+    fun getSubaccountsForAccount(accountCode: String): List<PucAccount> {
+        val all = allAccountsState.value
+        return all.filter { it.code.startsWith(accountCode) && it.code != accountCode }.distinctBy { it.code }.sortedBy { it.code }
+    }
+
     fun getGroupsForClassFlow(classCode: String): Flow<List<PucAccount>> {
         return repository.getGroupsForClass(classCode)
     }

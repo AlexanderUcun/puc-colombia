@@ -3,6 +3,8 @@ package com.example.ui.screens
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
@@ -74,6 +76,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.model.PucAccount
+import com.example.model.PucExplanationHelper
 import com.example.model.PucNature
 import com.example.ui.theme.CleanPaperBackground
 import com.example.ui.theme.CleanPaperBorder
@@ -374,11 +377,16 @@ fun CatalogScreen(
 
             Spacer(modifier = Modifier.height(4.dp))
 
-            // Animated full-screen drill-down page container backed by reactive database queries
+            // Pre-loaded in-memory instant page transitions (Zero query lag)
             AnimatedContent(
                 targetState = currentDestination,
                 transitionSpec = {
-                    fadeIn() + slideInHorizontally { it / 4 } togetherWith fadeOut() + slideOutHorizontally { -it / 4 }
+                    (fadeIn(animationSpec = tween(150)) +
+                            slideInHorizontally(animationSpec = spring(dampingRatio = 0.9f, stiffness = 600f)) { it / 4 })
+                        .togetherWith(
+                            fadeOut(animationSpec = tween(60)) +
+                                    slideOutHorizontally(animationSpec = spring(dampingRatio = 0.9f, stiffness = 600f)) { -it / 4 }
+                        )
                 },
                 label = "catalogNavigation"
             ) { dest ->
@@ -394,8 +402,9 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Groups -> {
-                        val groups by viewModel.getGroupsForClassFlow(dest.classAccount.code)
-                            .collectAsStateWithLifecycle(initialValue = emptyList())
+                        val groups = remember(allAccounts, dest.classAccount.code) {
+                            viewModel.getGroupsForClass(dest.classAccount.code)
+                        }
                         CatalogGroupsPage(
                             classAccount = dest.classAccount,
                             groups = groups,
@@ -411,8 +420,9 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Accounts -> {
-                        val accounts by viewModel.getAccountsForGroupFlow(dest.groupAccount.code)
-                            .collectAsStateWithLifecycle(initialValue = emptyList())
+                        val accounts = remember(allAccounts, dest.groupAccount.code) {
+                            viewModel.getAccountsForGroup(dest.groupAccount.code)
+                        }
                         CatalogAccountsPage(
                             groupAccount = dest.groupAccount,
                             classAccount = dest.classAccount,
@@ -431,8 +441,9 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Detail -> {
-                        val subaccounts by viewModel.getSubaccountsForAccountFlow(dest.account.code)
-                            .collectAsStateWithLifecycle(initialValue = emptyList())
+                        val subaccounts = remember(allAccounts, dest.account.code) {
+                            viewModel.getSubaccountsForAccount(dest.account.code)
+                        }
                         CatalogAccountDetailPage(
                             account = dest.account,
                             subaccounts = subaccounts,
@@ -454,6 +465,7 @@ fun CatalogScreen(
                             },
                             onCopyCode = { code ->
                                 clipboardManager.setText(AnnotatedString(code))
+                                Toast.LENGTH_SHORT // or Toast.makeText
                                 Toast.makeText(context, "Código $code copiado", Toast.LENGTH_SHORT).show()
                             }
                         )
@@ -1067,7 +1079,7 @@ fun CatalogAccountDetailPage(
                                         )
                                         Spacer(modifier = Modifier.height(2.dp))
                                         val subMicroGuide = remember(sub.code) {
-                                            viewModel.getMicroGuide(sub.code, sub.name, sub.nature)
+                                            PucExplanationHelper.getMicroGuide(sub.code, sub.name, sub.nature)
                                         }
                                         Text(
                                             text = sub.description.ifBlank { subMicroGuide },
@@ -1087,7 +1099,7 @@ fun CatalogAccountDetailPage(
 
                 Surface(
                     onClick = { onCopyCode(account.code) },
-                    color = MintGreenPrimary,
+                    color = MintGreenPersonalized = MintGreenPrimary,
                     shape = RoundedCornerShape(10.dp),
                     modifier = Modifier.fillMaxWidth()
                 ) {
