@@ -36,6 +36,12 @@ interface PucDao {
     @Query("SELECT * FROM puc_accounts WHERE parent_code = :accountCode ORDER BY code ASC")
     fun getSubaccountsForAccount(accountCode: String): Flow<List<PucAccountEntity>>
 
+    @Query("UPDATE puc_accounts SET is_favorite = :isFavorite WHERE code = :code")
+    suspend fun updateFavorite(code: String, isFavorite: Boolean)
+
+    @Query("SELECT * FROM puc_accounts WHERE is_favorite = 1 ORDER BY code ASC")
+    fun getFavoriteAccounts(): Flow<List<PucAccountEntity>>
+
     @Query("""
         SELECT * FROM puc_accounts 
         WHERE code LIKE :query || '%' 

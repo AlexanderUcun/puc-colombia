@@ -18,7 +18,7 @@ class PucRepository(
     private val dao = database.pucDao()
 
     companion object {
-        private const val CURRENT_DATA_VERSION = 5
+        private const val CURRENT_DATA_VERSION = 6
         private const val PREFS_NAME = "puc_preferences"
         private const val KEY_DATA_VERSION = "puc_data_version"
     }
@@ -68,6 +68,16 @@ class PucRepository(
 
     fun getSubaccountsForAccount(accountCode: String): Flow<List<PucAccount>> {
         return dao.getSubaccountsForAccount(accountCode)
+            .map { list -> list.distinctBy { it.code }.map { it.toDomain() } }
+            .flowOn(Dispatchers.IO)
+    }
+
+    suspend fun toggleFavorite(code: String, isFavorite: Boolean) = withContext(Dispatchers.IO) {
+        dao.updateFavorite(code, isFavorite)
+    }
+
+    fun getFavoriteAccounts(): Flow<List<PucAccount>> {
+        return dao.getFavoriteAccounts()
             .map { list -> list.distinctBy { it.code }.map { it.toDomain() } }
             .flowOn(Dispatchers.IO)
     }

@@ -6,10 +6,13 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
+import androidx.compose.ui.graphics.graphicsLayer
+import kotlinx.coroutines.delay
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
@@ -39,11 +42,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.NavigateNext
 import androidx.compose.material.icons.automirrored.outlined.TrendingUp
+import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.AccountBalance
+import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material.icons.outlined.Build
 import androidx.compose.material.icons.outlined.CreditCard
 import androidx.compose.material.icons.outlined.Description
@@ -63,6 +67,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -136,12 +141,22 @@ fun CatalogScreen(
     val allAccounts by viewModel.allAccountsState.collectAsStateWithLifecycle()
     val flatSearchAccounts by viewModel.accounts.collectAsStateWithLifecycle()
     val recentAccounts by viewModel.recentAccounts.collectAsStateWithLifecycle()
+    val selectedAccountForDetail by viewModel.selectedAccountForDetail.collectAsStateWithLifecycle()
 
     var navigationStack by remember { mutableStateOf<List<CatalogDestination>>(listOf(CatalogDestination.Classes)) }
     val currentDestination = navigationStack.lastOrNull() ?: CatalogDestination.Classes
 
     val context = LocalContext.current
     val clipboardManager = LocalClipboardManager.current
+
+    LaunchedEffect(selectedAccountForDetail) {
+        val acc = selectedAccountForDetail
+        if (acc != null && navigationStack.lastOrNull() !is CatalogDestination.Detail) {
+            val crumbs = viewModel.getBreadcrumbsForAccount(acc)
+            navigationStack = navigationStack + CatalogDestination.Detail(acc, crumbs)
+            viewModel.selectAccountForDetail(null)
+        }
+    }
 
     // Handle system back button for drill-down navigation and search
     BackHandler(enabled = searchQuery.isNotEmpty() || navigationStack.size > 1) {
@@ -233,7 +248,6 @@ fun CatalogScreen(
                 singleLine = true,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(50.dp)
             )
         }
 
@@ -280,7 +294,7 @@ fun CatalogScreen(
                     ) {
                         Row(
                             modifier = Modifier.padding(12.dp),
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.Top
                         ) {
                             Surface(
                                 color = theme.accentColor,
@@ -303,9 +317,10 @@ fun CatalogScreen(
                                     text = acc.name,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 13.5.sp,
-                                    color = SoftCharcoalText
+                                    color = SoftCharcoalText,
+                                    lineHeight = 18.sp
                                 )
-                                Spacer(modifier = Modifier.height(2.dp))
+                                Spacer(modifier = Modifier.height(4.dp))
                                 Row(
                                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                                     verticalAlignment = Alignment.CenterVertically
@@ -318,10 +333,12 @@ fun CatalogScreen(
                                     NatureBadge(nature = acc.nature)
                                 }
                             }
+                            Spacer(modifier = Modifier.width(4.dp))
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.NavigateNext,
                                 contentDescription = null,
-                                tint = SoftCharcoalTextMuted
+                                tint = SoftCharcoalTextMuted,
+                                modifier = Modifier.padding(top = 4.dp)
                             )
                         }
                     }
@@ -460,6 +477,7 @@ fun CatalogScreen(
                             account = dest.account,
                             subaccounts = subaccounts,
                             breadcrumbPath = dest.breadcrumbPath,
+                            viewModel = viewModel,
                             onBack = {
                                 if (navigationStack.size > 1) {
                                     navigationStack = navigationStack.dropLast(1)
@@ -474,10 +492,6 @@ fun CatalogScreen(
                                 val crumbs = viewModel.getBreadcrumbsForAccount(subAcc)
                                 viewModel.selectAccountForDetail(subAcc)
                                 navigationStack = navigationStack + CatalogDestination.Detail(subAcc, crumbs)
-                            },
-                            onCopyCode = { code ->
-                                clipboardManager.setText(AnnotatedString(code))
-                                Toast.makeText(context, "Código $code copiado", Toast.LENGTH_SHORT).show()
                             }
                         )
                     }
@@ -865,12 +879,14 @@ fun CatalogAccountDetailPage(
     account: PucAccount,
     subaccounts: List<PucAccount>,
     breadcrumbPath: List<Pair<String, String>>,
+    viewModel: PucViewModel,
     onBack: () -> Unit,
     onJumpToLevel: (Int) -> Unit,
-    onSelectSubaccount: (PucAccount) -> Unit,
-    onCopyCode: (String) -> Unit
+    onSelectSubaccount: (PucAccount) -> Unit
 ) {
-    val theme = getPucClassTheme(account.code)
+    val liveAccount by viewModel.getAccountFlow(account.code).collectAsStateWithLifecycle(initialValue = account)
+    val currentAccount = liveAccount ?: account
+    val theme = getPucClassTheme(currentAccount.code)
 
     Column(
         modifier = Modifier
@@ -948,7 +964,7 @@ fun CatalogAccountDetailPage(
                         shape = RoundedCornerShape(8.dp)
                     ) {
                         Text(
-                            text = account.code,
+                            text = currentAccount.code,
                             fontFamily = FontFamily.Monospace,
                             fontWeight = FontWeight.Bold,
                             fontSize = 16.sp,
@@ -957,13 +973,13 @@ fun CatalogAccountDetailPage(
                         )
                     }
 
-                    NatureBadge(nature = account.nature)
+                    NatureBadge(nature = currentAccount.nature)
                 }
 
                 Spacer(modifier = Modifier.height(10.dp))
 
                 Text(
-                    text = account.name,
+                    text = currentAccount.name,
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Bold,
                         color = SoftCharcoalText
@@ -982,15 +998,15 @@ fun CatalogAccountDetailPage(
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = account.description.ifBlank { "Sin descripción oficial registrada para esta cuenta." },
+                    text = currentAccount.description.ifBlank { "Sin descripción oficial registrada para esta cuenta." },
                     fontSize = 13.sp,
                     lineHeight = 18.sp,
                     color = SoftCharcoalText
                 )
 
-                if (account.debitDynamic.isNotBlank() || account.creditDynamic.isNotBlank()) {
+                if (currentAccount.debitDynamic.isNotBlank() || currentAccount.creditDynamic.isNotBlank()) {
                     Spacer(modifier = Modifier.height(14.dp))
-                    if (account.debitDynamic.isNotBlank()) {
+                    if (currentAccount.debitDynamic.isNotBlank()) {
                         Card(
                             modifier = Modifier.fillMaxWidth(),
                             colors = CardDefaults.cardColors(containerColor = DynamicDebitBlockBg),
@@ -1005,7 +1021,7 @@ fun CatalogAccountDetailPage(
                                 )
                                 Spacer(modifier = Modifier.height(4.dp))
                                 Text(
-                                    text = account.debitDynamic,
+                                    text = currentAccount.debitDynamic,
                                     fontSize = 11.sp,
                                     lineHeight = 15.sp,
                                     color = SoftCharcoalText
@@ -1013,7 +1029,7 @@ fun CatalogAccountDetailPage(
                             }
                         }
                     }
-                    if (account.creditDynamic.isNotBlank()) {
+                    if (currentAccount.creditDynamic.isNotBlank()) {
                         Spacer(modifier = Modifier.height(8.dp))
                         Card(
                             modifier = Modifier.fillMaxWidth(),
@@ -1029,7 +1045,7 @@ fun CatalogAccountDetailPage(
                                 )
                                 Spacer(modifier = Modifier.height(4.dp))
                                 Text(
-                                    text = account.creditDynamic,
+                                    text = currentAccount.creditDynamic,
                                     fontSize = 11.sp,
                                     lineHeight = 15.sp,
                                     color = SoftCharcoalText
@@ -1052,7 +1068,9 @@ fun CatalogAccountDetailPage(
                     Spacer(modifier = Modifier.height(8.dp))
                     subaccounts.forEach { sub ->
                         Card(
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { onSelectSubaccount(sub) },
                             shape = RoundedCornerShape(12.dp),
                             colors = CardDefaults.cardColors(containerColor = CleanPaperCard),
                             border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFE4EAE5)),
@@ -1108,11 +1126,38 @@ fun CatalogAccountDetailPage(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
+                val context = LocalContext.current
+                val isFav = currentAccount.isFavorite
+                var scaleState by remember { mutableStateOf(1f) }
+                val scale by animateFloatAsState(
+                    targetValue = scaleState,
+                    animationSpec = spring(dampingRatio = 0.4f, stiffness = 600f),
+                    label = "favButtonScale"
+                )
+
+                LaunchedEffect(scaleState) {
+                    if (scaleState > 1f) {
+                        delay(150)
+                        scaleState = 1f
+                    }
+                }
+
                 Surface(
-                    onClick = { onCopyCode(account.code) },
-                    color = MintGreenPrimary,
+                    onClick = {
+                        viewModel.toggleFavorite(currentAccount)
+                        scaleState = 1.15f
+                        Toast.makeText(
+                            context,
+                            if (!isFav) "¡Cuenta guardada en favoritos!" else "Cuenta retirada de favoritos",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    },
+                    color = if (isFav) Color(0xFFE8F5E9) else MintGreenPrimary,
                     shape = RoundedCornerShape(10.dp),
-                    modifier = Modifier.fillMaxWidth()
+                    border = if (isFav) androidx.compose.foundation.BorderStroke(1.5.dp, MintGreenPrimary) else null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .graphicsLayer(scaleX = scale, scaleY = scale)
                 ) {
                     Row(
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
@@ -1120,16 +1165,16 @@ fun CatalogAccountDetailPage(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
-                            imageVector = Icons.Default.ContentCopy,
+                            imageVector = if (isFav) Icons.Default.Bookmark else Icons.Outlined.BookmarkBorder,
                             contentDescription = null,
-                            tint = Color.White,
-                            modifier = Modifier.size(16.dp)
+                            tint = if (isFav) MintGreenPrimary else Color.White,
+                            modifier = Modifier.size(18.dp)
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = "Copiar Código (${account.code})",
+                            text = if (isFav) "Guardado en Favoritos" else "Guardar en Favoritos",
                             fontWeight = FontWeight.Bold,
-                            color = Color.White,
+                            color = if (isFav) MintGreenPrimary else Color.White,
                             fontSize = 13.sp
                         )
                     }
@@ -1162,7 +1207,7 @@ fun NatureBadge(nature: PucNature) {
         border = androidx.compose.foundation.BorderStroke(1.dp, textCol.copy(alpha = 0.5f))
     ) {
         Text(
-            text = if (isDebit) "Naturaleza: Débito" else "Naturaleza: Crédito",
+            text = if (isDebit) "Débito" else "Crédito",
             fontSize = 11.sp,
             fontWeight = FontWeight.Bold,
             color = textCol,

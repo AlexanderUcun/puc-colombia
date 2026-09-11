@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class PucViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -62,6 +63,63 @@ class PucViewModel(application: Application) : AndroidViewModel(application) {
             started = SharingStarted.Eagerly,
             initialValue = false
         )
+
+    val favoriteAccounts: StateFlow<List<PucAccount>> = repository.getFavoriteAccounts()
+        .flowOn(kotlinx.coroutines.Dispatchers.IO)
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = emptyList()
+        )
+
+    fun toggleFavorite(account: PucAccount) {
+        viewModelScope.launch {
+            repository.toggleFavorite(account.code, !account.isFavorite)
+        }
+    }
+
+    fun getAccountFlow(code: String): Flow<PucAccount?> {
+        return allAccountsState.map { list -> list.find { it.code == code } }
+    }
+
+    fun openAccountByCode(code: String, onNavigate: (PucAccount) -> Unit) {
+        viewModelScope.launch {
+            var acc = repository.getAccountByCode(code)
+            if (acc == null) {
+                val common = com.example.model.CommonAccountsHelper.commonAccountsList.find { it.code == code }
+                if (common != null) {
+                    acc = PucAccount(
+                        code = common.code,
+                        name = common.name,
+                        level = when(common.code.length) {
+                            1 -> PucLevel.CLASE
+                            2 -> PucLevel.GRUPO
+                            4 -> PucLevel.CUENTA
+                            6 -> PucLevel.SUBCUENTA
+                            else -> PucLevel.AUXILIAR
+                        },
+                        nature = common.nature,
+                        description = "${common.description}\n\nDinámica Débito:\n${common.debitDynamic}\n\nDinámica Crédito:\n${common.creditDynamic}\n\nEjemplo Práctico:\n${common.practicalExample}",
+                        debitDynamic = common.debitDynamic,
+                        creditDynamic = common.creditDynamic
+                    )
+                }
+            } else {
+                val common = com.example.model.CommonAccountsHelper.commonAccountsList.find { it.code == code }
+                if (common != null && acc.debitDynamic.isBlank()) {
+                    acc = acc.copy(
+                        description = "${acc.description}\n\nDinámica Débito:\n${common.debitDynamic}\n\nDinámica Crédito:\n${common.creditDynamic}\n\nEjemplo Práctico:\n${common.practicalExample}",
+                        debitDynamic = common.debitDynamic,
+                        creditDynamic = common.creditDynamic
+                    )
+                }
+            }
+            if (acc != null) {
+                selectAccountForDetail(acc)
+                onNavigate(acc)
+            }
+        }
+    }
 
     // Flat accounts stream for global search
     @OptIn(ExperimentalCoroutinesApi::class)

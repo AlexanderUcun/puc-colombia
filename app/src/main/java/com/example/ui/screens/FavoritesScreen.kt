@@ -37,11 +37,9 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.model.PucAccount
 import com.example.ui.theme.CleanPaperBackground
-import com.example.ui.theme.CleanPaperBorder
 import com.example.ui.theme.CleanPaperSurface
 import com.example.ui.theme.MintGreenPrimary
 import com.example.ui.theme.SoftCharcoalText
-import com.example.ui.theme.SoftCharcoalTextMuted
 import com.example.ui.theme.SoftCharcoalTextSecondary
 import com.example.ui.theme.getPucClassTheme
 import com.example.viewmodel.PucViewModel

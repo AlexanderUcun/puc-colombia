@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
+import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Payments
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -58,6 +59,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ui.screens.CatalogScreen
+import com.example.ui.screens.FavoritesScreen
 import com.example.ui.screens.TaxGuideScreen
 import com.example.ui.theme.CleanPaperBackground
 import com.example.ui.theme.CleanPaperBorder
@@ -79,6 +81,7 @@ sealed class PucNavDestination(
     val testTag: String
 ) {
     data object Catalog : PucNavDestination("Catálogo PUC", Icons.AutoMirrored.Filled.MenuBook, "nav_catalog")
+    data object Favorites : PucNavDestination("Favoritos", Icons.Default.Bookmark, "nav_favorites")
     data object TaxGuide : PucNavDestination("Retenciones", Icons.Default.Payments, "nav_taxes")
 }
 
@@ -113,6 +116,7 @@ fun PucApp() {
 
     val destinations = listOf(
         PucNavDestination.Catalog,
+        PucNavDestination.Favorites,
         PucNavDestination.TaxGuide
     )
 
@@ -258,22 +262,22 @@ fun PucApp() {
                     containerColor = CleanPaperSurface
                 ) {
                     Spacer(modifier = Modifier.height(12.dp))
-                destinations.forEachIndexed { index, destination ->
-                    NavigationRailItem(
-                        selected = selectedTab == index,
-                        onClick = { selectedTab = index },
-                        icon = { Icon(destination.icon, contentDescription = destination.title) },
-                        label = { Text(destination.title, fontSize = 11.sp) },
-                        colors = androidx.compose.material3.NavigationRailItemDefaults.colors(
-                            selectedIconColor = MintGreenPrimary,
-                            selectedTextColor = MintGreenPrimary,
-                            unselectedIconColor = SoftCharcoalTextMuted,
-                            unselectedTextColor = SoftCharcoalTextMuted,
-                            indicatorColor = MintGreenPrimaryContainer
+                    destinations.forEachIndexed { index, destination ->
+                        NavigationRailItem(
+                            selected = selectedTab == index,
+                            onClick = { selectedTab = index },
+                            icon = { Icon(destination.icon, contentDescription = destination.title) },
+                            label = { Text(destination.title, fontSize = 11.sp) },
+                            colors = androidx.compose.material3.NavigationRailItemDefaults.colors(
+                                selectedIconColor = MintGreenPrimary,
+                                selectedTextColor = MintGreenPrimary,
+                                unselectedIconColor = SoftCharcoalTextMuted,
+                                unselectedTextColor = SoftCharcoalTextMuted,
+                                indicatorColor = MintGreenPrimaryContainer
+                            )
                         )
-                    )
+                    }
                 }
-            }
                 Box(
                     modifier = Modifier
                         .fillMaxHeight()
@@ -287,7 +291,11 @@ fun PucApp() {
                 ) {
                     when (selectedTab) {
                         0 -> CatalogScreen(viewModel = viewModel)
-                        1 -> TaxGuideScreen()
+                        1 -> FavoritesScreen(viewModel = viewModel, onSelectAccount = { account ->
+                            viewModel.selectAccountForDetail(account)
+                            selectedTab = 0
+                        })
+                        2 -> TaxGuideScreen()
                     }
                 }
             }
@@ -299,7 +307,11 @@ fun PucApp() {
             ) {
                 when (selectedTab) {
                     0 -> CatalogScreen(viewModel = viewModel)
-                    1 -> TaxGuideScreen()
+                    1 -> FavoritesScreen(viewModel = viewModel, onSelectAccount = { account ->
+                        viewModel.selectAccountForDetail(account)
+                        selectedTab = 0
+                    })
+                    2 -> TaxGuideScreen()
                 }
             }
         }

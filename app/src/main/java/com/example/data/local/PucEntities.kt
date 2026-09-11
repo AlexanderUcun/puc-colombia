@@ -15,7 +15,8 @@ import com.example.model.PucNature
     indices = [
         Index(value = ["code"], unique = true),
         Index(value = ["parent_code"]),
-        Index(value = ["level"])
+        Index(value = ["level"]),
+        Index(value = ["is_favorite"])
     ]
 )
 data class PucAccountEntity(
@@ -37,7 +38,9 @@ data class PucAccountEntity(
     @ColumnInfo(name = "credit_dynamic")
     val creditDynamic: String = "",
     @ColumnInfo(name = "parent_code")
-    val parentCode: String? = null
+    val parentCode: String? = null,
+    @ColumnInfo(name = "is_favorite")
+    val isFavorite: Boolean = false
 ) {
     fun toDomain(): PucAccount {
         val parsedLevel = try {
@@ -74,7 +77,8 @@ data class PucAccountEntity(
             description = cleanDesc,
             debitDynamic = cleanDebit,
             creditDynamic = cleanCredit,
-            parentCode = parentCode
+            parentCode = parentCode,
+            isFavorite = isFavorite
         )
     }
 }
