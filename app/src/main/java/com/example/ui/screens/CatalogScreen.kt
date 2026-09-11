@@ -377,7 +377,7 @@ fun CatalogScreen(
 
             Spacer(modifier = Modifier.height(4.dp))
 
-            // Pre-loaded in-memory instant page transitions (Zero query lag)
+            // Animated full-screen drill-down page container backed by reactive database queries
             AnimatedContent(
                 targetState = currentDestination,
                 transitionSpec = {
@@ -465,7 +465,6 @@ fun CatalogScreen(
                             },
                             onCopyCode = { code ->
                                 clipboardManager.setText(AnnotatedString(code))
-                                Toast.LENGTH_SHORT // or Toast.makeText
                                 Toast.makeText(context, "Código $code copiado", Toast.LENGTH_SHORT).show()
                             }
                         )
@@ -1099,7 +1098,7 @@ fun CatalogAccountDetailPage(
 
                 Surface(
                     onClick = { onCopyCode(account.code) },
-                    color = MintGreenPersonalized = MintGreenPrimary,
+                    color = MintGreenPrimary,
                     shape = RoundedCornerShape(10.dp),
                     modifier = Modifier.fillMaxWidth()
                 ) {
