@@ -125,7 +125,7 @@ fun CatalogScreen(
     modifier: Modifier = Modifier
 ) {
     val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()
-    val allAccountsMap by viewModel.allAccountsMapState.collectAsStateWithLifecycle()
+    val allAccounts by viewModel.allAccountsState.collectAsStateWithLifecycle()
     val flatSearchAccounts by viewModel.accounts.collectAsStateWithLifecycle()
     val recentAccounts by viewModel.recentAccounts.collectAsStateWithLifecycle()
 
@@ -374,23 +374,17 @@ fun CatalogScreen(
 
             Spacer(modifier = Modifier.height(4.dp))
 
-            // High-performance animated full-screen drill-down page container
+            // Animated full-screen drill-down page container backed by reactive database queries
             AnimatedContent(
                 targetState = currentDestination,
                 transitionSpec = {
-                    val isForward = targetState.javaClass != initialState.javaClass
-                    (fadeIn(animationSpec = androidx.compose.animation.core.tween(150)) +
-                            slideInHorizontally(animationSpec = androidx.compose.animation.core.tween(150)) { if (isForward) it / 6 else -it / 6 })
-                        .togetherWith(
-                            fadeOut(animationSpec = androidx.compose.animation.core.tween(150)) +
-                                    slideOutHorizontally(animationSpec = androidx.compose.animation.core.tween(150)) { if (isForward) -it / 6 else it / 6 }
-                        )
+                    fadeIn() + slideInHorizontally { it / 4 } togetherWith fadeOut() + slideOutHorizontally { -it / 4 }
                 },
                 label = "catalogNavigation"
             ) { dest ->
                 when (dest) {
                     is CatalogDestination.Classes -> {
-                        val classes = remember(allAccountsMap) { viewModel.getClasses() }
+                        val classes = remember(allAccounts) { viewModel.getClasses() }
                         CatalogClassesPage(
                             classes = classes,
                             viewModel = viewModel,
@@ -400,8 +394,8 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Groups -> {
-                        val groupsFlow = remember(dest.classAccount.code) { viewModel.getGroupsForClassFlow(dest.classAccount.code) }
-                        val groups by groupsFlow.collectAsStateWithLifecycle(initialValue = emptyList())
+                        val groups by viewModel.getGroupsForClassFlow(dest.classAccount.code)
+                            .collectAsStateWithLifecycle(initialValue = emptyList())
                         CatalogGroupsPage(
                             classAccount = dest.classAccount,
                             groups = groups,
@@ -417,8 +411,8 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Accounts -> {
-                        val accountsFlow = remember(dest.groupAccount.code) { viewModel.getAccountsForGroupFlow(dest.groupAccount.code) }
-                        val accounts by accountsFlow.collectAsStateWithLifecycle(initialValue = emptyList())
+                        val accounts by viewModel.getAccountsForGroupFlow(dest.groupAccount.code)
+                            .collectAsStateWithLifecycle(initialValue = emptyList())
                         CatalogAccountsPage(
                             groupAccount = dest.groupAccount,
                             classAccount = dest.classAccount,
@@ -437,8 +431,8 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Detail -> {
-                        val subaccountsFlow = remember(dest.account.code) { viewModel.getSubaccountsForAccountFlow(dest.account.code) }
-                        val subaccounts by subaccountsFlow.collectAsStateWithLifecycle(initialValue = emptyList())
+                        val subaccounts by viewModel.getSubaccountsForAccountFlow(dest.account.code)
+                            .collectAsStateWithLifecycle(initialValue = emptyList())
                         CatalogAccountDetailPage(
                             account = dest.account,
                             subaccounts = subaccounts,
@@ -553,10 +547,11 @@ fun CatalogClassesPage(
                             )
                             Spacer(modifier = Modifier.height(1.dp))
                             Text(
-                                text = microGuide.take(55) + "...",
+                                text = microGuide,
                                 fontSize = 11.sp,
                                 color = SoftCharcoalTextSecondary,
-                                maxLines = 1
+                                maxLines = 4,
+                                lineHeight = 14.sp
                             )
                         }
 
@@ -586,6 +581,9 @@ fun CatalogGroupsPage(
 ) {
     val theme = getPucClassTheme(classAccount.code)
     val classIcon = getClassIcon(classAccount.code)
+    val classMicroGuide = remember(classAccount.code) {
+        viewModel.getMicroGuide(classAccount.code, classAccount.name, classAccount.nature)
+    }
 
     Column(modifier = Modifier.fillMaxSize()) {
         Surface(
@@ -594,23 +592,29 @@ fun CatalogGroupsPage(
             border = androidx.compose.foundation.BorderStroke(1.2.dp, theme.borderColor),
             modifier = Modifier.fillMaxWidth()
         ) {
-            Row(
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(10.dp),
-                verticalAlignment = Alignment.CenterVertically
+                    .padding(10.dp)
             ) {
-                IconButton(onClick = onBack, modifier = Modifier.size(32.dp)) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "Atrás",
-                        tint = theme.accentColor
-                    )
-                }
-                Spacer(modifier = Modifier.width(6.dp))
-                Column(modifier = Modifier.weight(1f)) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        Icon(imageVector = classIcon, contentDescription = null, tint = theme.accentColor, modifier = Modifier.size(15.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(onClick = onBack, modifier = Modifier.size(32.dp)) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Atrás",
+                            tint = theme.accentColor
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(6.dp),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Icon(imageVector = classIcon, contentDescription = null, tint = theme.accentColor, modifier = Modifier.size(16.dp))
                         Text(
                             text = "Clase ${classAccount.code} • ${classAccount.name}",
                             fontSize = 11.5.sp,
@@ -618,12 +622,15 @@ fun CatalogGroupsPage(
                             color = theme.accentColor
                         )
                     }
-                    Text(
-                        text = "Seleccione un Grupo Contable",
-                        fontSize = 10.5.sp,
-                        color = SoftCharcoalTextMuted
-                    )
                 }
+                Spacer(modifier = Modifier.height(2.dp))
+                Text(
+                    text = classAccount.description.ifBlank { classMicroGuide },
+                    fontSize = 11.sp,
+                    lineHeight = 15.sp,
+                    color = SoftCharcoalText,
+                    modifier = Modifier.padding(start = 38.dp)
+                )
             }
         }
 
@@ -684,7 +691,8 @@ fun CatalogGroupsPage(
                                 text = microGuide,
                                 fontSize = 11.sp,
                                 color = SoftCharcoalTextSecondary,
-                                maxLines = 1
+                                maxLines = 4,
+                                lineHeight = 14.sp
                             )
                         }
 
@@ -809,7 +817,8 @@ fun CatalogAccountsPage(
                                 text = microGuide,
                                 fontSize = 11.sp,
                                 color = SoftCharcoalTextSecondary,
-                                maxLines = 1
+                                maxLines = 4,
+                                lineHeight = 14.sp
                             )
                         }
 
@@ -1020,41 +1029,55 @@ fun CatalogAccountDetailPage(
                     Spacer(modifier = Modifier.height(8.dp))
                     subaccounts.forEach { sub ->
                         Card(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 4.dp)
-                                .clickable { onSelectSubaccount(sub) },
-                            shape = RoundedCornerShape(8.dp),
+                            modifier = Modifier.fillMaxWidth(),
+                            shape = RoundedCornerShape(12.dp),
                             colors = CardDefaults.cardColors(containerColor = CleanPaperCard),
-                            border = androidx.compose.foundation.BorderStroke(0.8.dp, Color(0xFFE4EAE5))
+                            border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFE4EAE5)),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
                         ) {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(10.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(
-                                    text = sub.code,
-                                    fontFamily = FontFamily.Monospace,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 11.5.sp,
-                                    color = MintGreenPrimary
-                                )
-                                Spacer(modifier = Modifier.width(8.dp))
-                                Text(
-                                    text = sub.name,
-                                    fontSize = 12.sp,
-                                    color = SoftCharcoalText,
-                                    modifier = Modifier.weight(1f),
-                                    maxLines = 1
-                                )
-                                Icon(
-                                    imageVector = Icons.AutoMirrored.Filled.NavigateNext,
-                                    contentDescription = null,
-                                    tint = SoftCharcoalTextMuted,
-                                    modifier = Modifier.size(16.dp)
-                                )
+                            Column(modifier = Modifier.padding(12.dp)) {
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Surface(
+                                        color = Color(0xFFE8F5E9),
+                                        shape = RoundedCornerShape(8.dp),
+                                        modifier = Modifier.size(width = 50.dp, height = 32.dp)
+                                    ) {
+                                        Box(contentAlignment = Alignment.Center) {
+                                            Text(
+                                                text = sub.code,
+                                                fontFamily = FontFamily.Monospace,
+                                                fontWeight = FontWeight.Bold,
+                                                fontSize = 12.sp,
+                                                color = MintGreenPrimary
+                                            )
+                                        }
+                                    }
+
+                                    Spacer(modifier = Modifier.width(10.dp))
+
+                                    Column(modifier = Modifier.weight(1f)) {
+                                        Text(
+                                            text = sub.name,
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 13.sp,
+                                            color = SoftCharcoalText
+                                        )
+                                        Spacer(modifier = Modifier.height(2.dp))
+                                        val subMicroGuide = remember(sub.code) {
+                                            viewModel.getMicroGuide(sub.code, sub.name, sub.nature)
+                                        }
+                                        Text(
+                                            text = sub.description.ifBlank { subMicroGuide },
+                                            fontSize = 11.sp,
+                                            color = SoftCharcoalTextSecondary,
+                                            maxLines = 4,
+                                            lineHeight = 14.sp
+                                        )
+                                    }
+                                }
                             }
                         }
                     }
@@ -1070,7 +1093,7 @@ fun CatalogAccountDetailPage(
                 ) {
                     Row(
                         modifier = Modifier.padding(vertical = 10.dp),
-                        horizontalArrangement = Arrangement.Center,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
@@ -1079,7 +1102,6 @@ fun CatalogAccountDetailPage(
                             tint = Color.White,
                             modifier = Modifier.size(16.dp)
                         )
-                        Spacer(modifier = Modifier.width(12.dp))
                         Text(
                             text = "Copiar Código (${account.code})",
                             fontWeight = FontWeight.Bold,

@@ -17,7 +17,7 @@ import kotlinx.coroutines.sync.withLock
 
 @Database(
     entities = [PucAccountEntity::class, PucAccountFts::class],
-    version = 5,
+    version = 7,
     exportSchema = false
 )
 abstract class PucDatabase : RoomDatabase() {
