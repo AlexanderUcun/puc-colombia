@@ -21,7 +21,8 @@ data class PucAccount(
     val description: String,
     val debitDynamic: String = "",
     val creditDynamic: String = "",
-    val parentCode: String? = null
+    val parentCode: String? = null,
+    val isFavorite: Boolean = false
 )
 
 data class JournalEntryLine(
