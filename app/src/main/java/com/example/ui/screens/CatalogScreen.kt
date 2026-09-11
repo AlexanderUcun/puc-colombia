@@ -3,18 +3,18 @@ package com.example.ui.screens
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.runtime.rememberCoroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -383,11 +383,16 @@ fun CatalogScreen(
 
             Spacer(modifier = Modifier.height(4.dp))
 
-            // Animated full-screen drill-down page container backed by reactive database queries
+            // Pre-loaded in-memory instant page transitions (Zero query lag)
             AnimatedContent(
                 targetState = currentDestination,
                 transitionSpec = {
-                    fadeIn() + slideInHorizontally { it / 4 } togetherWith fadeOut() + slideOutHorizontally { -it / 4 }
+                    (fadeIn(animationSpec = tween(150)) +
+                            slideInHorizontally(animationSpec = spring(dampingRatio = 0.9f, stiffness = 600f)) { it / 4 })
+                        .togetherWith(
+                            fadeOut(animationSpec = tween(60)) +
+                                    slideOutHorizontally(animationSpec = spring(dampingRatio = 0.9f, stiffness = 600f)) { -it / 4 }
+                        )
                 },
                 label = "catalogNavigation"
             ) { dest ->
@@ -403,8 +408,9 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Groups -> {
-                        val groups by viewModel.getGroupsForClassFlow(dest.classAccount.code)
-                            .collectAsStateWithLifecycle(initialValue = emptyList())
+                        val groups = remember(allAccounts, dest.classAccount.code) {
+                            viewModel.getGroupsForClass(dest.classAccount.code)
+                        }
                         CatalogGroupsPage(
                             classAccount = dest.classAccount,
                             groups = groups,
@@ -420,8 +426,9 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Accounts -> {
-                        val accounts by viewModel.getAccountsForGroupFlow(dest.groupAccount.code)
-                            .collectAsStateWithLifecycle(initialValue = emptyList())
+                        val accounts = remember(allAccounts, dest.groupAccount.code) {
+                            viewModel.getAccountsForGroup(dest.groupAccount.code)
+                        }
                         CatalogAccountsPage(
                             groupAccount = dest.groupAccount,
                             classAccount = dest.classAccount,
@@ -440,8 +447,9 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Detail -> {
-                        val subaccounts by viewModel.getSubaccountsForAccountFlow(dest.account.code)
-                            .collectAsStateWithLifecycle(initialValue = emptyList())
+                        val subaccounts = remember(allAccounts, dest.account.code) {
+                            viewModel.getSubaccountsForAccount(dest.account.code)
+                        }
                         CatalogAccountDetailPage(
                             account = dest.account,
                             subaccounts = subaccounts,
@@ -463,9 +471,7 @@ fun CatalogScreen(
                             },
                             onCopyCode = { code ->
                                 clipboardManager.setText(AnnotatedString(code))
-                                val toast = Toast.makeText(context, "✓ Código $code copiado al portapapeles", Toast.LENGTH_SHORT)
-                                toast.setGravity(android.view.Gravity.BOTTOM or android.view.Gravity.CENTER_HORIZONTAL, 0, 160)
-                                toast.show()
+                                Toast.makeText(context, "Código $code copiado", Toast.LENGTH_SHORT).show()
                             }
                         )
                     }
@@ -1099,30 +1105,25 @@ fun CatalogAccountDetailPage(
                 Surface(
                     onClick = { onCopyCode(account.code) },
                     color = MintGreenPrimary,
-                    shape = RoundedCornerShape(12.dp),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 8.dp)
+                    shape = RoundedCornerShape(10.dp),
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 16.dp, vertical = 12.dp),
-                        horizontalArrangement = Arrangement.Center,
+                        modifier = Modifier.padding(vertical = 10.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
                             imageVector = Icons.Default.ContentCopy,
                             contentDescription = null,
                             tint = Color.White,
-                            modifier = Modifier.size(18.dp)
+                            modifier = Modifier.size(16.dp)
                         )
-                        Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             text = "Copiar Código (${account.code})",
                             fontWeight = FontWeight.Bold,
                             color = Color.White,
-                            fontSize = 13.5.sp
+                            fontSize = 13.sp
                         )
                     }
                 }
@@ -1136,14 +1137,27 @@ fun NatureBadge(nature: PucNature) {
     val isDebit = nature == PucNature.DEBITO
     val bg = if (isDebit) NatureDebitBg else NatureCreditBg
     val textCol = if (isDebit) NatureDebitText else NatureCreditText
+    
+    val infiniteTransition = rememberInfiniteTransition(label = "natureFlash")
+    val alphaAnim by infiniteTransition.animateFloat(
+        initialValue = 0.6f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 800, easing = FastOutSlowInEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "flashAlpha"
+    )
+
     Surface(
-        color = bg,
-        shape = RoundedCornerShape(6.dp)
+        color = bg.copy(alpha = alphaAnim),
+        shape = RoundedCornerShape(6.dp),
+        border = androidx.compose.foundation.BorderStroke(1.dp, textCol.copy(alpha = 0.5f))
     ) {
         Text(
             text = if (isDebit) "Naturaleza: Débito" else "Naturaleza: Crédito",
             fontSize = 11.sp,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Bold,
             color = textCol,
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
         )

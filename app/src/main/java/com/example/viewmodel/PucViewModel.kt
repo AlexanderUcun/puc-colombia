@@ -54,6 +54,15 @@ class PucViewModel(application: Application) : AndroidViewModel(application) {
             initialValue = emptyList()
         )
 
+    val isDataLoaded: StateFlow<Boolean> = allAccountsState
+        .map { it.isNotEmpty() }
+        .flowOn(kotlinx.coroutines.Dispatchers.IO)
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = false
+        )
+
     // Flat accounts stream for global search
     @OptIn(ExperimentalCoroutinesApi::class)
     val accounts: StateFlow<List<PucAccount>> = combine(
@@ -120,6 +129,21 @@ class PucViewModel(application: Application) : AndroidViewModel(application) {
                 description = "Clase oficial del Plan Único de Cuentas."
             )
         }
+    }
+
+    fun getGroupsForClass(classCode: String): List<PucAccount> {
+        val all = allAccountsState.value
+        return all.filter { it.code.startsWith(classCode) && it.code.length > 1 && it.code.length <= 3 }.distinctBy { it.code }.sortedBy { it.code }
+    }
+
+    fun getAccountsForGroup(groupCode: String): List<PucAccount> {
+        val all = allAccountsState.value
+        return all.filter { it.code.startsWith(groupCode) && it.code != groupCode && it.code.length <= 5 }.distinctBy { it.code }.sortedBy { it.code }
+    }
+
+    fun getSubaccountsForAccount(accountCode: String): List<PucAccount> {
+        val all = allAccountsState.value
+        return all.filter { it.code.startsWith(accountCode) && it.code != accountCode }.distinctBy { it.code }.sortedBy { it.code }
     }
 
     fun getGroupsForClassFlow(classCode: String): Flow<List<PucAccount>> {
