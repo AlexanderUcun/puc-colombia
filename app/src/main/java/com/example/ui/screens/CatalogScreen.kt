@@ -11,8 +11,6 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
-import androidx.compose.ui.graphics.graphicsLayer
-import kotlinx.coroutines.delay
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
@@ -76,6 +74,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
@@ -86,9 +85,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.model.CommonAccountsHelper
 import com.example.model.PucAccount
 import com.example.model.PucExplanationHelper
 import com.example.model.PucNature
+import com.example.model.getAccountBorder
 import com.example.ui.theme.CleanPaperBackground
 import com.example.ui.theme.CleanPaperBorder
 import com.example.ui.theme.CleanPaperCard
@@ -109,6 +110,7 @@ import com.example.ui.theme.SoftCharcoalTextMuted
 import com.example.ui.theme.SoftCharcoalTextSecondary
 import com.example.ui.theme.getPucClassTheme
 import com.example.viewmodel.PucViewModel
+import kotlinx.coroutines.delay
 
 sealed class CatalogDestination {
     data object Classes : CatalogDestination()
@@ -291,7 +293,7 @@ fun CatalogScreen(
                             },
                         shape = RoundedCornerShape(12.dp),
                         colors = CardDefaults.cardColors(containerColor = CleanPaperSurface),
-                        border = androidx.compose.foundation.BorderStroke(1.dp, theme.borderColor),
+                        border = getAccountBorder(acc.code, theme.borderColor),
                         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
                     ) {
                         Row(
@@ -564,7 +566,7 @@ fun CatalogClassesPage(
                         .testTag("class_card_${classAccount.code}"),
                     shape = RoundedCornerShape(14.dp),
                     colors = CardDefaults.cardColors(containerColor = theme.backgroundColor),
-                    border = androidx.compose.foundation.BorderStroke(1.2.dp, theme.borderColor),
+                    border = getAccountBorder(classAccount.code, theme.borderColor),
                     elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
                 ) {
                     Row(
@@ -661,7 +663,7 @@ fun CatalogGroupsPage(
         Surface(
             color = theme.backgroundColor,
             shape = RoundedCornerShape(12.dp),
-            border = androidx.compose.foundation.BorderStroke(1.2.dp, theme.borderColor),
+            border = getAccountBorder(classAccount.code, theme.borderColor),
             modifier = Modifier.fillMaxWidth()
         ) {
             Column(
@@ -724,7 +726,7 @@ fun CatalogGroupsPage(
                         .testTag("group_card_${groupAccount.code}"),
                     shape = RoundedCornerShape(12.dp),
                     colors = CardDefaults.cardColors(containerColor = CleanPaperSurface),
-                    border = androidx.compose.foundation.BorderStroke(1.dp, CleanPaperBorder),
+                    border = getAccountBorder(groupAccount.code, CleanPaperBorder),
                     elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
                 ) {
                     Row(
@@ -798,7 +800,7 @@ fun CatalogAccountsPage(
         Surface(
             color = CleanPaperSurface,
             shape = RoundedCornerShape(12.dp),
-            border = androidx.compose.foundation.BorderStroke(1.dp, CleanPaperBorder),
+            border = getAccountBorder(groupAccount.code, CleanPaperBorder),
             modifier = Modifier.fillMaxWidth()
         ) {
             Row(
@@ -850,7 +852,7 @@ fun CatalogAccountsPage(
                         .testTag("account_card_${account.code}"),
                     shape = RoundedCornerShape(12.dp),
                     colors = CardDefaults.cardColors(containerColor = CleanPaperCard),
-                    border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFE4EAE5)),
+                    border = getAccountBorder(account.code, Color(0xFFE4EAE5)),
                     elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
                 ) {
                     Row(
@@ -932,7 +934,7 @@ fun CatalogAccountDetailPage(
         Surface(
             color = CleanPaperSurface,
             shape = RoundedCornerShape(12.dp),
-            border = androidx.compose.foundation.BorderStroke(1.dp, CleanPaperBorder),
+            border = getAccountBorder(currentAccount.code, CleanPaperBorder),
             modifier = Modifier.fillMaxWidth()
         ) {
             Row(
@@ -985,7 +987,7 @@ fun CatalogAccountDetailPage(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(16.dp),
             colors = CardDefaults.cardColors(containerColor = CleanPaperSurface),
-            border = androidx.compose.foundation.BorderStroke(1.2.dp, theme.borderColor),
+            border = getAccountBorder(currentAccount.code, theme.borderColor),
             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
@@ -1008,7 +1010,47 @@ fun CatalogAccountDetailPage(
                         )
                     }
 
-                    NatureBadge(nature = currentAccount.nature)
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        val isFav = currentAccount.isFavorite
+                        val context = LocalContext.current
+                        Surface(
+                            onClick = {
+                                viewModel.toggleFavorite(currentAccount)
+                                Toast.makeText(
+                                    context,
+                                    if (!isFav) "¡Guardada en Favoritos!" else "Cuenta retirada de favoritos",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            },
+                            color = if (isFav) Color(0xFFE8F5E9) else Color(0xFFF5F5F5),
+                            shape = RoundedCornerShape(8.dp),
+                            border = androidx.compose.foundation.BorderStroke(1.dp, if (isFav) MintGreenPrimary else Color(0xFFD0D7D1))
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                Icon(
+                                    imageVector = if (isFav) Icons.Default.Bookmark else Icons.Outlined.BookmarkBorder,
+                                    contentDescription = null,
+                                    tint = if (isFav) MintGreenPrimary else SoftCharcoalTextMuted,
+                                    modifier = Modifier.size(16.dp)
+                                )
+                                Text(
+                                    text = if (isFav) "Guardada" else "Guardar",
+                                    fontSize = 11.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = if (isFav) MintGreenPrimary else SoftCharcoalTextSecondary
+                                )
+                            }
+                        }
+
+                        NatureBadge(nature = currentAccount.nature)
+                    }
                 }
 
                 Spacer(modifier = Modifier.height(10.dp))
@@ -1108,7 +1150,7 @@ fun CatalogAccountDetailPage(
                                 .clickable { onSelectSubaccount(sub) },
                             shape = RoundedCornerShape(12.dp),
                             colors = CardDefaults.cardColors(containerColor = CleanPaperCard),
-                            border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFE4EAE5)),
+                            border = getAccountBorder(sub.code, Color(0xFFE4EAE5)),
                             elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
                         ) {
                             Column(modifier = Modifier.padding(12.dp)) {
@@ -1156,62 +1198,6 @@ fun CatalogAccountDetailPage(
                                 }
                             }
                         }
-                    }
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                val context = LocalContext.current
-                val isFav = currentAccount.isFavorite
-                var scaleState by remember { mutableStateOf(1f) }
-                val scale by animateFloatAsState(
-                    targetValue = scaleState,
-                    animationSpec = spring(dampingRatio = 0.4f, stiffness = 600f),
-                    label = "favButtonScale"
-                )
-
-                LaunchedEffect(scaleState) {
-                    if (scaleState > 1f) {
-                        delay(150)
-                        scaleState = 1f
-                    }
-                }
-
-                Surface(
-                    onClick = {
-                        viewModel.toggleFavorite(currentAccount)
-                        scaleState = 1.15f
-                        Toast.makeText(
-                            context,
-                            if (!isFav) "¡Cuenta guardada en favoritos!" else "Cuenta retirada de favoritos",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    },
-                    color = if (isFav) Color(0xFFE8F5E9) else MintGreenPrimary,
-                    shape = RoundedCornerShape(10.dp),
-                    border = if (isFav) androidx.compose.foundation.BorderStroke(1.5.dp, MintGreenPrimary) else null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .graphicsLayer(scaleX = scale, scaleY = scale)
-                ) {
-                    Row(
-                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
-                        horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = if (isFav) Icons.Default.Bookmark else Icons.Outlined.BookmarkBorder,
-                            contentDescription = null,
-                            tint = if (isFav) MintGreenPrimary else Color.White,
-                            modifier = Modifier.size(18.dp)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(
-                            text = if (isFav) "Guardado en Favoritos" else "Guardar en Favoritos",
-                            fontWeight = FontWeight.Bold,
-                            color = if (isFav) MintGreenPrimary else Color.White,
-                            fontSize = 13.sp
-                        )
                     }
                 }
             }

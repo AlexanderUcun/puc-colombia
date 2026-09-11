@@ -1,5 +1,9 @@
 package com.example.model
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+
 data class CommonAccountInfo(
     val code: String,
     val name: String,
@@ -9,6 +13,15 @@ data class CommonAccountInfo(
     val creditDynamic: String,
     val practicalExample: String
 )
+
+fun getAccountBorder(code: String, defaultColor: Color): BorderStroke {
+    val isCommon = CommonAccountsHelper.commonAccountsList.any { it.code == code }
+    return if (isCommon) {
+        BorderStroke(1.5.dp, Color(0xFFFFB300)) // Subtle golden amber border for 69 common accounts
+    } else {
+        BorderStroke(1.dp, defaultColor)
+    }
+}
 
 object CommonAccountsHelper {
     val commonAccountsList = listOf(

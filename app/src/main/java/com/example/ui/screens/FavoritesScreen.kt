@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.model.PucAccount
+import com.example.model.getAccountBorder
 import com.example.ui.theme.CleanPaperBackground
 import com.example.ui.theme.CleanPaperSurface
 import com.example.ui.theme.MintGreenPrimary
@@ -164,7 +165,7 @@ fun FavoritesScreen(
                             .clickable { onSelectAccount(account) },
                         shape = RoundedCornerShape(12.dp),
                         colors = CardDefaults.cardColors(containerColor = CleanPaperSurface),
-                        border = androidx.compose.foundation.BorderStroke(1.dp, theme.borderColor),
+                        border = getAccountBorder(account.code, theme.borderColor),
                         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
                     ) {
                         Row(

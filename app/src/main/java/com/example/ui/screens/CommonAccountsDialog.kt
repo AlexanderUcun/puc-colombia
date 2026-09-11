@@ -1,6 +1,5 @@
 package com.example.ui.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,6 +17,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.FlashOn
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -27,6 +28,10 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -49,13 +54,20 @@ fun CommonAccountsDialog(
     onDismiss: () -> Unit,
     onSelectAccountCode: (String) -> Unit
 ) {
+    val groupedAccounts = remember {
+        CommonAccountsHelper.commonAccountsList.groupBy { it.code.take(1) }.toSortedMap()
+    }
+
+    // Default all classes collapsed
+    var expandedClasses by remember { mutableStateOf(emptySet<String>()) }
+
     Dialog(onDismissRequest = onDismiss) {
         Surface(
             shape = RoundedCornerShape(16.dp),
             color = CleanPaperSurface,
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.85f)
+                .fillMaxHeight(0.88f)
         ) {
             Column(
                 modifier = Modifier
@@ -78,7 +90,7 @@ fun CommonAccountsDialog(
                             modifier = Modifier.size(20.dp)
                         )
                         Text(
-                            text = "69 Cuentas Más Frecuentes",
+                            text = "69 Cuentas Más Frecuentes por Clase",
                             fontWeight = FontWeight.Bold,
                             fontSize = 15.sp,
                             color = SoftCharcoalText
@@ -91,7 +103,7 @@ fun CommonAccountsDialog(
 
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Selecciona una cuenta frecuente para ver su detalle, descripción, dinámicas y ejemplos.",
+                    text = "Toca una clase para expandir o contraer sus cuentas frecuentes.",
                     fontSize = 11.sp,
                     color = SoftCharcoalTextSecondary
                 )
@@ -103,81 +115,136 @@ fun CommonAccountsDialog(
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    items(CommonAccountsHelper.commonAccountsList, key = { it.code }) { acc ->
-                        val theme = getPucClassTheme(acc.code)
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable {
-                                    onSelectAccountCode(acc.code)
-                                    onDismiss()
-                                },
-                            shape = RoundedCornerShape(10.dp),
-                            colors = CardDefaults.cardColors(containerColor = Color.White),
-                            border = androidx.compose.foundation.BorderStroke(1.dp, theme.borderColor),
-                            elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
-                        ) {
-                            Column(modifier = Modifier.padding(10.dp)) {
-                                Row(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Surface(
-                                        color = theme.accentColor,
-                                        shape = RoundedCornerShape(6.dp),
-                                        modifier = Modifier.size(width = 54.dp, height = 28.dp)
-                                    ) {
-                                        Box(contentAlignment = Alignment.Center) {
-                                            Text(
-                                                text = acc.code,
-                                                fontFamily = FontFamily.Monospace,
-                                                fontWeight = FontWeight.Bold,
-                                                fontSize = 11.sp,
-                                                color = Color.White
-                                            )
+                    groupedAccounts.forEach { (classDigit, accounts) ->
+                        val className = when (classDigit) {
+                            "1" -> "Clase 1 • Activo"
+                            "2" -> "Clase 2 • Pasivo"
+                            "3" -> "Clase 3 • Patrimonio"
+                            "4" -> "Clase 4 • Ingresos"
+                            "5" -> "Clase 5 • Gastos"
+                            "6" -> "Clase 6 • Costos de Ventas"
+                            "7" -> "Clase 7 • Costos de Producción"
+                            else -> "Clase $classDigit"
+                        }
+                        val theme = getPucClassTheme(classDigit)
+                        val isExpanded = expandedClasses.contains(classDigit)
+
+                        item(key = "header_$classDigit") {
+                            Surface(
+                                color = theme.backgroundColor,
+                                shape = RoundedCornerShape(8.dp),
+                                border = androidx.compose.foundation.BorderStroke(1.dp, theme.borderColor),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 4.dp)
+                                    .clickable {
+                                        expandedClasses = if (isExpanded) {
+                                            expandedClasses - classDigit
+                                        } else {
+                                            expandedClasses + classDigit
                                         }
                                     }
-                                    Spacer(modifier = Modifier.width(10.dp))
-                                    Column(modifier = Modifier.weight(1f)) {
+                            ) {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 12.dp, vertical = 8.dp),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        text = "$className (${accounts.size})",
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 12.5.sp,
+                                        color = theme.accentColor
+                                    )
+                                    Icon(
+                                        imageVector = if (isExpanded) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                                        contentDescription = null,
+                                        tint = theme.accentColor,
+                                        modifier = Modifier.size(18.dp)
+                                    )
+                                }
+                            }
+                        }
+
+                        if (isExpanded) {
+                            items(accounts, key = { it.code }) { acc ->
+                                Card(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clickable {
+                                            onSelectAccountCode(acc.code)
+                                            onDismiss()
+                                        },
+                                    shape = RoundedCornerShape(10.dp),
+                                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                                    border = androidx.compose.foundation.BorderStroke(1.dp, theme.borderColor),
+                                    elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
+                                ) {
+                                    Column(modifier = Modifier.padding(10.dp)) {
+                                        Row(
+                                            modifier = Modifier.fillMaxWidth(),
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+                                            Surface(
+                                                color = theme.accentColor,
+                                                shape = RoundedCornerShape(6.dp),
+                                                modifier = Modifier.size(width = 54.dp, height = 28.dp)
+                                            ) {
+                                                Box(contentAlignment = Alignment.Center) {
+                                                    Text(
+                                                        text = acc.code,
+                                                        fontFamily = FontFamily.Monospace,
+                                                        fontWeight = FontWeight.Bold,
+                                                        fontSize = 11.sp,
+                                                        color = Color.White
+                                                    )
+                                                }
+                                            }
+                                            Spacer(modifier = Modifier.width(10.dp))
+                                            Column(modifier = Modifier.weight(1f)) {
+                                                Text(
+                                                    text = acc.name,
+                                                    fontWeight = FontWeight.Bold,
+                                                    fontSize = 12.5.sp,
+                                                    color = SoftCharcoalText
+                                                )
+                                            }
+                                            Surface(
+                                                color = if (acc.nature == PucNature.DEBITO) Color(0xFFE8F5E9) else Color(0xFFE3F2FD),
+                                                shape = RoundedCornerShape(4.dp)
+                                            ) {
+                                                Text(
+                                                    text = if (acc.nature == PucNature.DEBITO) "Débito" else "Crédito",
+                                                    fontSize = 10.sp,
+                                                    fontWeight = FontWeight.Bold,
+                                                    color = if (acc.nature == PucNature.DEBITO) Color(0xFF2E7D32) else Color(0xFF1565C0),
+                                                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                                                )
+                                            }
+                                        }
+                                        Spacer(modifier = Modifier.height(6.dp))
                                         Text(
-                                            text = acc.name,
-                                            fontWeight = FontWeight.Bold,
-                                            fontSize = 12.5.sp,
-                                            color = SoftCharcoalText
+                                            text = acc.description,
+                                            fontSize = 11.sp,
+                                            color = SoftCharcoalTextSecondary,
+                                            maxLines = 2,
+                                            lineHeight = 14.sp
                                         )
-                                    }
-                                    Surface(
-                                        color = if (acc.nature == PucNature.DEBITO) Color(0xFFE8F5E9) else Color(0xFFE3F2FD),
-                                        shape = RoundedCornerShape(4.dp)
-                                    ) {
+                                        Spacer(modifier = Modifier.height(4.dp))
                                         Text(
-                                            text = if (acc.nature == PucNature.DEBITO) "Débito" else "Crédito",
-                                            fontSize = 10.sp,
-                                            fontWeight = FontWeight.Bold,
-                                            color = if (acc.nature == PucNature.DEBITO) Color(0xFF2E7D32) else Color(0xFF1565C0),
-                                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                                            text = "💡 Ejemplo: ${acc.practicalExample}",
+                                            fontSize = 10.5.sp,
+                                            color = MintGreenPrimary,
+                                            fontWeight = FontWeight.Medium,
+                                            maxLines = 2,
+                                            lineHeight = 13.sp
                                         )
                                     }
                                 }
-                                Spacer(modifier = Modifier.height(6.dp))
-                                Text(
-                                    text = acc.description,
-                                    fontSize = 11.sp,
-                                    color = SoftCharcoalTextSecondary,
-                                    maxLines = 2,
-                                    lineHeight = 14.sp
-                                )
-                                Spacer(modifier = Modifier.height(4.dp))
-                                Text(
-                                    text = "💡 Ejemplo: ${acc.practicalExample}",
-                                    fontSize = 10.5.sp,
-                                    color = MintGreenPrimary,
-                                    fontWeight = FontWeight.Medium,
-                                    maxLines = 2,
-                                    lineHeight = 13.sp
-                                )
                             }
                         }
                     }
