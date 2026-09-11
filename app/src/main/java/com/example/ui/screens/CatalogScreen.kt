@@ -145,10 +145,10 @@ fun CatalogScreen(
 
     // Handle system back button for drill-down navigation and search
     BackHandler(enabled = searchQuery.isNotEmpty() || navigationStack.size > 1) {
-        if (searchQuery.isNotEmpty()) {
-            viewModel.onSearchQueryChanged("")
-        } else if (navigationStack.size > 1) {
+        if (navigationStack.size > 1) {
             navigationStack = navigationStack.dropLast(1)
+        } else if (searchQuery.isNotEmpty()) {
+            viewModel.onSearchQueryChanged("")
         }
     }
 
@@ -187,7 +187,12 @@ fun CatalogScreen(
         ) {
             TextField(
                 value = searchQuery,
-                onValueChange = { viewModel.onSearchQueryChanged(it) },
+                onValueChange = { newQuery ->
+                    viewModel.onSearchQueryChanged(newQuery)
+                    if (currentDestination is CatalogDestination.Detail && newQuery.isNotEmpty()) {
+                        navigationStack = listOf(CatalogDestination.Classes)
+                    }
+                },
                 placeholder = {
                     Text(
                         text = "Buscar por código (ej: 1105) o concepto...",
@@ -234,7 +239,7 @@ fun CatalogScreen(
 
         Spacer(modifier = Modifier.height(4.dp))
 
-        if (searchQuery.isNotEmpty()) {
+        if (searchQuery.isNotEmpty() && currentDestination !is CatalogDestination.Detail) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -266,7 +271,6 @@ fun CatalogScreen(
                             .clickable {
                                 val crumbs = viewModel.getBreadcrumbsForAccount(acc)
                                 viewModel.selectAccountForDetail(acc)
-                                viewModel.onSearchQueryChanged("")
                                 navigationStack = navigationStack + CatalogDestination.Detail(acc, crumbs)
                             },
                         shape = RoundedCornerShape(12.dp),
@@ -324,64 +328,66 @@ fun CatalogScreen(
                 }
             }
         } else {
-            // Compact Quick Search Tags & Recent Accounts in a single ultra-slim scrollable row
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .horizontalScroll(rememberScrollState()),
-                horizontalArrangement = Arrangement.spacedBy(5.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                if (recentAccounts.isNotEmpty()) {
-                    Surface(
-                        color = Color(0xFFE8F5E9),
-                        shape = RoundedCornerShape(14.dp),
-                        border = androidx.compose.foundation.BorderStroke(0.8.dp, MintGreenPrimary)
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .clickable {
-                                    val recent = recentAccounts.first()
-                                    val crumbs = viewModel.getBreadcrumbsForAccount(recent)
-                                    viewModel.selectAccountForDetail(recent)
-                                    navigationStack = navigationStack + CatalogDestination.Detail(recent, crumbs)
-                                }
-                                .padding(horizontal = 8.dp, vertical = 3.dp),
-                            verticalAlignment = Alignment.CenterVertically
+            // Compact Quick Search Tags & Recent Accounts in a single ultra-slim scrollable row (only when not searching or when viewing detail)
+            if (currentDestination !is CatalogDestination.Detail) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .horizontalScroll(rememberScrollState()),
+                    horizontalArrangement = Arrangement.spacedBy(5.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    if (recentAccounts.isNotEmpty()) {
+                        Surface(
+                            color = Color(0xFFE8F5E9),
+                            shape = RoundedCornerShape(14.dp),
+                            border = androidx.compose.foundation.BorderStroke(0.8.dp, MintGreenPrimary)
                         ) {
-                            Icon(imageVector = Icons.Default.History, contentDescription = null, modifier = Modifier.size(12.dp), tint = MintGreenPrimary)
-                            Spacer(modifier = Modifier.width(3.dp))
+                            Row(
+                                modifier = Modifier
+                                    .clickable {
+                                        val recent = recentAccounts.first()
+                                        val crumbs = viewModel.getBreadcrumbsForAccount(recent)
+                                        viewModel.selectAccountForDetail(recent)
+                                        navigationStack = navigationStack + CatalogDestination.Detail(recent, crumbs)
+                                    }
+                                    .padding(horizontal = 8.dp, vertical = 3.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Icon(imageVector = Icons.Default.History, contentDescription = null, modifier = Modifier.size(12.dp), tint = MintGreenPrimary)
+                                Spacer(modifier = Modifier.width(3.dp))
+                                Text(
+                                    text = "Reciente: ${recentAccounts.first().code}",
+                                    fontSize = 10.5.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MintGreenPrimary
+                                )
+                            }
+                        }
+                    }
+
+                    quickSearchTags.forEach { tag ->
+                        val codeOnly = tag.split(" ").first()
+                        Surface(
+                            color = Color(0xFFF6F8F6),
+                            shape = RoundedCornerShape(14.dp),
+                            border = androidx.compose.foundation.BorderStroke(0.8.dp, Color(0xFFE0E6E2)),
+                            modifier = Modifier.clickable {
+                                viewModel.onSearchQueryChanged(codeOnly)
+                            }
+                        ) {
                             Text(
-                                text = "Reciente: ${recentAccounts.first().code}",
+                                text = tag,
                                 fontSize = 10.5.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = MintGreenPrimary
+                                color = SoftCharcoalTextSecondary,
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
                             )
                         }
                     }
                 }
 
-                quickSearchTags.forEach { tag ->
-                    val codeOnly = tag.split(" ").first()
-                    Surface(
-                        color = Color(0xFFF6F8F6),
-                        shape = RoundedCornerShape(14.dp),
-                        border = androidx.compose.foundation.BorderStroke(0.8.dp, Color(0xFFE0E6E2)),
-                        modifier = Modifier.clickable {
-                            viewModel.onSearchQueryChanged(codeOnly)
-                        }
-                    ) {
-                        Text(
-                            text = tag,
-                            fontSize = 10.5.sp,
-                            color = SoftCharcoalTextSecondary,
-                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
-                        )
-                    }
-                }
+                Spacer(modifier = Modifier.height(4.dp))
             }
-
-            Spacer(modifier = Modifier.height(4.dp))
 
             // Pre-loaded in-memory instant page transitions (Zero query lag)
             AnimatedContent(
@@ -1109,8 +1115,8 @@ fun CatalogAccountDetailPage(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Row(
-                        modifier = Modifier.padding(vertical = 10.dp),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+                        horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
@@ -1119,6 +1125,7 @@ fun CatalogAccountDetailPage(
                             tint = Color.White,
                             modifier = Modifier.size(16.dp)
                         )
+                        Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             text = "Copiar Código (${account.code})",
                             fontWeight = FontWeight.Bold,
@@ -1159,7 +1166,9 @@ fun NatureBadge(nature: PucNature) {
             fontSize = 11.sp,
             fontWeight = FontWeight.Bold,
             color = textCol,
-            modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
+            modifier = Modifier.padding(horizontal = queryOrZeroPadding(8.dp), vertical = 3.dp)
         )
     }
 }
+
+fun queryOrZeroPadding(dp: androidx.compose.ui.unit.Dp) = dp

@@ -1,5 +1,12 @@
 package com.example.ui
 
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,7 +24,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Payments
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -39,9 +45,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -87,6 +97,17 @@ fun PucApp() {
         }
     }
 
+    val infiniteTransition = rememberInfiniteTransition(label = "splashPulse")
+    val scaleAnim by infiniteTransition.animateFloat(
+        initialValue = 0.93f,
+        targetValue = 1.07f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 900, easing = FastOutSlowInEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "splashScale"
+    )
+
     val configuration = LocalConfiguration.current
     val isTablet = configuration.screenWidthDp >= 600
 
@@ -109,18 +130,24 @@ fun PucApp() {
             ) {
                 Surface(
                     color = MintGreenPrimaryContainer,
-                    shape = RoundedCornerShape(20.dp),
-                    modifier = Modifier.size(80.dp)
+                    shape = RoundedCornerShape(26.dp),
+                    modifier = Modifier
+                        .size(100.dp)
+                        .graphicsLayer(scaleX = scaleAnim, scaleY = scaleAnim),
+                    shadowElevation = 6.dp
                 ) {
                     Box(contentAlignment = Alignment.Center) {
-                        CircularProgressIndicator(
-                            color = MintGreenPrimary,
-                            strokeWidth = 4.dp,
-                            modifier = Modifier.size(40.dp)
+                        Image(
+                            painter = painterResource(id = com.example.R.drawable.puc_launcher_icon),
+                            contentDescription = "App Icon",
+                            modifier = Modifier
+                                .size(88.dp)
+                                .clip(RoundedCornerShape(20.dp)),
+                            contentScale = ContentScale.Crop
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(22.dp))
                 Text(
                     text = "PUC Colombia",
                     fontSize = 20.sp,
@@ -231,22 +258,22 @@ fun PucApp() {
                     containerColor = CleanPaperSurface
                 ) {
                     Spacer(modifier = Modifier.height(12.dp))
-                    destinations.forEachIndexed { index, destination ->
-                        NavigationRailItem(
-                            selected = selectedTab == index,
-                            onClick = { selectedTab = index },
-                            icon = { Icon(destination.icon, contentDescription = destination.title) },
-                            label = { Text(destination.title, fontSize = 11.sp) },
-                            colors = androidx.compose.material3.NavigationRailItemDefaults.colors(
-                                selectedIconColor = MintGreenPrimary,
-                                selectedTextColor = MintGreenPrimary,
-                                unselectedIconColor = SoftCharcoalTextMuted,
-                                unselectedTextColor = SoftCharcoalTextMuted,
-                                indicatorColor = MintGreenPrimaryContainer
-                            )
+                destinations.forEachIndexed { index, destination ->
+                    NavigationRailItem(
+                        selected = selectedTab == index,
+                        onClick = { selectedTab = index },
+                        icon = { Icon(destination.icon, contentDescription = destination.title) },
+                        label = { Text(destination.title, fontSize = 11.sp) },
+                        colors = androidx.compose.material3.NavigationRailItemDefaults.colors(
+                            selectedIconColor = MintGreenPrimary,
+                            selectedTextColor = MintGreenPrimary,
+                            unselectedIconColor = SoftCharcoalTextMuted,
+                            unselectedTextColor = SoftCharcoalTextMuted,
+                            indicatorColor = MintGreenPrimaryContainer
                         )
-                    }
+                    )
                 }
+            }
                 Box(
                     modifier = Modifier
                         .fillMaxHeight()
