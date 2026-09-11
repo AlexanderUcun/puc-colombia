@@ -1,22 +1,64 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# PUC Colombia
 
-# Run and deploy your AI Studio app
+Aplicación Android (Jetpack Compose) para consultar el **Plan Único de Cuentas para comerciantes en Colombia (Decreto 2650 de 1993)** con:
 
-This contains everything you need to run your app locally.
+- Catálogo jerárquico navegable por clases, grupos, cuentas y subcuentas.
+- Búsqueda por código y texto.
+- Vista de detalle con naturaleza, dinámica débito/crédito y ruta contable.
+- Guía de retenciones e impuestos frecuentes (Retefuente, IVA, ReteICA).
+- Persistencia local con Room y funcionamiento offline.
 
-View your app in AI Studio: https://ai.studio/apps/6e0e507d-d301-4611-86e4-485d57abc4b6
+## Estado y alcance actual
 
-## Run Locally
+Este repositorio ya incluye una implementación funcional del catálogo PUC y guía tributaria.
+No incluye todavía documentación funcional externa oficial (historias de usuario, criterios de aceptación o actas de alcance), por lo que el alcance aquí documentado corresponde al comportamiento implementado en código.
 
-**Prerequisites:**  [Android Studio](https://developer.android.com/studio)
+## Requisitos
 
+- Android Studio (versión reciente)
+- JDK 11
+- SDK de Android con `compileSdk` 36
 
-1. Open Android Studio
-2. Select **Open** and choose the directory containing this project
-3. Allow Android Studio to fix any incompatibilities as it imports the project.
-4. Create a file named `.env` in the project directory and set `GEMINI_API_KEY` in that file to your Gemini API key (see `.env.example` for an example)
-5. Remove this line from the app's `build.gradle.kts` file: `signingConfig = signingConfigs.getByName("debugConfig")`
-6. Run the app on an emulator or physical device
-7. If you have already published your app in AI Studio, please [request upload key reset](https://support.google.com/googleplay/android-developer/answer/9842756#zippy=%2Crequest-an-upload-key-reset) in Google Play Console.
+## Configuración local
+
+1. Clona el repositorio y ábrelo en Android Studio.
+2. Crea un archivo `.env` en la raíz del proyecto usando `.env.example` como referencia.
+3. Sincroniza Gradle y ejecuta la app en emulador o dispositivo.
+
+> Nota: la app funciona en modo local con los datos incluidos en `app/src/main/assets/puc.json`.
+
+## Variables de entorno
+
+Se gestionan con `secrets-gradle-plugin`:
+
+- `GEMINI_API_KEY` (opcional; actualmente no requerido por los flujos principales de la app).
+- `KEYSTORE_PATH`, `STORE_PASSWORD`, `KEY_PASSWORD` (solo para firmado release si aplica).
+
+## Arquitectura (resumen)
+
+- **UI:** Jetpack Compose (`app/src/main/java/com/example/ui`)
+- **Estado:** `PucViewModel`
+- **Datos:** `PucRepository`
+- **Persistencia:** Room (`PucDatabase`, `PucDao`, entidades + FTS)
+- **Contenido base:** `assets/puc.json` y respaldo en `PucCatalog`
+
+## Estructura principal
+
+- `app/src/main/java/com/example/ui/screens/CatalogScreen.kt`: navegación y búsqueda del catálogo.
+- `app/src/main/java/com/example/ui/screens/TaxGuideScreen.kt`: guía de retenciones/impuestos.
+- `app/src/main/java/com/example/data/local/`: capa de base de datos local.
+- `app/src/main/assets/puc.json`: dataset principal del PUC.
+
+## Comandos útiles
+
+Desde la raíz del repositorio:
+
+- Ejecutar pruebas unitarias: `./gradlew test`
+- Ejecutar pruebas instrumentadas (requiere entorno Android): `./gradlew connectedAndroidTest`
+- Ejecutar lint: `./gradlew lint`
+
+## Limitaciones actuales
+
+- Las tarifas tributarias son de referencia y deben validarse contra normativa vigente antes de uso productivo.
+- No hay sincronización remota ni autenticación de usuarios.
+- No reemplaza asesoría contable o tributaria profesional.
