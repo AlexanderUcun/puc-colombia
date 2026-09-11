@@ -125,7 +125,7 @@ fun CatalogScreen(
     modifier: Modifier = Modifier
 ) {
     val searchQuery by viewModel.searchQuery.collectAsStateWithLifecycle()
-    val allAccounts by viewModel.allAccountsState.collectAsStateWithLifecycle()
+    val allAccountsMap by viewModel.allAccountsMapState.collectAsStateWithLifecycle()
     val flatSearchAccounts by viewModel.accounts.collectAsStateWithLifecycle()
     val recentAccounts by viewModel.recentAccounts.collectAsStateWithLifecycle()
 
@@ -374,17 +374,23 @@ fun CatalogScreen(
 
             Spacer(modifier = Modifier.height(4.dp))
 
-            // Animated full-screen drill-down page container backed by reactive database queries
+            // High-performance animated full-screen drill-down page container
             AnimatedContent(
                 targetState = currentDestination,
                 transitionSpec = {
-                    fadeIn() + slideInHorizontally { it / 4 } togetherWith fadeOut() + slideOutHorizontally { -it / 4 }
+                    val isForward = targetState.javaClass != initialState.javaClass
+                    (fadeIn(animationSpec = androidx.compose.animation.core.tween(150)) +
+                            slideInHorizontally(animationSpec = androidx.compose.animation.core.tween(150)) { if (isForward) it / 6 else -it / 6 })
+                        .togetherWith(
+                            fadeOut(animationSpec = androidx.compose.animation.core.tween(150)) +
+                                    slideOutHorizontally(animationSpec = androidx.compose.animation.core.tween(150)) { if (isForward) -it / 6 else it / 6 }
+                        )
                 },
                 label = "catalogNavigation"
             ) { dest ->
                 when (dest) {
                     is CatalogDestination.Classes -> {
-                        val classes = remember(allAccounts) { viewModel.getClasses() }
+                        val classes = remember(allAccountsMap) { viewModel.getClasses() }
                         CatalogClassesPage(
                             classes = classes,
                             viewModel = viewModel,
@@ -394,8 +400,8 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Groups -> {
-                        val groups by viewModel.getGroupsForClassFlow(dest.classAccount.code)
-                            .collectAsStateWithLifecycle(initialValue = emptyList())
+                        val groupsFlow = remember(dest.classAccount.code) { viewModel.getGroupsForClassFlow(dest.classAccount.code) }
+                        val groups by groupsFlow.collectAsStateWithLifecycle(initialValue = emptyList())
                         CatalogGroupsPage(
                             classAccount = dest.classAccount,
                             groups = groups,
@@ -411,8 +417,8 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Accounts -> {
-                        val accounts by viewModel.getAccountsForGroupFlow(dest.groupAccount.code)
-                            .collectAsStateWithLifecycle(initialValue = emptyList())
+                        val accountsFlow = remember(dest.groupAccount.code) { viewModel.getAccountsForGroupFlow(dest.groupAccount.code) }
+                        val accounts by accountsFlow.collectAsStateWithLifecycle(initialValue = emptyList())
                         CatalogAccountsPage(
                             groupAccount = dest.groupAccount,
                             classAccount = dest.classAccount,
@@ -431,8 +437,8 @@ fun CatalogScreen(
                         )
                     }
                     is CatalogDestination.Detail -> {
-                        val subaccounts by viewModel.getSubaccountsForAccountFlow(dest.account.code)
-                            .collectAsStateWithLifecycle(initialValue = emptyList())
+                        val subaccountsFlow = remember(dest.account.code) { viewModel.getSubaccountsForAccountFlow(dest.account.code) }
+                        val subaccounts by subaccountsFlow.collectAsStateWithLifecycle(initialValue = emptyList())
                         CatalogAccountDetailPage(
                             account = dest.account,
                             subaccounts = subaccounts,

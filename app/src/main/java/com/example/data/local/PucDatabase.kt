@@ -17,7 +17,7 @@ import kotlinx.coroutines.sync.withLock
 
 @Database(
     entities = [PucAccountEntity::class, PucAccountFts::class],
-    version = 4,
+    version = 5,
     exportSchema = false
 )
 abstract class PucDatabase : RoomDatabase() {
@@ -120,8 +120,9 @@ abstract class PucDatabase : RoomDatabase() {
                     }
 
                     if (accountsToInsert.isNotEmpty()) {
+                        dao.deleteAll()
                         dao.insertAll(accountsToInsert)
-                        Log.d(TAG, "Inserted/Updated ${accountsToInsert.size} accounts into Room SQLite database.")
+                        Log.d(TAG, "Replaced database with ${accountsToInsert.size} accounts from assets/puc.json.")
                     }
                 } catch (e: Exception) {
                     Log.e(TAG, "Failed to populate database", e)

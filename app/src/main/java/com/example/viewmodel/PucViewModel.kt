@@ -34,12 +34,23 @@ class PucViewModel(application: Application) : AndroidViewModel(application) {
     private val _recentAccounts = MutableStateFlow<List<PucAccount>>(emptyList())
     val recentAccounts: StateFlow<List<PucAccount>> = _recentAccounts.asStateFlow()
 
-    // All accounts flow for breadcrumb lookup and general caching
-    val allAccountsState: StateFlow<List<PucAccount>> = repository.getAllAccounts().stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.Eagerly,
-        initialValue = emptyList()
-    )
+    // All accounts map flow for fast O(1) breadcrumb lookup and caching
+    val allAccountsMapState: StateFlow<Map<String, PucAccount>> = repository.getAllAccounts()
+        .map { list -> list.distinctBy { it.code }.associateBy { it.code } }
+        .flowOn(kotlinx.coroutines.Dispatchers.IO)
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = emptyMap()
+        )
+
+    val allAccountsState: StateFlow<List<PucAccount>> = repository.getAllAccounts()
+        .flowOn(kotlinx.coroutines.Dispatchers.IO)
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = emptyList()
+        )
 
     // Flat accounts stream for global search
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -50,7 +61,8 @@ class PucViewModel(application: Application) : AndroidViewModel(application) {
         Pair(query, classFilter)
     }.flatMapLatest { (query, classFilter) ->
         repository.search(query, classFilter)
-    }.stateIn(
+    }.flowOn(kotlinx.coroutines.Dispatchers.IO)
+    .stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = emptyList()
@@ -84,10 +96,10 @@ class PucViewModel(application: Application) : AndroidViewModel(application) {
 
     // High-performance reactive database query flows
     fun getClasses(): List<PucAccount> {
-        val all = allAccountsState.value
+        val map = allAccountsMapState.value
         return (1..9).map { i ->
             val code = i.toString()
-            all.firstOrNull { it.code == code } ?: PucAccount(
+            map[code] ?: PucAccount(
                 code = code,
                 name = when (code) {
                     "1" -> "ACTIVO"
@@ -125,17 +137,16 @@ class PucViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     /**
-     * Resolves the hierarchical breadcrumb path for a given account code.
+     * Resolves the hierarchical breadcrumb path for a given account code in O(1) time.
      */
     fun getBreadcrumbsForAccount(account: PucAccount): List<Pair<String, String>> {
-        val all = allAccountsState.value
+        val map = allAccountsMapState.value
         val code = account.code
         val crumbs = mutableListOf<Pair<String, String>>()
 
         if (code.isNotEmpty()) {
             val classCode = code.take(1)
-            val classAcc = all.firstOrNull { it.code == classCode }
-            val className = classAcc?.name ?: when (classCode) {
+            val className = map[classCode]?.name ?: when (classCode) {
                 "1" -> "ACTIVO"
                 "2" -> "PASIVO"
                 "3" -> "PATRIMONIO"
@@ -152,15 +163,13 @@ class PucViewModel(application: Application) : AndroidViewModel(application) {
 
         if (code.length >= 2) {
             val groupCode = code.take(2)
-            val groupAcc = all.firstOrNull { it.code == groupCode }
-            val groupName = groupAcc?.name ?: "Grupo $groupCode"
+            val groupName = map[groupCode]?.name ?: "Grupo $groupCode"
             crumbs.add(Pair(groupCode, groupName))
         }
 
         if (code.length >= 4) {
             val accCode = code.take(4)
-            val acc = all.firstOrNull { it.code == accCode }
-            val accName = acc?.name ?: "Cuenta $accCode"
+            val accName = map[accCode]?.name ?: "Cuenta $accCode"
             crumbs.add(Pair(accCode, accName))
         }
 

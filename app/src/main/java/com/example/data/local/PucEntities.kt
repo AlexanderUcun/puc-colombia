@@ -12,7 +12,11 @@ import com.example.model.PucNature
 
 @Entity(
     tableName = "puc_accounts",
-    indices = [Index(value = ["code"], unique = true)]
+    indices = [
+        Index(value = ["code"], unique = true),
+        Index(value = ["parent_code"]),
+        Index(value = ["level"])
+    ]
 )
 data class PucAccountEntity(
     @PrimaryKey(autoGenerate = true)

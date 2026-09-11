@@ -17,19 +17,35 @@ class PucRepository(
     private val database = PucDatabase.getDatabase(context, scope)
     private val dao = database.pucDao()
 
+    companion object {
+        private const val CURRENT_DATA_VERSION = 5
+        private const val PREFS_NAME = "puc_preferences"
+        private const val KEY_DATA_VERSION = "puc_data_version"
+    }
+
     init {
-        // Guarantee database is populated on repository initialization
+        // Guarantee database is populated and updated to the latest PUC standard
         scope.launch(Dispatchers.IO) {
-            if (dao.getAccountCount() == 0) {
-                PucDatabase.populateDatabase(context, dao)
-            }
+            checkAndPopulate()
+        }
+    }
+
+    private suspend fun checkAndPopulate() = withContext(Dispatchers.IO) {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val savedVersion = prefs.getInt(KEY_DATA_VERSION, 0)
+        val count = dao.getAccountCount()
+        val group11 = dao.getAccountByCode("11")
+
+        // Trigger reload if version is older, table is empty, or old CGN data is detected
+        val needsUpdate = savedVersion < CURRENT_DATA_VERSION || count == 0 || group11?.name != "DISPONIBLE"
+        if (needsUpdate) {
+            PucDatabase.populateDatabase(context, dao)
+            prefs.edit().putInt(KEY_DATA_VERSION, CURRENT_DATA_VERSION).apply()
         }
     }
 
     suspend fun ensurePopulated() = withContext(Dispatchers.IO) {
-        if (dao.getAccountCount() == 0) {
-            PucDatabase.populateDatabase(context, dao)
-        }
+        checkAndPopulate()
     }
 
     fun getAllAccounts(): Flow<List<PucAccount>> {
