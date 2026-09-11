@@ -18,6 +18,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material.icons.filled.FlashOn
 import androidx.compose.material.icons.outlined.BookmarkBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -27,6 +28,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -51,6 +55,7 @@ fun FavoritesScreen(
     onSelectAccount: (PucAccount) -> Unit
 ) {
     val favoriteAccounts by viewModel.favoriteAccounts.collectAsStateWithLifecycle()
+    var showCommonAccountsDialog by remember { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -61,20 +66,46 @@ fun FavoritesScreen(
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Icon(
-                imageVector = Icons.Default.Bookmark,
-                contentDescription = null,
-                tint = MintGreenPrimary,
-                modifier = Modifier.size(20.dp)
-            )
-            Text(
-                text = "Cuentas Guardadas (${favoriteAccounts.size})",
-                fontSize = 15.sp,
-                fontWeight = FontWeight.Bold,
-                color = SoftCharcoalText
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Bookmark,
+                    contentDescription = null,
+                    tint = MintGreenPrimary,
+                    modifier = Modifier.size(20.dp)
+                )
+                Text(
+                    text = "Cuentas Guardadas (${favoriteAccounts.size})",
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = SoftCharcoalText
+                )
+            }
+
+            Surface(
+                color = Color(0xFFE8F5E9),
+                shape = RoundedCornerShape(14.dp),
+                border = androidx.compose.foundation.BorderStroke(0.8.dp, MintGreenPrimary),
+                modifier = Modifier.clickable { showCommonAccountsDialog = true }
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Icon(imageVector = Icons.Default.FlashOn, contentDescription = null, modifier = Modifier.size(13.dp), tint = MintGreenPrimary)
+                    Text(
+                        text = "⚡ Frecuentes",
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = MintGreenPrimary
+                    )
+                }
+            }
         }
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -192,6 +223,17 @@ fun FavoritesScreen(
                     }
                 }
             }
+        }
+
+        if (showCommonAccountsDialog) {
+            CommonAccountsDialog(
+                onDismiss = { showCommonAccountsDialog = false },
+                onSelectAccountCode = { code ->
+                    viewModel.openAccountByCode(code) { acc ->
+                        onSelectAccount(acc)
+                    }
+                }
+            )
         }
     }
 }

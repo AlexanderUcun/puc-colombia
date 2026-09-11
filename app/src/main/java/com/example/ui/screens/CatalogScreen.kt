@@ -44,6 +44,7 @@ import androidx.compose.material.icons.automirrored.filled.NavigateNext
 import androidx.compose.material.icons.automirrored.outlined.TrendingUp
 import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.FlashOn
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.AccountBalance
@@ -144,6 +145,7 @@ fun CatalogScreen(
     val selectedAccountForDetail by viewModel.selectedAccountForDetail.collectAsStateWithLifecycle()
 
     var navigationStack by remember { mutableStateOf<List<CatalogDestination>>(listOf(CatalogDestination.Classes)) }
+    var showCommonAccountsDialog by remember { mutableStateOf(false) }
     val currentDestination = navigationStack.lastOrNull() ?: CatalogDestination.Classes
 
     val context = LocalContext.current
@@ -401,6 +403,27 @@ fun CatalogScreen(
                             )
                         }
                     }
+
+                    Surface(
+                        color = Color(0xFFE8F5E9),
+                        shape = RoundedCornerShape(14.dp),
+                        border = androidx.compose.foundation.BorderStroke(0.8.dp, MintGreenPrimary),
+                        modifier = Modifier.clickable { showCommonAccountsDialog = true }
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 3.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            Icon(imageVector = Icons.Default.FlashOn, contentDescription = null, modifier = Modifier.size(13.dp), tint = MintGreenPrimary)
+                            Text(
+                                text = "⚡ Frecuentes",
+                                fontSize = 10.5.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = MintGreenPrimary
+                            )
+                        }
+                    }
                 }
 
                 Spacer(modifier = Modifier.height(4.dp))
@@ -498,6 +521,18 @@ fun CatalogScreen(
                 }
             }
         }
+    }
+
+    if (showCommonAccountsDialog) {
+        CommonAccountsDialog(
+            onDismiss = { showCommonAccountsDialog = false },
+            onSelectAccountCode = { code ->
+                viewModel.openAccountByCode(code) { acc ->
+                    val crumbs = viewModel.getBreadcrumbsForAccount(acc)
+                    navigationStack = navigationStack + CatalogDestination.Detail(acc, crumbs)
+                }
+            }
+        )
     }
 }
 
